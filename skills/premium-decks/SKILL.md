@@ -223,9 +223,8 @@ below and prints the fix for anything missing.
 | Dependency | Needed for | Check |
 |---|---|---|
 | Node ≥ 18 | Mode A create | `node --version`. pptxgenjs 3.12 ships vendored in `templates/lib/vendor/`: no install, no network |
-| Python ≥ 3.9 + `python-pptx`, `lxml`, `defusedxml`, `Pillow`, `openpyxl`, `pypdf` | ingest, QA scripts | `python3 -c "import pptx, defusedxml, openpyxl, pypdf"`. The macOS system Python 3.9 works. |
+| Python ≥ 3.9 + `python-pptx`, `lxml`, `defusedxml`, `Pillow`, `openpyxl`, `pypdf`, `pypdfium2` | ingest, QA scripts, thumbnails, collision check | `scripts/doctor.py`; with the user's OK, `scripts/doctor.py --install` installs the pinned set. The macOS system Python 3.9 works. |
 | LibreOffice **or** PowerPoint **or** Keynote | render for visual QA | `scripts/pptx2pdf.py` tries each in order. On Windows and Linux, LibreOffice is the renderer; it is found on PATH or in its default install folder |
-| poppler (`pdftoppm`, `pdftotext`) | thumbnails, layout collision check | `brew install poppler` / `apt install poppler-utils` |
 
 ## Samples
 

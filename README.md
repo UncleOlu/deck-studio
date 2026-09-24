@@ -27,10 +27,10 @@ claude plugin install deck-studio@deck-studio
 ```
 
 Then check the machine: `python3 skills/premium-decks/scripts/doctor.py` in the
-installed plugin prints what is missing and how to fix it. Requirements:
-Python ≥ 3.9 (`pip install -r requirements.txt`), Node ≥ 18 (pptxgenjs is
-vendored), and for visual QA a renderer (LibreOffice on any OS, or PowerPoint
-or Keynote on macOS) plus poppler.
+installed plugin prints what is missing and how to fix it, and
+`doctor.py --install` installs the pinned Python packages. Requirements:
+Python ≥ 3.9, Node ≥ 18 (pptxgenjs is vendored), and for visual QA a renderer
+(LibreOffice on any OS, or PowerPoint or Keynote on macOS).
 
 ## 60-second demo
 
@@ -77,7 +77,9 @@ strategic-alternatives recipe. Every rule records its support and what was
 rejected. See `research/corpus-findings.md`, `research/pitchbook-findings.md`,
 and `research/corpus-sources.md` (source URLs only; the decks themselves are
 never redistributed). Evals live in `evals/`: seven deck-building cases, six
-trigger cases, an objective scorer, and a blind judge.
+trigger cases, an objective scorer, a blind judge, and a protocol for an
+independent review study (`evals/review/`) that measures time to approval,
+revision rounds, and numbers corrected.
 
 Internal builds before 1.0.0 were numbered 1.x–2.0.x and never published;
 the eval reports use those numbers as labels.

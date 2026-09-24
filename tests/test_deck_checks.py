@@ -880,3 +880,118 @@ def test_every_calc_example_in_the_skill_docs_verifies() -> None:
     for ex in examples:
         results = [cv.check_arithmetic(s, {}) for s in cv.segments(re.sub(r"\s+", " ", ex))]
         assert results and all(r.status == "ok" for r in results), (ex, [r.detail for r in results])
+
+
+def test_review_diff_counts_what_the_reviewer_changed(make_pptx: MakePptx) -> None:
+    import importlib.util
+
+    path = _P2(__file__).resolve().parents[1] / "evals" / "review" / "review_diff.py"
+    spec = importlib.util.spec_from_file_location("review_diff", path)
+    assert spec is not None and spec.loader is not None
+    rd = importlib.util.module_from_spec(spec)
+    import sys
+
+    sys.modules["review_diff"] = rd
+    spec.loader.exec_module(rd)
+    chart = {"type": "bar", "categories": ["FY24", "FY25"], "series": [("Opex", (10, 9.2))]}
+    delivered = make_pptx(
+        [
+            {"title": "Cover"},
+            {"title": "Opex fell 8% to $9.2M", "body": "Opex $9.2M\nHeadcount 120", "chart": chart},
+            {"title": "Three levers close the gap", "body": "Procurement\nEnergy\nLabour"},
+            {"title": "Next steps", "body": "Approve the pilot"},
+        ],
+        name="delivered.pptx",
+    )
+    fixed = {"type": "bar", "categories": ["FY24", "FY25"], "series": [("Opex", (10, 9.4))]}
+    approved = make_pptx(
+        [
+            {"title": "Cover"},
+            {"title": "Next steps", "body": "Approve the pilot"},  # moved up
+            {"title": "Opex fell 6% to $9.4M", "body": "Opex $9.4M\nHeadcount 120", "chart": fixed},
+            {"title": "Risks", "body": "Supplier concentration"},  # added
+        ],
+        name="approved.pptx",
+    )
+    r = rd.diff(str(delivered), str(approved))
+    assert (r.slides_added, r.slides_removed) == (1, 1)  # levers slide dropped
+    assert r.slides_moved == 1
+    assert r.titles_rewritten == 1 and r.numbers_changed >= 1 and r.chart_values_changed == 1
+    same = rd.diff(str(delivered), str(delivered))
+    assert (same.numbers_changed, same.titles_rewritten, same.text_edit_ratio) == (0, 0, 0.0)
+
+
+def test_review_summary_reports_medians_and_refuses_paths_outside_the_log(tmp_path: _P2) -> None:
+    import importlib.util
+
+    path = _P2(__file__).resolve().parents[1] / "evals" / "review" / "summarize.py"
+    spec = importlib.util.spec_from_file_location("summarize", path)
+    assert spec is not None and spec.loader is not None
+    sm = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(sm)
+    (tmp_path / "d1.json").write_text(json.dumps({"numbers_changed": 0, "titles_rewritten": 2}))
+    (tmp_path / "d2.json").write_text(json.dumps({"numbers_changed": 3, "titles_rewritten": 0}))
+    log = tmp_path / "review-log.csv"
+    log.write_text(
+        "deck_id,reviewer,register,minutes_to_approval,revision_rounds,would_send,baseline_minutes,diff_json\n"
+        "a,r1,consulting,20,1,yes,60,d1.json\n"
+        "b,r2,banking,40,2,no,,d2.json\n"
+    )
+    text = "\n".join(sm.describe(sm.load(log), "All decks"))
+    assert "minutes to approval: median 30" in text and "would send: 1 of 2" in text
+    assert "decks with no number corrected: 1 of 2" in text and "minutes saved vs baseline: median 40" in text
+    bad = tmp_path / "bad.csv"
+    bad.write_text("deck_id,diff_json\nx,../../etc/passwd\n")
+    import pytest
+
+    with pytest.raises(SystemExit):
+        sm.load(bad)
+
+
+def _pdf_with_words(path: _P2, words: list[tuple[int, int, str]]) -> _P2:
+    """A one-page 720x405 PDF with Helvetica words at (x, y) from the page bottom."""
+    stream = "".join(f"BT /F1 24 Tf {x} {y} Td ({w}) Tj ET\n" for x, y, w in words).encode()
+    objs = [
+        b"<< /Type /Catalog /Pages 2 0 R >>",
+        b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+        b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 720 405] /Contents 4 0 R "
+        b"/Resources << /Font << /F1 5 0 R >> >> >>",
+        b"<< /Length %d >>\nstream\n" % len(stream) + stream + b"endstream",
+        b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+    ]
+    out, offsets = b"%PDF-1.4\n", []
+    for n, body in enumerate(objs, start=1):
+        offsets.append(len(out))
+        out += b"%d 0 obj\n" % n + body + b"\nendobj\n"
+    xref = len(out)
+    out += b"xref\n0 %d\n0000000000 65535 f \n" % (len(objs) + 1)
+    out += b"".join(b"%010d 00000 n \n" % o for o in offsets)
+    out += b"trailer\n<< /Size %d /Root 1 0 R >>\nstartxref\n%d\n%%%%EOF\n" % (len(objs) + 1, xref)
+    path.write_bytes(out)
+    return path
+
+
+def test_layout_collisions_work_with_pdfium_and_match_poppler(tmp_path: _P2) -> None:
+    import shutil
+
+    layout = load_script("layout-check")
+    clean = _pdf_with_words(tmp_path / "clean.pdf", [(60, 300, "Revenue"), (60, 200, "Margin")])
+    clash = _pdf_with_words(tmp_path / "clash.pdf", [(60, 300, "Revenue"), (80, 304, "Margin")])
+    backends = ["pdfium"] + (["poppler"] if shutil.which("pdftotext") else [])
+    for backend in backends:
+        assert layout.pdf_checks(clean, backend=backend) == ([], []), backend
+        errs, _ = layout.pdf_checks(clash, backend=backend)
+        assert any("collides" in e for e in errs), backend
+    if len(backends) == 2:  # same words and boxes within a point either way
+        a, b = ({w[4]: w[:4] for w in layout.pdf_words(clash, backend=x)[0][2]} for x in backends)
+        assert a.keys() == b.keys()
+        # pdfium's loose boxes carry a few points more headroom than poppler's font-metric boxes
+        assert all(abs(p - q) < 6.0 for k in a for p, q in zip(a[k], b[k])), (a, b)
+
+
+def test_thumbnails_render_without_poppler(tmp_path: _P2, monkeypatch: pytest.MonkeyPatch) -> None:
+    thumbs = load_script("deck_thumbnails")
+    pdf = _pdf_with_words(tmp_path / "deck.pdf", [(60, 300, "Revenue")])
+    monkeypatch.setattr(thumbs.shutil, "which", lambda _name: None)
+    [grid] = thumbs.make_grids(pdf, cols=1, rows=1, width=200)
+    assert grid.exists() and grid.stat().st_size > 1000

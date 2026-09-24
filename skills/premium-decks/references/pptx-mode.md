@@ -137,8 +137,7 @@ after every step. All scripts run on Python ≥ 3.9.
 python3 scripts/validate_pptx.py out.pptx --native-charts  # file integrity; fix in the generator
 python3 scripts/copy-lint.py out.pptx                 # cliché/intensifier/sentence-length lint
 python3 scripts/pptx2pdf.py out.pptx                  # render: soffice → PowerPoint → Keynote
-find . -maxdepth 1 -name "slide-*.jpg" -delete        # rm with a glob aborts zsh chains on no match
-pdftoppm -jpeg -r 150 out.pdf slide
+python3 scripts/deck_thumbnails.py out.pdf            # contact sheets out-grid-NN.jpg (poppler or pypdfium2)
 ```
 
 Look at every slide image, starting with overflow and collisions (the defect

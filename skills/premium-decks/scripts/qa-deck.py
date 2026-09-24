@@ -107,9 +107,13 @@ def main() -> int:
         rows.append(("SKIP", "trace", "keynote deck without --facts"))
     check("integrity", "integrity-check.py", str(deck))
     if pptx:
-        check("layout", "layout-check.py", str(deck), *(["--pdf", str(fresh_pdf)] if fresh_pdf else []))
+        code, out = run("layout-check.py", str(deck), *(["--pdf", str(fresh_pdf)] if fresh_pdf else []))
+        status, detail = classify("layout", code, out)
+        rows.append((status, "layout", detail))
         if not fresh_pdf:
             rows.append(("SKIP", "collisions", "needs a PDF rendered in this run"))
+        elif "SKIPPED:" in out:
+            rows.append(("SKIP", "collisions", "no PDF text reader: install requirements.txt"))
     else:
         rows.append(("SKIP", "collisions", "HTML deck: check overflow in the browser screenshots"))
     check("copy", "copy-lint.py", str(deck), advisory=True)  # copy findings are advice; a crash still fails

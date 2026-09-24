@@ -1,11 +1,11 @@
 [project]
 name = "deck-studio"
-version = "1.1.0"
+version = "1.2.0"
 description = "premium-decks: consulting-, banking-, and keynote-grade slide decks for Claude Code"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "Olu" }]
-dependencies = ["python-pptx>=1.0,<2", "lxml>=5,<7", "defusedxml>=0.7,<0.8", "Pillow>=10,<13", "openpyxl>=3.1,<4",
+dependencies = ["python-pptx>=1.0,<2", "lxml>=5,<7", "defusedxml>=0.7,<0.8", "Pillow>=10,<13", "openpyxl>=3.1,<4", "pypdfium2>=4.30,<6",
                 "pypdf>=4,<7"]  # exact tested pins: requirements.txt
 
 [project.optional-dependencies]

@@ -3,7 +3,7 @@
 
 Input: a .pptx (rendered to PDF first with pptx2pdf.py) or a .pdf.
 Output: <stem>-grid-NN.jpg, each a grid of up to cols x rows slides labelled
-with their slide number. Needs poppler's pdftoppm and Pillow.
+with their slide number. Uses poppler's pdftoppm when installed, else pypdfium2; needs Pillow.
 
 Usage: python3 deck_thumbnails.py deck.pptx|deck.pdf [--cols 3] [--rows 3] [--width 520]
 """
@@ -39,12 +39,20 @@ def to_pdf(deck: Path) -> Path:
 
 def make_grids(deck: Path, cols: int = 3, rows: int = 3, width: int = 520) -> list[Path]:
     """Write <stem>-grid-NN.jpg beside the deck and return their paths."""
-    if not shutil.which("pdftoppm"):
-        raise SystemExit("pdftoppm not found: install poppler (brew install poppler / apt install poppler-utils)")
     deck = deck.resolve()
     pdf = to_pdf(deck)
     with tempfile.TemporaryDirectory() as tmp:
-        subprocess.run(["pdftoppm", "-r", "60", "-jpeg", str(pdf), str(Path(tmp) / "p")], check=True, timeout=900)
+        if shutil.which("pdftoppm"):
+            subprocess.run(["pdftoppm", "-r", "60", "-jpeg", str(pdf), str(Path(tmp) / "p")], check=True, timeout=900)
+        else:  # no poppler: pypdfium2 (a pip dependency) renders the same pages
+            import pypdfium2 as pdfium
+
+            doc = pdfium.PdfDocument(str(pdf))
+            try:
+                for n, page in enumerate(doc, start=1):
+                    page.render(scale=60 / 72).to_pil().convert("RGB").save(Path(tmp) / f"p-{n}.jpg", quality=90)
+            finally:
+                doc.close()
         pages = sorted(Path(tmp).glob("p-*.jpg"), key=lambda p: int(p.stem.split("-")[-1]))
         per = cols * rows
         outputs = []

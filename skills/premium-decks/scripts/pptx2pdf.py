@@ -6,7 +6,7 @@ Tries renderers in order: LibreOffice (soffice) -> Microsoft PowerPoint
 macOS-only fallbacks for machines without LibreOffice.
 
 Usage: python3 pptx2pdf.py deck.pptx [out.pdf]
-Then:  pdftoppm -jpeg -r 150 out.pdf slide
+Then:  python3 deck_thumbnails.py out.pdf   (contact sheets of every slide)
 """
 
 from __future__ import annotations

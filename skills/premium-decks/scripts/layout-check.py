@@ -7,7 +7,7 @@ From the shape geometry (no render needed):
   - title, source line, and tracker positions drifting between content slides
     (the cover and the closing slide are bookends and are not compared)
   - near-miss alignment: left edges 0.02-0.12" apart (meant to align, did not)
-From a rendered PDF (optional, --pdf; needs poppler's pdftotext):
+From a rendered PDF (optional, --pdf; poppler's pdftotext when installed, else pypdfium2):
   - words that overlap other words (text collision)
   - words outside the page
 
@@ -19,12 +19,14 @@ Usage: python3 layout-check.py deck.pptx [--pdf deck.pdf]
 from __future__ import annotations
 
 import argparse
+import html
 import math
 import re
 import shutil
 import subprocess
 import sys
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import deck_model  # noqa: E402
@@ -123,18 +125,97 @@ def geometry_checks(deck: deck_model.Deck) -> tuple[list[str], list[str]]:
     return errs, warns
 
 
-def pdf_checks(pdf: Path) -> tuple[list[str], list[str]]:
-    if not shutil.which("pdftotext"):
-        return [], ["WARN: pdftotext not found — install poppler to run the render checks"]
+Word = tuple[float, float, float, float, str]  # x0, y0, x1, y1 from the page's top-left, in points
+Page = tuple[float, float, list[Word]]  # width, height, words
+
+
+def pdf_backend() -> str:
+    """poppler when installed (what CI uses), else pypdfium2 (a pip dependency), else none."""
+    if shutil.which("pdftotext"):
+        return "poppler"
+    try:
+        import pypdfium2  # noqa: F401
+    except ImportError:
+        return "none"
+    return "pdfium"
+
+
+def pdf_words(pdf: Path, backend: str) -> list[Page]:
+    if backend == "poppler":
+        out = subprocess.run(
+            ["pdftotext", "-bbox", str(pdf), "-"], capture_output=True, text=True, timeout=300, check=True
+        )
+        pages: list[Page] = []
+        for line in out.stdout.splitlines():
+            m = re.search(r'<page width="([\d.]+)" height="([\d.]+)"', line)
+            if m:
+                pages.append((float(m.group(1)), float(m.group(2)), []))
+                continue
+            m = re.search(
+                r'<word xMin="([\d.-]+)" yMin="([\d.-]+)" xMax="([\d.-]+)" yMax="([\d.-]+)">(.*?)</word>', line
+            )
+            if m and pages:
+                pages[-1][2].append(
+                    (
+                        float(m.group(1)),
+                        float(m.group(2)),
+                        float(m.group(3)),
+                        float(m.group(4)),
+                        html.unescape(m.group(5)),
+                    )
+                )
+        return pages
+    import pypdfium2 as pdfium
+
+    pages = []
+    doc = pdfium.PdfDocument(str(pdf))
+    try:
+        for page in doc:
+            pw, ph = page.get_size()
+            pages.append((pw, ph, _pdfium_words(page.get_textpage(), ph)))
+    finally:
+        doc.close()
+    return pages
+
+
+def _pdfium_words(text: Any, ph: float) -> list[Word]:
+    """Group pdfium's characters into words, like pdftotext: split at spaces, at the hyphen pdfium marks at a
+    line wrap, and where the next character starts a new line or runs backwards."""
+    words: list[Word] = []
+    cur: list[tuple[float, float, float, float]] = []
+    chars = ""
+    for k in range(text.count_chars() + 1):
+        ch = text.get_text_range(k, 1) if k < text.count_chars() else " "
+        box = None
+        if ch.strip() and ch not in "\ufffe\u00ad":
+            left, bottom, right, top = text.get_charbox(k, loose=True)
+            box = (left, ph - top, right, ph - bottom)  # flip to a top-left origin, like pdftotext
+        breaks = box is None or (
+            cur
+            and (
+                abs((box[1] + box[3]) - (cur[-1][1] + cur[-1][3])) / 2 > (box[3] - box[1]) / 2
+                or box[0] < cur[-1][0] - 1
+            )
+        )
+        if breaks and cur:
+            words.append(
+                (min(c[0] for c in cur), min(c[1] for c in cur), max(c[2] for c in cur), max(c[3] for c in cur), chars)
+            )
+            cur, chars = [], ""
+        if box is not None:
+            cur.append(box)
+            chars += ch
+    return words
+
+
+def pdf_checks(pdf: Path, backend: str | None = None) -> tuple[list[str], list[str]]:
+    backend = backend or pdf_backend()
+    if backend == "none":
+        return [], ["SKIPPED: no PDF text reader (install requirements.txt, or poppler) — collisions not checked"]
     if not pdf.exists():
         return [f"ERROR: {pdf} does not exist — render the deck first (scripts/pptx2pdf.py)"], []
-    out = subprocess.run(["pdftotext", "-bbox", str(pdf), "-"], capture_output=True, text=True, timeout=300, check=True)
     errs: list[str] = []
-    page = 0
-    pw = ph = 0.0
-    words: list[tuple[float, float, float, float, str]] = []
-
-    def flush() -> None:
+    for page, (pw, ph, words) in enumerate(pdf_words(pdf, backend), start=1):
         hits = 0
         for i, a in enumerate(words):
             if a[0] < -1 or a[1] < -1 or a[2] > pw + 1 or a[3] > ph + 1:
@@ -148,21 +229,6 @@ def pdf_checks(pdf: Path) -> tuple[list[str], list[str]]:
                         errs.append(f"ERROR page {page}: “{a[4]}” collides with “{b[4]}”")
         if hits > 3:
             errs.append(f"ERROR page {page}: {hits - 3} more collisions")
-
-    for line in out.stdout.splitlines():
-        m = re.search(r'<page width="([\d.]+)" height="([\d.]+)"', line)
-        if m:
-            if page:
-                flush()
-            page += 1
-            pw, ph = float(m.group(1)), float(m.group(2))
-            words = []
-            continue
-        m = re.search(r'<word xMin="([\d.-]+)" yMin="([\d.-]+)" xMax="([\d.-]+)" yMax="([\d.-]+)">(.*?)</word>', line)
-        if m:
-            words.append((float(m.group(1)), float(m.group(2)), float(m.group(3)), float(m.group(4)), m.group(5)))
-    if page:
-        flush()
     return errs, []
 
 

@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.2.0 — 2026-09-23
+
+Measure real review effort, and make setup lighter.
+
+### Added
+
+- **Independent review study kit** (`evals/review/`): a protocol for timing how
+  long real reviewers take to approve a deck and counting what they change;
+  `review_diff.py` compares the delivered and approved decks (slides added,
+  removed, moved; titles rewritten; numbers and chart values changed; text edit
+  ratio; charts replaced by pictures); `summarize.py` reports medians and
+  ranges from `review-log.csv`.
+- `doctor.py --install` installs the pinned Python packages.
+
+### Changed
+
+- **poppler is optional.** Thumbnails and the collision check use poppler when
+  it is installed and `pypdfium2` (now in `requirements.txt`) otherwise. Both
+  gave the same collision verdicts on all 36 rendered decks tested.
+- When no PDF reader is available, `qa-deck.py` reports the collision check as
+  SKIP instead of a layout warning.
+
 ## 1.1.0 — 2026-09-23
 
 Makes "verified" mean something precise, and makes incomplete QA impossible to

@@ -51,6 +51,11 @@ claude plugin eval . --scaffold --trust-plugin --allow-tools Bash Write Edit --a
   --no-publish --keep-temp --json <out>          # deck cases: then evals/harvest.py and evals/objective.py
 ```
 
+The independent review study (`evals/review/PROTOCOL.md`) measures what
+reviewers had to change before a deck was decision-ready: `review_diff.py`
+compares the delivered and approved decks, and `summarize.py` reports medians
+from `review-log.csv`.
+
 Raw eval output (`evals/results/`, `evals/reports/*.json`) holds absolute paths
 and full transcripts, so it stays local; commit the Markdown summaries.
 
