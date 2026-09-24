@@ -1,0 +1,9 @@
+# Keeps the commit-pinned GitHub Actions current (Semgrep requires hashes, not movable tags).
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7  # never propose a release younger than a week

@@ -20,11 +20,11 @@ Usage:
   SEC_USER_AGENT="Name contact@example.com" python3 edgar_fetch.py --dry-run
   SEC_USER_AGENT="..." python3 edgar_fetch.py --per-advisor 4
 """
+
 from __future__ import annotations
 
 import argparse
 import hashlib
-import http.client
 import json
 import os
 import re
@@ -32,9 +32,11 @@ import shutil
 import sys
 import time
 import urllib.parse
-import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
+from typing import Any
+
+import requests
 
 FTS_URL = "https://efts.sec.gov/LATEST/search-index"
 ARCHIVE_PREFIX = "https://www.sec.gov/Archives/edgar/data/"
@@ -70,39 +72,56 @@ def user_agent() -> str:
     return ua
 
 
-def fetch(url: str, ua: str) -> bytes:
-    """GET with throttling. Only sec.gov hosts are allowed."""
+class FetchError(RuntimeError):
+    """An HTTP error status or a network failure from an SEC request."""
+
+    def __init__(self, message: str, status: int = 0):
+        super().__init__(message)
+        self.status = status
+
+
+SEC_HOSTS = ("efts.sec.gov", "www.sec.gov")
+
+
+def fetch(url: str, ua: str, _redirects: int = 3) -> bytes:
+    """GET over HTTPS with throttling. Only https URLs on sec.gov hosts are allowed, and every
+    redirect is re-checked against the same rule."""
     global _last_request
-    host = urllib.parse.urlparse(url).hostname or ""
-    if host not in ("efts.sec.gov", "www.sec.gov"):
-        raise ValueError(f"refusing non-SEC host: {host}")
-    wait = MIN_INTERVAL_S - (time.monotonic() - _last_request)
-    if wait > 0:
-        time.sleep(wait)
-    req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept-Encoding": "identity"})
+    parts = urllib.parse.urlsplit(url)
+    host = parts.hostname or ""
+    if parts.scheme != "https" or host not in SEC_HOSTS or parts.port not in (None, 443):
+        raise ValueError(f"refusing non-SEC or non-HTTPS URL: {parts.scheme}://{host}")
     for attempt in range(3):
-        try:
-            with urllib.request.urlopen(req, timeout=60) as resp:
-                _last_request = time.monotonic()
-                return resp.read()
-        except urllib.error.HTTPError as err:
-            _last_request = time.monotonic()
-            if err.code in (429, 503) and attempt < 2:
-                time.sleep(5 * (attempt + 1))
-                continue
-            raise
-        except (TimeoutError, urllib.error.URLError, http.client.IncompleteRead, ConnectionError) as err:
+        wait = MIN_INTERVAL_S - (time.monotonic() - _last_request)
+        if wait > 0:
+            time.sleep(wait)
+        try:  # TLS verification is on by default; redirects are followed by hand so each is re-checked
+            resp = requests.get(
+                url, headers={"User-Agent": ua, "Accept-Encoding": "identity"}, timeout=60, allow_redirects=False
+            )
+        except requests.RequestException as err:
             _last_request = time.monotonic()
             if attempt < 2:
                 time.sleep(5 * (attempt + 1))
                 continue
-            raise RuntimeError(f"network failure after 3 attempts: {err}") from err
-    raise RuntimeError("unreachable")
+            raise FetchError(f"network failure after 3 attempts: {err}") from err
+        _last_request = time.monotonic()
+        status, location = resp.status_code, resp.headers.get("Location")
+        if status == 200:
+            content: bytes = resp.content
+            return content
+        if status in (301, 302, 303, 307, 308) and location and _redirects > 0:
+            return fetch(urllib.parse.urljoin(url, location), ua, _redirects - 1)
+        if status in (429, 503) and attempt < 2:
+            time.sleep(5 * (attempt + 1))
+            continue
+        raise FetchError(f"HTTP {status} for {url}", status)
+    raise FetchError("unreachable")
 
 
-def search_filings(phrase: str, start: str, end: str, ua: str, pages: int = 2) -> list[dict]:
+def search_filings(phrase: str, start: str, end: str, ua: str, pages: int = 2) -> list[dict[str, Any]]:
     """Return unique root filings (cik, adsh, date, company) matching the phrase."""
-    seen: dict[str, dict] = {}
+    seen: dict[str, dict[str, Any]] = {}
     for page in range(pages):
         params = {
             "q": f'{phrase} "discussion materials"',
@@ -142,7 +161,7 @@ class _IndexParser(HTMLParser):
         self._href = ""
         self._in_td = False
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         if tag == "tr":
             self._cells, self._href = [], ""
         elif tag == "td":
@@ -153,18 +172,18 @@ class _IndexParser(HTMLParser):
             if href.startswith("/Archives/") and not self._href:
                 self._href = href
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag: str) -> None:
         if tag == "td":
             self._in_td = False
         elif tag == "tr" and self._href and len(self._cells) >= 4:
             self.rows.append((self._href, self._cells[3].strip()))
 
-    def handle_data(self, data):
+    def handle_data(self, data: str) -> None:
         if self._in_td and self._cells:
             self._cells[-1] += data
 
 
-def exhibit_c_docs(filing: dict, ua: str) -> list[str]:
+def exhibit_c_docs(filing: dict[str, Any], ua: str) -> list[str]:
     nodash = filing["adsh"].replace("-", "")
     url = f"{ARCHIVE_PREFIX}{filing['cik']}/{nodash}/{filing['adsh']}-index.htm"
     parser = _IndexParser()
@@ -227,7 +246,7 @@ def main() -> int:
     for advisor, (stratum, phrase) in ADVISORS.items():
         filings = search_filings(phrase, args.start, args.end, ua)
         # Spread across years: prefer one filing per year before repeats.
-        by_year: dict[str, list[dict]] = {}
+        by_year: dict[str, list[dict[str, Any]]] = {}
         for f in filings:
             by_year.setdefault(f["date"][:4], []).append(f)
         ordered = []
@@ -257,7 +276,7 @@ def main() -> int:
                     break
                 try:
                     html = fetch(doc_url, ua).decode("utf-8", "replace")
-                except (RuntimeError, urllib.error.HTTPError) as err:
+                except FetchError as err:
                     print(f"  ! exhibit failed {doc_url}: {err}", file=sys.stderr)
                     continue
                 images = page_images(doc_url, html)
@@ -277,7 +296,7 @@ def main() -> int:
                         data = first if i == 1 else fetch(img_url, ua)
                         ext = img_url.rsplit(".", 1)[-1].lower()
                         (partial / f"page-{i:03d}.{ext}").write_bytes(data)
-                except (RuntimeError, urllib.error.HTTPError) as err:
+                except FetchError as err:
                     print(f"  ! deck download failed {deck_id}: {err}", file=sys.stderr)
                     shutil.rmtree(partial, ignore_errors=True)
                     continue

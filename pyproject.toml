@@ -9,7 +9,7 @@ dependencies = ["python-pptx>=1.0,<2", "lxml>=5,<7", "defusedxml>=0.7,<0.8", "Pi
                 "pypdf>=4,<7"]  # exact tested pins: requirements.txt
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.6", "jsonschema>=4"]
+dev = ["pytest>=8", "ruff>=0.6", "jsonschema>=4", "requests>=2.32,<3"]  # requests: tools/corpus only
 
 [tool.ruff]
 line-length = 120

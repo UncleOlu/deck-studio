@@ -8,6 +8,7 @@ macOS-only fallbacks for machines without LibreOffice.
 Usage: python3 pptx2pdf.py deck.pptx [out.pdf]
 Then:  pdftoppm -jpeg -r 150 out.pdf slide
 """
+
 from __future__ import annotations
 
 import glob
@@ -17,6 +18,7 @@ import shutil
 import subprocess
 import sys
 import uuid
+from collections.abc import Callable
 
 # Default install locations when soffice is not on PATH (macOS app bundle, Linux packages, Windows).
 SOFFICE_CANDIDATES = (
@@ -47,7 +49,8 @@ def soffice_convert(src: str, out_pdf: str) -> bool:
     outdir = os.path.dirname(os.path.abspath(out_pdf)) or "."
     r = subprocess.run(
         [exe, "--headless", "--convert-to", "pdf", "--outdir", outdir, src],
-        capture_output=True, timeout=300,
+        capture_output=True,
+        timeout=300,
     )
     produced = os.path.join(outdir, os.path.splitext(os.path.basename(src))[0] + ".pdf")
     if r.returncode == 0 and os.path.exists(produced):
@@ -109,22 +112,23 @@ def close_render_copy(app: str, name: str) -> None:
     """After a failed export, close our render copy so it cannot block the next open."""
     if app != "Microsoft PowerPoint" or not re.fullmatch(r"[\w.\- ]+\.pptx", name):
         return
-    script = ('on run argv\nwith timeout of 30 seconds\ntell application "Microsoft PowerPoint" to close '
-              '(every presentation whose name is (item 1 of argv)) saving no\nend timeout\nend run')
+    script = (
+        'on run argv\nwith timeout of 30 seconds\ntell application "Microsoft PowerPoint" to close '
+        "(every presentation whose name is (item 1 of argv)) saving no\nend timeout\nend run"
+    )
     subprocess.run(["osascript", "-e", script, name], capture_output=True, timeout=60)
 
 
-def main() -> int:
-    if len(sys.argv) < 2:
-        print(__doc__)
-        return 2
-    src = sys.argv[1]
-    out_pdf = sys.argv[2] if len(sys.argv) > 2 else os.path.splitext(src)[0] + ".pdf"
+def convert(src: str, out_pdf: str | None = None) -> int:
+    """Render src to PDF. Returns 0 (rendered), 3 (rendered after a PowerPoint repair), 1 (no
+    renderer succeeded), or 2 (input not found). Importable, so callers need no subprocess."""
+    REPAIRED.clear()
+    pdf: str = out_pdf or os.path.splitext(src)[0] + ".pdf"
     if not os.path.exists(src):
         print(f"Input not found: {src}")
         return 2
-    if os.path.exists(out_pdf):
-        os.remove(out_pdf)
+    if os.path.exists(pdf):
+        os.remove(pdf)
     # Render a uniquely named copy. PowerPoint and Keynote export a document that is already open
     # from memory, so re-rendering the same file name after a rebuild can silently export the stale
     # version. A fresh name forces a fresh open.
@@ -132,25 +136,41 @@ def main() -> int:
     fresh = f"{stem}.render-{uuid.uuid4().hex[:8]}{ext}"
     shutil.copyfile(src, fresh)
     try:
-        for name, fn in (
-            ("LibreOffice", lambda: soffice_convert(fresh, out_pdf)),
-            ("Microsoft PowerPoint", lambda: applescript_convert("Microsoft PowerPoint", fresh, out_pdf)
-             or applescript_convert("Microsoft PowerPoint", fresh, out_pdf)),  # one retry after cleanup
-            ("Keynote", lambda: applescript_convert("Keynote", fresh, out_pdf)),
-        ):
+        renderers: list[tuple[str, Callable[[], bool]]] = [
+            ("LibreOffice", lambda: soffice_convert(fresh, pdf)),
+            (
+                "Microsoft PowerPoint",
+                lambda: (
+                    applescript_convert("Microsoft PowerPoint", fresh, pdf)
+                    or applescript_convert("Microsoft PowerPoint", fresh, pdf)
+                ),
+            ),  # one retry after cleanup
+            ("Keynote", lambda: applescript_convert("Keynote", fresh, pdf)),
+        ]
+        for name, fn in renderers:
             if fn():
                 if REPAIRED:
-                    print(f"REPAIRED: PowerPoint had to repair {os.path.basename(src)} before it would open. "
-                          "The PDF shows the repaired file; fix the generator (see pptx-mode.md, 'Never hand-edit "
-                          "OOXML').")
+                    print(
+                        f"REPAIRED: PowerPoint had to repair {os.path.basename(src)} before it would open. "
+                        "The PDF shows the repaired file; fix the generator (see pptx-mode.md, 'Never hand-edit "
+                        "OOXML')."
+                    )
                     return 3
-                print(f"Converted with {name}: {out_pdf}")
+                print(f"Converted with {name}: {pdf}")
                 return 0
     finally:
         os.remove(fresh)
-    print("No renderer succeeded. Install LibreOffice, or grant osascript "
-          "Automation permission for PowerPoint/Keynote.")
+    print(
+        "No renderer succeeded. Install LibreOffice, or grant osascript Automation permission for PowerPoint/Keynote."
+    )
     return 1
+
+
+def main() -> int:
+    if len(sys.argv) < 2:
+        print(__doc__)
+        return 2
+    return convert(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
 
 
 if __name__ == "__main__":

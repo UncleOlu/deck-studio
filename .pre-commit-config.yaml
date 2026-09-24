@@ -60,7 +60,7 @@ repos:
       - id: bandit
         language_version: python3.12
         name: Python security scan (Bandit)
-        args: ['-ll', '-r', '.']
+        args: ['-ll']  # scans the staged files; CI scans the whole repository
         exclude: '^tests/'
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
@@ -79,3 +79,4 @@ repos:
         language_version: python3.12
         name: Type check (mypy)
         args: ['--strict', '--ignore-missing-imports']
+        additional_dependencies: ['pytest>=8', 'requests>=2.32', 'types-requests', 'python-pptx>=1.0', 'Pillow>=10']

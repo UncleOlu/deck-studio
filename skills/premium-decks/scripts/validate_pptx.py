@@ -18,18 +18,22 @@ Checks (each failure names its fix):
 
 Exit 0 when valid, 1 otherwise. Usage: python3 validate_pptx.py deck.pptx [--render] [--native-charts]
 """
+
 from __future__ import annotations
 
 import argparse
+import contextlib
 import io
 import posixpath
 import re
-import subprocess
 import sys
 import zipfile
 from pathlib import Path
 
 from defusedxml import ElementTree as ET
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pptx2pdf  # noqa: E402
 
 CT_NS = "{http://schemas.openxmlformats.org/package/2006/content-types}"
 REL_NS = "{http://schemas.openxmlformats.org/package/2006/relationships}"
@@ -91,16 +95,24 @@ def check(path: Path) -> tuple[list[str], list[str]]:
                         if r.get("TargetMode") == "External":
                             continue
                         target = r.get("Target", "")
-                        full = target.lstrip("/") if target.startswith("/") else posixpath.normpath(
-                            posixpath.join(base, target))
+                        full = (
+                            target.lstrip("/")
+                            if target.startswith("/")
+                            else posixpath.normpath(posixpath.join(base, target))
+                        )
                         if full not in names:
                             errors.append(f"{n}: relationship {r.get('Id')} points to missing part {full}")
                 if re.match(r"ppt/slides/slide\d+\.xml$", n):
-                    ids = [el.get("id") for el in root.iter("{http://schemas.openxmlformats.org/presentationml/2006/main}cNvPr")]
+                    ids = [
+                        el.get("id")
+                        for el in root.iter("{http://schemas.openxmlformats.org/presentationml/2006/main}cNvPr")
+                    ]
                     dups = sorted({i for i in ids if ids.count(i) > 1})
                     if dups:
-                        errors.append(f"{n}: duplicate shape ids {dups} — PowerPoint may ask to repair the file; "
-                                      "give every shape on a slide a unique id")
+                        errors.append(
+                            f"{n}: duplicate shape ids {dups} — PowerPoint may ask to repair the file; "
+                            "give every shape on a slide a unique id"
+                        )
                 for el in root.iter():
                     tag = el.tag.rsplit("}", 1)[-1]
                     if tag == "srgbClr" and not HEX6.match(el.get("val", "")):
@@ -111,17 +123,22 @@ def check(path: Path) -> tuple[list[str], list[str]]:
                         if grouping is not None and grouping.get("val") in ("stacked", "percentStacked"):
                             for pos in bar.iter(f"{C_NS}dLblPos"):
                                 if pos.get("val") == "outEnd":
-                                    errors.append(f"{n}: stacked bar uses data labels at outEnd — "
-                                                  "use ctr, inEnd, or inBase")
+                                    errors.append(
+                                        f"{n}: stacked bar uses data labels at outEnd — use ctr, inEnd, or inBase"
+                                    )
 
         pres = ET.fromstring(z.read("ppt/presentation.xml"))
-        prels = ET.fromstring(z.read("ppt/_rels/presentation.xml.rels")) if \
-            "ppt/_rels/presentation.xml.rels" in names else None
-        targets = {r.get("Id"): r.get("Target") for r in prels.findall(f"{REL_NS}Relationship")} \
-        if prels is not None else {}
+        prels = (
+            ET.fromstring(z.read("ppt/_rels/presentation.xml.rels"))
+            if "ppt/_rels/presentation.xml.rels" in names
+            else None
+        )
+        targets = (
+            {r.get("Id"): r.get("Target") for r in prels.findall(f"{REL_NS}Relationship")} if prels is not None else {}
+        )
         lst = pres.find(f"{P_NS}sldIdLst")
         seen = set()
-        for sid in (lst.findall(f"{P_NS}sldId") if lst is not None else []):
+        for sid in lst.findall(f"{P_NS}sldId") if lst is not None else []:
             num = int(sid.get("id", "0"))
             if num < 256 or num in seen:
                 errors.append(f"presentation.xml: slide id {num} is duplicate or below 256")
@@ -148,8 +165,10 @@ def native_chart_warnings(path: Path) -> list[str]:
     for s in deck_model.load(path).slides[1:]:
         pics = [x for x in s.shapes if x.kind == "picture"]
         if pics and not s.charts and not s.tables and any(x.w * x.h > 6 for x in pics):
-            out.append(f"slide {s.index}: a large picture and no native chart or table — "
-                       "if it shows data, rebuild it as an editable chart")
+            out.append(
+                f"slide {s.index}: a large picture and no native chart or table — "
+                "if it shows data, rebuild it as an editable chart"
+            )
         for x in pics:
             if not x.alt.strip():
                 out.append(f"slide {s.index}: picture '{x.name}' has no alt text")
@@ -167,10 +186,12 @@ def main() -> int:
     if args.native_charts and not errors:
         warnings += native_chart_warnings(path)
     if args.render and not errors:
-        r = subprocess.run([sys.executable, str(Path(__file__).with_name("pptx2pdf.py")), str(path)],
-                           capture_output=True, text=True, timeout=900)
-        if r.returncode != 0:
-            errors.append("render failed: " + (r.stdout + r.stderr).strip().splitlines()[-1])
+        log = io.StringIO()
+        with contextlib.redirect_stdout(log):
+            rc = pptx2pdf.convert(str(path))
+        if rc != 0:
+            lines = log.getvalue().strip().splitlines()
+            errors.append("render failed: " + (lines[-1] if lines else f"exit {rc}"))
     for e in errors:
         print(f"ERROR {e}")
     for w in warnings:

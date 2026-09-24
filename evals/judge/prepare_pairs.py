@@ -10,18 +10,22 @@ is decided by a seeded coin per case and recorded only in
 
 Usage: python3 prepare_pairs.py <label-1> <label-2> [--seed 11]
 """
+
 from __future__ import annotations
 
 import argparse
 import json
 import random
 import shutil
-import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "skills" / "premium-decks" / "scripts"
+sys.path.insert(0, str(SCRIPTS))
+import deck_thumbnails  # noqa: E402
+import pptx2pdf  # noqa: E402
+
 RUNS = ROOT / "evals" / "runs"
 
 
@@ -58,9 +62,11 @@ def main() -> int:
             shutil.rmtree(d, ignore_errors=True)
             d.mkdir(parents=True)
             pptx = d / "deck.pptx"
-            shutil.copy2(decks[lab], pptx)
+            src = decks[lab]
+            assert src is not None  # guarded by the all(decks.values()) check above
+            shutil.copy2(src, pptx)
             for _attempt in range(2):  # PowerPoint occasionally refuses an open; one retry
-                rc = subprocess.run([sys.executable, str(SCRIPTS / "pptx2pdf.py"), str(pptx)], timeout=1300).returncode
+                rc = pptx2pdf.convert(str(pptx))
                 if rc == 3:  # rendered, but only after PowerPoint repaired the file: a defect of that deck
                     repaired = Path.home() / "deck-corpus" / "judge" / "keys" / f"{pair}.repaired.txt"
                     with repaired.open("a") as fh:
@@ -76,8 +82,7 @@ def main() -> int:
                 continue
             if (d / "UNOPENABLE").exists():
                 continue
-            subprocess.run([sys.executable, str(SCRIPTS / "deck_thumbnails.py"), str(d / "deck.pdf"), "--cols", "2",
-                            "--rows", "2", "--width", "760"], check=True, timeout=600)
+            deck_thumbnails.make_grids(d / "deck.pdf", cols=2, rows=2, width=760)
             pptx.unlink()  # judges see renders only
         print(f"{case}: A={order[0]} B={order[1]}")
         (keys / f"{pair}.json").write_text(json.dumps(key, indent=1))
