@@ -995,3 +995,8 @@ def test_thumbnails_render_without_poppler(tmp_path: _P2, monkeypatch: pytest.Mo
     monkeypatch.setattr(thumbs.shutil, "which", lambda _name: None)
     [grid] = thumbs.make_grids(pdf, cols=1, rows=1, width=200)
     assert grid.exists() and grid.stat().st_size > 1000
+
+
+def test_plugin_manifest_fits_claude_ai_upload_limits() -> None:
+    manifest = json.loads((_P2(__file__).resolve().parents[1] / ".claude-plugin" / "plugin.json").read_text())
+    assert len(manifest["description"]) <= 500  # claude.ai refuses longer descriptions on upload

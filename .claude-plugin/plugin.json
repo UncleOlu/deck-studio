@@ -1,6 +1,6 @@
 {
   "name": "deck-studio",
-  "description": "premium-decks: turn source files into editable consulting-, banking-, and keynote-grade decks with documented sources, checked calculations, and an explicit review report. Ingests xlsx/csv/docx/pdf/pptx/md into a fact base, builds an answer-first storyline and ghost deck for approval, and renders client-editable .pptx (slide master, native charts, finance recipes) or HTML. Every number is verified against a cited fact or a recomputed calculation; QA reports PASS/WARN/SKIP/FAIL per check. Rules derived from a study of 131 public consulting and banking decks plus 8 banker discussion books.",
+  "description": "premium-decks: turn source files into editable consulting-, banking-, and keynote-grade decks (.pptx or HTML) with documented sources, checked calculations, and an explicit review report. Ingests spreadsheets, documents, and PDFs into a fact base, drafts an answer-first storyline for approval, builds client-editable decks with native charts, and verifies every number against a cited fact or a recomputed calculation.",
   "version": "1.2.0",
   "author": {
     "name": "Olu"
