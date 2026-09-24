@@ -10,7 +10,7 @@
     {
       "name": "deck-studio",
       "source": "./",
-      "description": "Consulting-, banking-, and keynote-grade .pptx and HTML decks from a folder of analysis, with traced numbers and a QA gate that can fail."
+      "description": "Editable executive decks (.pptx and HTML) from source files, with documented sources, checked calculations, and an explicit review report."
     }
   ]
 }

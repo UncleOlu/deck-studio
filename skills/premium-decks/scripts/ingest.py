@@ -184,11 +184,12 @@ def window(text: str, start: int, end: int, before: int = 7, after: int = 4) -> 
 
 # ------------------------------------------------------------------ safe formula evaluation
 class Formula:
-    """Recursive-descent evaluator for spreadsheet arithmetic. No eval()."""
+    """Recursive-descent evaluator for spreadsheet arithmetic and SUM, AVERAGE, MEDIAN, MIN, MAX, COUNT.
+    No eval()."""
 
     TOKEN = re.compile(
         r"\s*(?:(?P<num>\d+(?:\.\d+)?)|(?P<ref>\$?[A-Z]{1,3}\$?\d+(?::\$?[A-Z]{1,3}\$?\d+)?)"
-        r"|(?P<fn>SUM)\(|(?P<op>[-+*/(),]))"
+        r"|(?P<fn>SUM|AVERAGE|MEDIAN|MIN|MAX|COUNT)\(|(?P<op>[-+*/(),]))"
     )
 
     def __init__(self, expr: str, lookup: Callable[[str], list[float]]) -> None:
@@ -212,6 +213,23 @@ class Formula:
         tok = self.peek()
         self.i += 1
         return tok
+
+    @staticmethod
+    def apply(fn: str, values: list[float]) -> float:
+        if fn == "SUM":
+            return sum(values)
+        if fn == "COUNT":
+            return float(len(values))
+        if not values:
+            raise ValueError(f"{fn} of nothing")
+        if fn == "AVERAGE":
+            return sum(values) / len(values)
+        if fn == "MIN":
+            return min(values)
+        if fn == "MAX":
+            return max(values)
+        ordered, mid = sorted(values), len(values) // 2  # MEDIAN
+        return ordered[mid] if len(values) % 2 else (ordered[mid - 1] + ordered[mid]) / 2
 
     def value(self) -> float:
         v = self.expr()
@@ -248,20 +266,21 @@ class Formula:
                 raise ValueError("range outside SUM")
             return vals[0]
         if kind == "fn":
-            total = 0.0
+            assert tok is not None
+            values: list[float] = []
             while True:
                 k, t = self.take()
                 if k == "ref":
                     assert t is not None
-                    total += sum(self.lookup(t.replace("$", "")))
+                    values += self.lookup(t.replace("$", ""))
                 else:
                     self.i -= 1
-                    total += self.expr()
+                    values.append(self.expr())
                 k, t = self.take()
                 if t == ")":
-                    return total
+                    return self.apply(tok, values)
                 if t != ",":
-                    raise ValueError("bad SUM")
+                    raise ValueError(f"bad {tok}")
         if kind == "op" and tok == "(":
             v = self.expr()
             if self.take() != ("op", ")"):

@@ -95,8 +95,8 @@ These were the tells. Avoid all of them:
 
 ## What separates the best client pages (the MBB-client benchmark)
 
-- The title is the synthesis ("…so fixing Express markdowns first is worth
-  $19M"), not the fact ("Express shrink is 3.4%").
+- The title is the synthesis ("…so fixing Express markdown timing first closes
+  $11M of the $19M gap"), not the fact ("Express shrink is 3.4%").
 - One chart per idea, with the datum in the title highlighted and everything
   else muted.
 - The source line and notes are present on every analytical page.

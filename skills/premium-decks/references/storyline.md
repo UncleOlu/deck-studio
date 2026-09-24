@@ -35,9 +35,11 @@ Do not use those files.
 Break the question into 2–4 branches that are **mutually exclusive and
 collectively exhaustive**:
 
-- **Tests:** no fact supports two branches, and the branches together answer the
-  question.
-- **Driver trees** for "how much" questions: margin = price × volume − cost.
+- **Tests:** no item (cost line, customer, cause) belongs to two branches, and
+  the branches together cover the whole parent. One fact may support several
+  branches; one item may not sit in two.
+- **Driver trees** for "how much" questions: profit = price × volume − cost, and
+  margin = profit ÷ revenue (a rate, not an amount).
   Split each cost into rate × quantity.
 - **Hypothesis trees** for "should we" questions. Each branch is a claim that
   must be true for the answer to hold, such as: the market is big enough, we
@@ -51,8 +53,8 @@ For every analysis, climb three rungs. Put only the top rung in the title.
 | Rung | Question | Example |
 |---|---|---|
 | Fact | What does the data say? | Express stores lose 3.4% of sales to shrink |
-| So what | Why does it matter? | That is 1.0 pt above the peer median, worth $19M a year |
-| Now what | What should the reader do or believe? | Fix Express markdown timing first: it is the largest, fastest shrink lever |
+| So what | Why does it matter? | That is 1.0 pt above the peer median, a $19M a year gap at retail value |
+| Now what | What should the reader do or believe? | Fix Express markdown timing first: it is 0.6 pt of the gap, the largest share |
 
 A title that only states the fact is a **summary**, not a synthesis. Reject it.
 A title that states an action with no evidence on the page is an **assertion
@@ -124,5 +126,8 @@ checkpoints. Record that in `brief/decisions.md`.
 
 Every number you put on a slide comes from a fact id. Cite the ids in that
 slide's speaker notes, e.g. `Revenue $4.82B [F0027]`. A computed figure gets
-a `calc:` line in the notes: `calc: $7.2M = 15 bps × $4.82B [F0027]`.
-`trace-check.py` fails the deck on any number without a trace.
+a `calc:` line the checker can recompute (arithmetic and `SUM`/`AVERAGE`/
+`MEDIAN`/`MIN`/`MAX`, not prose), and a figure you chose goes on an `assume:`
+line: `assume: 15 bps (margin target per lever)` then
+`calc: $7.2M = 15 bps x $4.82B [F0027]`. `trace-check.py` fails wrong
+arithmetic and untraced numbers, and warns on numbers it can only see cited.

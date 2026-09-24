@@ -21,7 +21,7 @@ in a real review. Each question names the failure it catches.
    missing steps and repeated points.)
 4. **Is each title a synthesis or only a fact?** "Shrink is 3.4%" is only a
    fact. (Catches: summary instead of insight.)
-5. **Are the branches MECE?** Could a fact support two sections? Is a whole
+5. **Are the branches MECE?** Could one item (a cost line, a customer, a cause) sit in two sections? Is a whole
    category missing? (Catches: overlap and gaps.)
 6. **What is the strongest objection the client will raise, and which slide
    answers it?** (Catches: an unaddressed counter-argument.)

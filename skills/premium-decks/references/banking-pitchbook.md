@@ -88,10 +88,13 @@ as a dashed reference line.
 
 ## Integrity rules (checked by the scripts)
 
-- **Shares count:** one diluted share count and one net-debt figure through
-  the whole book. `integrity-check.py` flags a metric with two values.
+- **Share count and EV bridge:** one diluted share basis (treasury method at
+  the offer price, stated in a note) and one EV-to-equity bridge (debt +
+  preferred + minority interests − cash; net debt is negative for a net-cash
+  company) through the whole book. `integrity-check.py` flags a metric with
+  two values.
 - **Implied values:** every implied per-share value states its multiple
-  range and the metric it multiplies. Add a `calc:` line in the notes (for
-  `trace-check.py`).
+  range and the metric it multiplies. Add a `calc:` line the checker can
+  recompute: `calc: low $19.03 = (9.0 x 332 - 845) / 112.6 [F0013 FY26E EBITDA, F0006 net debt, F0027 diluted shares]`.
 - **Premiums:** premiums are calculated against a named unaffected date.
   State it on the page.

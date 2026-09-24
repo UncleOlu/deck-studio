@@ -709,3 +709,174 @@ def test_pattern_break_needs_a_contrasting_pair_not_just_a_strong_previous_emoti
     assert ssc.calculate_pattern_break(5, 12, "frustration") is False  # current emotion unknown
     assert ssc.calculate_pattern_break(4, 12, None, None) is True  # the 1/3 point still breaks
     assert ssc.calculate_pattern_break(2, 4, "frustration", "hope") is False  # decks under 5 slides never break
+
+
+def test_calc_verify_computes_the_arithmetic_and_traces_the_inputs() -> None:
+    import calc_verify as cv
+    import ingest
+
+    facts = {
+        "F0001": ingest.Fact("F0001", 100.0, "USD", 1e6, "", "Revenue", "x.xlsx", "S!B2"),
+        "F0002": ingest.Fact("F0002", 50.0, "USD", 1e6, "", "Cost", "x.xlsx", "S!B3"),
+    }
+    [bad] = cv.segments("calc: $999M = 100 + 50 [F0001, F0002]")
+    assert cv.check_arithmetic(bad, facts).status == "error"  # the review's false positive
+    [ok] = cv.segments("calc: $150M = 100 + 50 [F0001, F0002]")
+    assert cv.check_arithmetic(ok, facts).status == "ok"
+    [ids] = cv.segments("calc: 50.0% = F0002 / F0001 [F0001, F0002]")  # fact ids as variables
+    assert cv.check_arithmetic(ids, facts).status == "ok"
+    [pct] = cv.segments("calc: gap $2.4M = 32.4 - 12.9% x 232.6")
+    assert cv.check_arithmetic(pct, facts).status == "ok"  # 12.9% in an expression is 0.129
+    [units] = cv.segments("calc: energy $39.9 = 20.8M / 521,500 room-nights (sum of rows) [F0001]")
+    assert cv.check_arithmetic(units, facts).status == "ok"  # scale suffixes and unit words
+    [prose] = cv.segments("calc: $39.9 = energy spend over room-nights sold [F0001]. Next sentence 12.")
+    assert cv.check_arithmetic(prose, facts).status == "unparsed"
+    two = cv.segments("calc: at $21.00: premium 12.9% = 21.0 / 18.6 - 1; equity 1,806 = 21.0 x 86.0 [F0001].")
+    assert [s.lhs_raw for s in two] == ["12.9%", "1,806"]
+    assert all(cv.check_arithmetic(s, facts).status == "ok" for s in two)
+
+
+def test_trace_reports_verified_cited_and_calc_errors(make_pptx: MakePptx, tmp_path: _P2) -> None:
+    trace = load_script("trace-check")
+    facts = tmp_path / "facts.jsonl"
+    facts.write_text(
+        "\n".join(
+            json.dumps(r)
+            for r in [
+                {
+                    "id": "F0001",
+                    "value": 100.0,
+                    "unit": "USD",
+                    "scale": 1e6,
+                    "period": "",
+                    "text": "P&L | Revenue",
+                    "file": "p.xlsx",
+                    "locator": "P!B2",
+                },
+                {
+                    "id": "F0002",
+                    "value": 50.0,
+                    "unit": "USD",
+                    "scale": 1e6,
+                    "period": "",
+                    "text": "P&L | Cost",
+                    "file": "p.xlsx",
+                    "locator": "P!B3",
+                },
+            ]
+        )
+        + "\n"
+    )
+    deck = make_pptx(
+        [
+            {"title": "Cover"},
+            {
+                "title": "Revenue of $100M and cost of $50M leave $50M",
+                "body": "Revenue $100M\nCost $50M\nProfit $50M",
+                "notes": "Revenue [F0001]; cost [F0002]. calc: $50M = 100 - 50 [F0001, F0002].",
+            },
+            {"title": "Profit is $999M", "body": "Profit $999M", "notes": "calc: $999M = 100 + 50 [F0001, F0002]."},
+            {
+                "title": "Margin is 42%",
+                "body": "Margin 42%",
+                "notes": "calc: 42% = revenue less cost over revenue, adjusted [F0001, F0002].",
+            },
+        ]
+    )
+    report = trace.check_report(str(deck), str(facts), None)
+    by = {(p.slide, p.raw): p.status for p in report.numbers}
+    assert by[(2, "$100M")] == "verified" and by[(2, "$50M")] == "verified"
+    assert by[(3, "$999M")] == "calc-error"
+    assert by[(4, "42%")] == "cited"
+    assert any(e.status == "error" for e in report.calcs)
+
+
+def test_calc_functions_and_fact_ranges_verify_medians() -> None:
+    import calc_verify as cv
+    import ingest
+
+    facts = {
+        f"F000{i}": ingest.Fact(f"F000{i}", v, "x", 1.0, "", f"Peer {i} | multiple", "c.csv", f"row {i}, x")
+        for i, v in enumerate([9.7, 8.9, 10.4, 8.4, 10.5], start=1)
+    }
+    for text, want in [
+        ("calc: median 9.7x = MEDIAN(F0001:F0005) [F0001-F0005]", "ok"),
+        ("calc: median 9.7x = MEDIAN(9.7, 8.9, 10.4, 8.4, 10.5)", "ok"),
+        ("calc: mean 9.6x = AVERAGE(F0001:F0005)", "ok"),
+        ("calc: low 8.4x = MIN(F0001:F0005); high 10.5x = MAX(F0001:F0005)", "ok"),
+        ("calc: median 10.4x = MEDIAN(F0001:F0005)", "error"),
+    ]:
+        assert {cv.check_arithmetic(s, facts).status for s in cv.segments(text)} == {want}, text
+    assert ingest.Formula("=AVERAGE(1,2,3)+MIN(4,5)", lambda r: []).value() == 6.0
+
+
+def test_calc_chains_accounting_negatives_and_restatements() -> None:
+    import calc_verify as cv
+
+    def statuses(text: str) -> set[str]:
+        return {cv.check_arithmetic(s, {}).status for s in cv.segments(text)}
+
+    assert statuses("calc: EUR 2.5B = 910+520+300+170+240+390 = 2,530 [F0024]") == {"ok"}  # a chain, in EUR M
+    assert statuses("calc: $1.06B = 12.2 x 87 = 1,061 [F0017]") == {"ok"}
+    assert statuses("calc: EUR 2.5B = 910+520+300 = 1,730 [F0024]") == {"error"}  # the sum is wrong
+    assert statuses("calc: (61) = 250 - 71 - 118 [F0001]") == {"ok"}  # accounting negative
+    assert statuses("calc: 1.4 pts = 16.9% - 15.5% [F0001]") == {"ok"}  # percentage points
+    assert statuses("calc: 50% of FY26E UFCF = 59 [F0023]") == {"unparsed"}  # restatement, not maths
+    assert statuses("calc: 9.7x = 3,900 / 402 and 9.2x = 3,900 / 425 [F0001]") == {"ok"}
+
+
+def test_calc_ranges_unit_switches_and_mixed_scales() -> None:
+    import calc_verify as cv
+
+    def statuses(text: str) -> set[str]:
+        return {cv.check_arithmetic(s, {}).status for s in cv.segments(text)}
+
+    assert statuses("calc: $49–52M = 4 x 12.2 = 48.8 and 4 x 13.1 = 52.4 [F0043]") == {"ok"}  # a range
+    assert statuses("calc: 10 bps = $4.82M = 0.10% x 4820 [F0001]") == {"ok"}  # rate, then amount
+    assert statuses("calc: 99 bps = (578 - 11.0% x 4820) / 4820 = $47.8M [F0001]") == {"ok"}
+    assert statuses("calc: 1.06 = 12.2 x 87 = 1,061 [F0017]") == {"ok"}  # $B cell, $M working
+    assert statuses("calc: $49–52M = 4 x 10.2 [F0043]") == {"error"}  # 40.8 is in neither end
+    assert statuses("calc: $9–12M annual gains = 60 - 51 = 9 [F0044]") == {"ok"}
+
+
+def test_qa_classifies_pass_warn_fail_and_crashes() -> None:
+    qa = load_script("qa-deck")
+    assert qa.classify("storyline", 0, "storyline-lint (banking): 0 error(s), 0 warning(s)")[0] == "PASS"
+    assert qa.classify("storyline", 0, "storyline-lint (banking): 0 error(s), 2 warning(s)")[0] == "WARN"
+    assert qa.classify("trace", 1, "trace-check: 9 number(s) checked, 1 problem(s)")[0] == "FAIL"
+    assert qa.classify("copy", 1, "3 finding(s) across 20 text block(s).", advisory=True)[0] == "WARN"
+    crash = "Traceback (most recent call last):\n  File x\nKeyError: 'a'"
+    assert qa.classify("copy", 1, crash, advisory=True)[0] == "FAIL"  # a crashed checker is a failure
+    assert qa.classify("copy", 0, crash, advisory=True)[0] == "FAIL"
+
+
+def test_qa_reports_skipped_checks_and_ignores_a_stale_pdf(make_pptx: MakePptx, tmp_path: _P2) -> None:
+    import os
+    import subprocess
+    import sys
+
+    deck = make_pptx([{"title": "Cover"}, {"title": "Revenue grew 8% to $12.0M", "body": "a"}])
+    stale = deck.with_suffix(".pdf")
+    stale.write_bytes(b"%PDF-1.4 stale")
+    os.utime(stale, (1, 1))  # rendered long before this deck
+    script = _P2(__file__).resolve().parents[1] / "skills" / "premium-decks" / "scripts" / "qa-deck.py"
+    base = [sys.executable, str(script), str(deck), "--register", "keynote", "--no-render"]
+    r = subprocess.run(base, capture_output=True, text=True, timeout=300)
+    assert "SKIP  render" in r.stdout and "SKIP  collisions" in r.stdout
+    assert "incomplete" in r.stdout and "visual review" in r.stdout
+    strict = subprocess.run(base + ["--strict"], capture_output=True, text=True, timeout=300)
+    assert strict.returncode == 1  # skipped checks fail --strict
+
+
+def test_every_calc_example_in_the_skill_docs_verifies() -> None:
+    import re
+
+    import calc_verify as cv
+
+    root = _P2(__file__).resolve().parents[1] / "skills" / "premium-decks"
+    docs = [root / "SKILL.md", *sorted((root / "references").glob("*.md"))]
+    examples = [m.group(1) for d in docs for m in re.finditer(r"`(calc: [^`]+)`", d.read_text().replace("\n", " "))]
+    assert len(examples) >= 4
+    for ex in examples:
+        results = [cv.check_arithmetic(s, {}) for s in cv.segments(re.sub(r"\s+", " ", ex))]
+        assert results and all(r.status == "ok" for r in results), (ex, [r.detail for r in results])

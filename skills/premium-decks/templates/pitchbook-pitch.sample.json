@@ -186,7 +186,7 @@
     ]
    ],
    "source": "Company capitalization table; management projections (August 2026)",
-   "notes": "calc: illustrative prices $21.00, $23.00, $25.00 = steps chosen for discussion [F0011]. calc: at $18.60: premium 0.0% = 18.6 / 18.6 - 1; equity 1,600 = 18.6 x 86.0; EV 2,010 = 1,600 + 410; 9.5x = 2,010 / 212; 8.8x = 2,010 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $21.00: premium 12.9% = 21.0 / 18.6 - 1; equity 1,806 = 21.0 x 86.0; EV 2,216 = 1,806 + 410; 10.5x = 2,216 / 212; 9.7x = 2,216 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $23.00: premium 23.7% = 23.0 / 18.6 - 1; equity 1,978 = 23.0 x 86.0; EV 2,388 = 1,978 + 410; 11.3x = 2,388 / 212; 10.5x = 2,388 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $25.00: premium 34.4% = 25.0 / 18.6 - 1; equity 2,150 = 25.0 x 86.0; EV 2,560 = 2,150 + 410; 12.1x = 2,560 / 212; 11.2x = 2,560 / 228 [F0011, F0012, F0013, F0014, F0021]."
+   "notes": "assume: $21.00, $23.00, $25.00 (illustrative prices for discussion). calc: at $18.60: premium 0.0% = 18.6 / 18.6 - 1; equity 1,600 = 18.6 x 86.0; EV 2,010 = 1,600 + 410; 9.5x = 2,010 / 212; 8.8x = 2,010 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $21.00: premium 12.9% = 21.0 / 18.6 - 1; equity 1,806 = 21.0 x 86.0; EV 2,216 = 1,806 + 410; 10.5x = 2,216 / 212; 9.7x = 2,216 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $23.00: premium 23.7% = 23.0 / 18.6 - 1; equity 1,978 = 23.0 x 86.0; EV 2,388 = 1,978 + 410; 11.3x = 2,388 / 212; 10.5x = 2,388 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $25.00: premium 34.4% = 25.0 / 18.6 - 1; equity 2,150 = 25.0 x 86.0; EV 2,560 = 2,150 + 410; 12.1x = 2,560 / 212; 11.2x = 2,560 / 228 [F0011, F0012, F0013, F0014, F0021]."
   },
   {
    "type": "football-field",
@@ -228,7 +228,7 @@
    "footnotes": [
     "Per-share values use 86.0M diluted shares and $410M net debt. Comps drop the lowest and highest multiple. DCF discounts FY26E–FY30E unlevered FCF, end-year convention."
    ],
-   "notes": "52-week range $16.04 [F0064] to $20.02 [F0045]. calc: Trading comps (8.4x–9.8x FY26E EBITDA): $17.50 to $21.21 per share = (multiple x EBITDA - 410) / 86.0 [F0021, F0014, F0013, F0012, F0096-F0110, F0036-F0043]. calc: Precedent transactions (9.6x–11.8x LTM EBITDA): $18.90 to $24.32 per share = (multiple x EBITDA - 410) / 86.0 [F0021, F0014, F0013, F0012, F0096-F0110, F0036-F0043]. calc: DCF $18.30 to $25.89 = 3 x 3 grid of WACC and TGR [F0026, F0027, F0028, F0029, F0030, F0031, F0032, F0033, F0034]. calc: 1 of 4 ranges start above $18.60 [F0011]. calc: comps range 8.4x–9.8x = second-lowest and second-highest of 8.0x, 8.4x, 9.2x, 9.8x, 9.8x [F0096-F0110]."
+   "notes": "52-week range $16.04 [F0064] to $20.02 [F0045]. calc: comps low $17.50 = (8.4 x 228 - 410) / 86.0; high $21.21 = (9.8 x 228 - 410) / 86.0 [F0021, F0013, F0012, F0096-F0110]. calc: precedents low $18.90 = (9.6 x 212 - 410) / 86.0; high $24.32 = (11.8 x 212 - 410) / 86.0 [F0014, F0036-F0043]. calc: DCF $18.30 to $25.89 = 3 x 3 grid of WACC and TGR [F0026, F0027, F0028, F0029, F0030, F0031, F0032, F0033, F0034]. calc: 1 of 4 ranges start above $18.60 [F0011]. The comps range drops the lowest and highest of 8.0x, 8.4x, 9.2x, 9.8x, 9.8x [F0096-F0110]."
   },
   {
    "type": "table",
@@ -298,7 +298,7 @@
     }
    ],
    "source": "Peer company filings; company capitalization table as of 1 Sep 2026",
-   "notes": "calc: Peer Arden 9.7x = 3,900 / 402 and 9.2x = 3,900 / 425 [F0096-F0110]. calc: Peer Bexley 8.9x = 2,650 / 298 and 8.4x = 2,650 / 315 [F0096-F0110]. calc: Peer Cairn 10.4x = 5,200 / 498 and 9.8x = 5,200 / 530 [F0096-F0110]. calc: Peer Dunmore 8.4x = 1,800 / 214 and 8.0x = 1,800 / 226 [F0096-F0110]. calc: Peer Esker 10.5x = 4,400 / 418 and 9.8x = 4,400 / 447 [F0096-F0110]. calc: medians = middle of five values [F0096-F0110]. calc: Halden 2,010, 9.5x, 8.8x [F0011, F0012, F0013, F0014, F0021]."
+   "notes": "calc: Peer Arden 9.7x = 3,900 / 402 and 9.2x = 3,900 / 425 [F0096-F0110]. calc: Peer Bexley 8.9x = 2,650 / 298 and 8.4x = 2,650 / 315 [F0096-F0110]. calc: Peer Cairn 10.4x = 5,200 / 498 and 9.8x = 5,200 / 530 [F0096-F0110]. calc: Peer Dunmore 8.4x = 1,800 / 214 and 8.0x = 1,800 / 226 [F0096-F0110]. calc: Peer Esker 10.5x = 4,400 / 418 and 9.8x = 4,400 / 447 [F0096-F0110]. calc: median EV 3,900 = MEDIAN(3900, 2650, 5200, 1800, 4400); LTM 9.7x = MEDIAN(8.4, 8.9, 9.7, 10.4, 10.5); NTM 9.2x = MEDIAN(8.0, 8.4, 9.2, 9.8, 9.8) [F0096-F0110]. calc: Halden 2,010, 9.5x, 8.8x [F0011, F0012, F0013, F0014, F0021]."
   },
   {
    "type": "options",
@@ -406,7 +406,7 @@
     ]
    ],
    "source": "Advisor buyer screen; public filings and fund announcements",
-   "notes": "Capacities [F0002, F0004, F0006, F0008, F0010]. Buyer names are code names."
+   "notes": "Capacities [F0002, F0004, F0006, F0008, F0010]; tiers [F0001, F0003, F0005, F0007, F0009]. Buyer names are code names."
   },
   {
    "type": "roadmap",

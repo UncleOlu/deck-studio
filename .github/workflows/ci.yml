@@ -59,9 +59,9 @@ jobs:
           node build-pitchbook.js pitchbook.sample.json
           node build-pitchbook.js pitchbook-pitch.sample.json
           S=../scripts; SRC=../samples/source
-          python $S/qa-deck.py alder-vale-margin-diagnostic.pptx --register consulting --facts $SRC/alder-vale-hotels/brief/facts.jsonl --data consulting-deck.sample.json
-          python $S/qa-deck.py corvane-special-committee-book.pptx --register banking --facts $SRC/corvane-instruments/brief/facts.jsonl --data pitchbook.sample.json
-          python $S/qa-deck.py halden-strategic-alternatives.pptx --register banking --facts $SRC/halden-freight/brief/facts.jsonl --data pitchbook-pitch.sample.json
+          python $S/qa-deck.py alder-vale-margin-diagnostic.pptx --register consulting --facts $SRC/alder-vale-hotels/brief/facts.jsonl --data consulting-deck.sample.json --strict
+          python $S/qa-deck.py corvane-special-committee-book.pptx --register banking --facts $SRC/corvane-instruments/brief/facts.jsonl --data pitchbook.sample.json --strict
+          python $S/qa-deck.py halden-strategic-alternatives.pptx --register banking --facts $SRC/halden-freight/brief/facts.jsonl --data pitchbook-pitch.sample.json --strict
 
   smoke-eval:
     if: github.event_name == 'workflow_dispatch'

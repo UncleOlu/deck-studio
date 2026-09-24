@@ -53,7 +53,7 @@
      ]
     }
    ],
-   "notes": "Rooms revenue $233M [F0009]; housekeeping $32.4M [F0010]; energy $20.8M [F0011]; EBITDA $36.8M [F0013]; peer medians [F0071, F0072]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: $5.0M = 2.4 + 2.6. calc: 15.8% = 36.8 / 232.6; 18.0% = (36.8 + 5.0) / 232.6; 2.2 pts = 18.0 - 15.8 [F0009]. calc: Airport 15.9% from the hotel rows [F0008-F0064]. Board ask 2 points [F0001]. Thermostats 3 of 10 [F0005, F0006, F0008]."
+   "notes": "Rooms revenue $233M [F0009]; housekeeping $32.4M [F0010]; energy $20.8M [F0011]; EBITDA $36.8M [F0013]; peer medians [F0071, F0072]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: room-nights 521,500 = SUM(F0019, F0024, F0029, F0034, F0039, F0044, F0049, F0054, F0059, F0064). calc: energy $39.9 per room-night = 20.8M / 521,500 [F0011]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: $5.0M = 2.4 + 2.6. calc: 15.8% = 36.8 / 232.6; 18.0% = (36.8 + 5.0) / 232.6; 2.2 pts = 18.0 - 15.8 [F0009]. calc: Airport 15.9% = SUM(F0042, F0047) / SUM(F0041, F0046) [F0008-F0064]. Board ask 2 points [F0001]. Thermostats 3 of 10 [F0005, F0006, F0008]."
   },
   {
    "type": "chart",
@@ -95,7 +95,7 @@
      }
     ]
    },
-   "notes": "calc: segment % = sum(housekeeping_k) / sum(rooms_revenue_k) per segment: City 12.4%, Resort 15.1%, Airport 15.9% [F0008-F0064]. Total 13.9% [F0010, F0009]; median 12.9% [F0071]."
+   "notes": "calc: City 12.4% = SUM(F0017, F0022, F0027, F0032, F0037) / SUM(F0016, F0021, F0026, F0031, F0036); Resort 15.1% = SUM(F0052, F0057, F0062) / SUM(F0051, F0056, F0061); Airport 15.9% = SUM(F0042, F0047) / SUM(F0041, F0046) [F0008-F0064]. Total 13.9% [F0010, F0009]; median 12.9% [F0071]."
   },
   {
    "type": "chart",
@@ -137,7 +137,7 @@
      }
     ]
    },
-   "notes": "calc: segment $/room-night = sum(energy_k) x 1000 / sum(room_nights): City 33.3, Airport 34.5, Resort 71.9 [F0008-F0064]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: 5.0 = 39.9 - 34.9 [F0072]. 30% [F0004]."
+   "notes": "calc: City $33.3 = SUM(F0018, F0023, F0028, F0033, F0038) x 1000 / SUM(F0019, F0024, F0029, F0034, F0039); Airport $34.5 = SUM(F0043, F0048) x 1000 / SUM(F0044, F0049); Resort $71.9 = SUM(F0053, F0058, F0063) x 1000 / SUM(F0054, F0059, F0064) [F0008-F0064]. calc: room-nights 521,500 = SUM(F0019, F0024, F0029, F0034, F0039, F0044, F0049, F0054, F0059, F0064). calc: energy $39.9 per room-night = 20.8M / 521,500 [F0011]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: 5.0 = 39.9 - 34.9 [F0072]. 30% [F0004]."
   },
   {
    "type": "waterfall",
@@ -178,7 +178,7 @@
      }
     ]
    },
-   "notes": "EBITDA $36.8M [F0013]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: $41.8M = 36.8 + 2.4 + 2.6; 15.8% and 18.0% on 232.6 [F0009]. calc: 2-point ask [F0001]."
+   "notes": "EBITDA $36.8M [F0013]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: room-nights 521,500 = SUM(F0019, F0024, F0029, F0034, F0039, F0044, F0049, F0054, F0059, F0064). calc: energy $39.9 per room-night = 20.8M / 521,500 [F0011]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: $41.8M = 36.8 + 2.4 + 2.6; 15.8% and 18.0% on 232.6 [F0009]. calc: 2-point ask [F0001]."
   },
   {
    "type": "text",
@@ -200,7 +200,7 @@
    ],
    "takeaway": "The first two levers leave what guests notice unchanged.",
    "source": "General manager and engineering interviews, July 2026",
-   "notes": "Interview facts: short-stay standard [F0005]; thermostats 3 of 10 and $1,100 per room [F0005, F0007]."
+   "notes": "Interview facts: short-stay standard [F0005]; thermostats 3 of 10 and $1,100 per room [F0005, F0006, F0007]."
   },
   {
    "type": "options",
@@ -344,7 +344,7 @@
     ]
    ],
    "source": "Alder & Vale FY25 hotel P&L; COO email; interviews",
-   "notes": "calc: 7 hotels = 10 hotels less the 3 with controls [F0008, F0005]. calc: 1,330 rooms = rooms in the 7 hotels without controls [F0008-F0064]. calc: $1.5M = 1,330 x $1,100 [F0007]. Revenue figures [F0009, F0002]."
+   "notes": "calc: 7 hotels = 10 - 3 [F0008, F0005]. calc: 1,330 rooms = SUM(F0025, F0030, F0035, F0040, F0045, F0055, F0060) (hotels without controls) [F0008-F0064]. calc: $1.5M = 1,330 x $1,100 [F0007]. Revenue figures [F0009, F0002]."
   },
   {
    "type": "divider",
@@ -459,7 +459,7 @@
     }
    ],
    "source": "Alder & Vale FY25 hotel P&L (hotel rows)",
-   "notes": "Hotel rows [F0008-F0064]. calc: AV Harbourside 12.4% = 3,870 / 31,200 and $33.0 = 2,310k / 70,100 room-nights [F0008-F0064]. calc: AV Old Town 12.8% = 3,060 / 23,900 and $34.0 = 1,790k / 52,600 room-nights [F0008-F0064]. calc: AV Riverside 11.8% = 3,160 / 26,800 and $33.2 = 2,020k / 60,900 room-nights [F0008-F0064]. calc: AV Station 13.8% = 2,640 / 19,100 and $34.7 = 1,610k / 46,400 room-nights [F0008-F0064]. calc: AV Cathedral 11.5% = 2,120 / 18,400 and $31.6 = 1,350k / 42,700 room-nights [F0008-F0064]. calc: AV Airport 15.6% = 4,300 / 27,600 and $33.6 = 2,980k / 88,800 room-nights [F0008-F0064]. calc: AV Airport South 16.4% = 3,620 / 22,100 and $35.6 = 2,710k / 76,100 room-nights [F0008-F0064]. calc: AV Lakeside 15.1% = 3,230 / 21,400 and $68.8 = 1,920k / 27,900 room-nights [F0008-F0064]. calc: AV Dunes 15.4% = 3,810 / 24,800 and $74.4 = 2,350k / 31,600 room-nights [F0008-F0064]. calc: AV Pinewood 14.9% = 2,580 / 17,300 and $72.1 = 1,760k / 24,400 room-nights [F0008-F0064]. calc: 1,870 rooms = sum of hotel rows [F0008-F0064]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]."
+   "notes": "Hotel rows [F0008-F0064]. calc: AV Harbourside 12.4% = 3,870 / 31,200 and $33.0 = 2,310k / 70,100 room-nights [F0008-F0064]. calc: AV Old Town 12.8% = 3,060 / 23,900 and $34.0 = 1,790k / 52,600 room-nights [F0008-F0064]. calc: AV Riverside 11.8% = 3,160 / 26,800 and $33.2 = 2,020k / 60,900 room-nights [F0008-F0064]. calc: AV Station 13.8% = 2,640 / 19,100 and $34.7 = 1,610k / 46,400 room-nights [F0008-F0064]. calc: AV Cathedral 11.5% = 2,120 / 18,400 and $31.6 = 1,350k / 42,700 room-nights [F0008-F0064]. calc: AV Airport 15.6% = 4,300 / 27,600 and $33.6 = 2,980k / 88,800 room-nights [F0008-F0064]. calc: AV Airport South 16.4% = 3,620 / 22,100 and $35.6 = 2,710k / 76,100 room-nights [F0008-F0064]. calc: AV Lakeside 15.1% = 3,230 / 21,400 and $68.8 = 1,920k / 27,900 room-nights [F0008-F0064]. calc: AV Dunes 15.4% = 3,810 / 24,800 and $74.4 = 2,350k / 31,600 room-nights [F0008-F0064]. calc: AV Pinewood 14.9% = 2,580 / 17,300 and $72.1 = 1,760k / 24,400 room-nights [F0008-F0064]. calc: 1,870 rooms = SUM(F0015, F0020, F0025, F0030, F0035, F0040, F0045, F0050, F0055, F0060) [F0008-F0064]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: room-nights 521,500 = SUM(F0019, F0024, F0029, F0034, F0039, F0044, F0049, F0054, F0059, F0064). calc: energy $39.9 per room-night = 20.8M / 521,500 [F0011]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]."
   },
   {
    "type": "chart",

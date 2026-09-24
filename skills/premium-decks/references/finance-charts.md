@@ -35,6 +35,10 @@ s.addChart(pres.charts.BAR, [{ name: "base", labels, values: base }, { name: "to
 - The title names the largest step. Give that step, and only that step, the
   accent colour.
 - Keep it to 8 steps or fewer. Group the tail into "Other".
+- The invisible base works only while the running level stays at or above
+  zero. If a bridge crosses zero (a loss-making EBIT or a cash bridge), split
+  each crossing bar into a positive and a negative segment, or plot the steps
+  from a zero line.
 
 ## Football field (valuation summary)
 
@@ -77,9 +81,11 @@ at 10–15%. Print the scale key in the footer:
 
 ## 2×2 prioritisation
 
-Use a native `BUBBLE` chart with both axes fixed from 0 to the maximum. Draw
-the quadrant labels as text boxes in the corners of the plot area, not as
-chart titles. Give the chosen quadrant's bubbles the accent colour, as a
+Use a native `BUBBLE` chart with each axis fixed to its scale's own ends
+(1–5, not 0–5) and the quadrant dividers at the scale midpoint (3), stated in
+a note; otherwise every item scored 3 lands in a "high" quadrant. Size the
+bubbles by a third variable, never by an axis. Draw the quadrant labels as
+text boxes in the corners of the plot area, not as chart titles. Give the chosen quadrant's bubbles the accent colour, as a
 separate series. Label both axes with what they score, e.g. "Ease of
 delivery (1–5)".
 
@@ -105,8 +111,9 @@ the top-left cell ("WACC \ TGR").
 
 Build a native table with no vertical rules and a 1pt rule under the header.
 Right-align every numeric column. Use one precision per column: `x.x` for
-multiples, thousands separators for EV. Put a **median** (and optionally a
-mean) row under a 1pt rule, then the subject company's row, tinted with the
+multiples, thousands separators for EV. Put a **median** (optionally a mean)
+of the peers only, never including the subject, under a 1pt rule, then the
+subject company's row, tinted with the
 accent. Show negative values in parentheses. The footer gives the source and
 an "as of" date, and defines any non-GAAP term (EV, EBITDA adjustments).
 

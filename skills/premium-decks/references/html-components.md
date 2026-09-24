@@ -1,16 +1,14 @@
 # Slide components (HTML mode)
 
-Five recipes for slide shapes the layout tables do not cover: process, roadmap,
-dense table, KPI attainment, milestone timeline. Plain CSS and HTML only — no
-Tailwind, no React. Every value comes from the three-layer tokens in
+Five recipes the layout tables do not cover (process, roadmap, dense table, KPI
+attainment, milestone timeline), in plain CSS and HTML using the tokens in
 `html-mode.md`; a raw hex or px in a slide is still a defect.
 
 Two tokens beyond the standard set: `--hairline` for structure (rules, dividers)
 and **`--data-edge` for the outline of any shape that carries a value** — an
 empty track, an unstarted bar, a future step dot. A pale fill on a pale ground
 vanishes through a projector, so `--data-edge` must clear 3:1, not 0.14 alpha.
-Pattern ideas from reui.io (MIT: Stepper, Gantt, Timeline, Table); the meter
-layout idea from coss.com/ui. The CSS here is our own; no code was copied.
+Ideas from reui.io (MIT) and coss.com/ui (meter); the CSS is our own, no code copied.
 
 ## Process / stepper row
 
@@ -91,11 +89,13 @@ layout idea from coss.com/ui. The CSS here is our own; no code was copied.
 ```
 
 ```html
-<table class="dtable"><thead><tr><th>Lane</th><th class="num">Cost / unit</th></tr></thead>
-  <tbody><tr><td>Midwest</td><td class="num is-point">$4.20</td></tr></tbody>
-  <tfoot><tr><td>Total</td><td class="num">$18.60</td></tr></tfoot></table>
+<table class="dtable"><thead><tr><th>Lane</th><th class="num">Units</th><th class="num">Cost / unit</th></tr></thead>
+  <tbody><tr><td>Midwest</td><td class="num">1,200</td><td class="num is-point">$4.20</td></tr>
+    <tr><td>West</td><td class="num">800</td><td class="num">$5.30</td></tr></tbody>
+  <tfoot><tr><td>All lanes (volume-weighted)</td><td class="num">2,000</td><td class="num">$4.64</td></tr></tfoot></table>
 ```
 
+- A total row sums amounts; a rate column takes a labelled weighted average.
 - Horizontal hairlines only: no vertical rules, zebra striping, or cell borders.
 - Every numeric cell takes `.num` and `tabular-nums`, one precision per column.
   Eight rows and four columns maximum on a slide; beyond that, chart it.

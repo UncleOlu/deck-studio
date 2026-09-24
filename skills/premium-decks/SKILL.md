@@ -5,9 +5,12 @@ description: "Use when the user wants a deck, slides, a presentation, a pitch de
 
 # Premium Decks
 
-Build decks that a senior partner, managing director, or chief executive
-would send without edits. Every slide leads with its conclusion, every number
-traces to a source, and every element is a deliberate design choice.
+Turn source files into editable executive decks with documented sources,
+checked calculations, and an explicit review report. Every slide leads with
+its conclusion, every number traces to a source and every derivation is
+recomputed, and every element is a deliberate design choice. Tell the user
+what the checks verified and what still needs their review; never present a
+deck as finished on the automated gate alone.
 
 ## Routing
 
@@ -60,9 +63,15 @@ Work in this order. Do not write slide code before step 3 is done.
        to proceed without checkpoints.
 
    **Data contract:** every number on a slide cites a fact id in that slide's
-   speaker notes (`[F0027]`). A derived figure gets a `calc:` line
-   (`calc: $48M = 578 - 11.0% x 4820 [F0027, F0021, F0025]`). If the user
-   supplied no figures, put invented numbers in one `deck-data.json` with
+   speaker notes (`[F0027]`), in a clause that names its metric. A derived
+   figure gets a `calc:` line whose arithmetic the checker recomputes:
+   `calc: $48M = 578 - 11.0% x 4820 [F0027, F0021, F0025]`. Write the
+   arithmetic, never prose: inputs are cited facts, earlier results, or fact
+   ids (`F0027`, `F0001:F0005`); `+ - x /`, `SUM`, `AVERAGE`, `MEDIAN`, `MIN`,
+   `MAX`, `COUNT`, and `%` work (`calc: 9.4x = MEDIAN(10.0, 9.2, 9.4, 8.8, 9.9)`,
+   not "middle of five values"). A figure you chose rather than found goes on
+   an `assume:` line (`assume: $21.00, $23.00 (illustrative prices)`). If the
+   user supplied no figures, put invented numbers in one `deck-data.json` with
    `"illustrative": true`. Label the deck illustrative in the slide-1 notes,
    and list the fields the user must replace.
 2. **Design system.** Read `references/quality-floor.md`. Pick a DNA:
@@ -154,11 +163,14 @@ One command runs the whole gate and prints one line per check:
 python3 scripts/qa-deck.py out.pptx --register consulting --facts brief/facts.jsonl
 ```
 
-It runs these in order; fix and re-run until it reports every check passed:
+Each check reports PASS, WARN, SKIP, or FAIL; fix and re-run until nothing
+fails, and treat every SKIP as work still to do (`--strict` fails on it):
 1. `validate_pptx.py`: package integrity.
 2. `pptx2pdf.py`: render via LibreOffice, then PowerPoint, then Keynote.
 3. `storyline-lint.py`: titles, exec summary position, sources, tracker.
-4. `trace-check.py`: every number traced to a fact id or a `calc:` line.
+4. `trace-check.py`: every number verified against a fact or a recomputed
+   `calc:` line; "cited but not verified" numbers are warnings to resolve or
+   to name in the hand-over note, and wrong arithmetic fails.
 5. `integrity-check.py`: waterfalls, shares, totals, one value per metric.
 6. `layout-check.py --pdf`: overflow, drift, collisions.
 7. `copy-lint.py`: clichés, intensifiers, long sentences (advisory).
@@ -167,7 +179,9 @@ It runs these in order; fix and re-run until it reports every check passed:
 For Mode B (`.html`), the same command swaps the package check for
 `slide-token-validator.py`. Take browser screenshots at two sizes.
 
-Then run the pre-flight checklist in `references/quality-floor.md` **on the
+The gate never says the deck is ready: the visual review is manual. Report
+to the user what passed, what was skipped, and which numbers are cited but not
+verified. Then run the pre-flight checklist in `references/quality-floor.md` **on the
 rendered images**, and partner review pass 2. Give both to a fresh subagent
 when one is available: after writing the generator you see what you expect,
 not what rendered. The scripts cannot see a label drawn against the wrong

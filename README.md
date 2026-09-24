@@ -1,18 +1,23 @@
 # deck-studio
 
-A Claude Code plugin with one skill, **premium-decks**. Give it a folder of
-spreadsheets, PDFs, and notes; it builds a deck that an executive, a partner,
-or a banker would send without edits, either as a client-editable `.pptx` or as
-a self-contained HTML deck.
+A Claude Code plugin with one skill, **premium-decks**. It turns source files
+(spreadsheets, PDFs, notes) into editable executive decks with documented
+sources, checked calculations, and an explicit review report, as a
+client-editable `.pptx` or a self-contained HTML deck.
 
 - **Three registers.** *Keynote* for talks and all-hands, *consulting* for
   diagnostics and SteerCo updates (answer-first storylines, action titles), and
   *banking* for board books and strategic-alternatives books.
-- **Every number traces to a source.** The folder is ingested into a fact
-  base; each figure on a slide cites a fact id or a `calc:` line.
-- **QA that can fail.** Storyline lint, number tracing, arithmetic integrity
-  (waterfalls, totals, one value per metric), layout collisions, copy lint,
-  and a render check.
+- **Numbers are verified, not just cited.** The folder is ingested into a fact
+  base. A figure counts as verified when it matches a cited fact whose metric
+  the slide names, or when its `calc:` line recomputes correctly from sourced
+  inputs. Wrong arithmetic fails, and figures that are only cited are listed as
+  warnings.
+- **An explicit review report.** Storyline lint, number verification,
+  arithmetic integrity (waterfalls, totals, one value per metric), layout
+  collisions, copy lint, and a render check each report PASS, WARN, SKIP, or
+  FAIL. The report says when checks were skipped, and that the visual review is
+  yours to do.
 
 ## Install
 

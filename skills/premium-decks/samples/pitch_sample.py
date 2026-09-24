@@ -162,6 +162,7 @@ def pitch(fx: FactLookup, src: Path) -> dict[str, Any]:
     tiers = sorted(BUYERS, key=lambda b: (b[1] != "Strategic", b[2]))
     buyer_rows = [[f"{kind} · tier {tier}", code, f"{cap:.1f}", why] for code, kind, tier, cap, why in tiers]
     cap_ids = ", ".join(fx.id(BU, f"row {r}, capacity_usd_bn") for r in range(2, 2 + len(BUYERS)))
+    tier_ids = ", ".join(fx.id(BU, f"row {r}, tier") for r in range(2, 2 + len(BUYERS)))
     return {
         "_about": "Fictional strategic-alternatives sample built by samples/build_samples.py from "
         "samples/source/halden-freight/input via scripts/ingest.py. Page order follows the sell-side skeleton in "
@@ -249,7 +250,7 @@ def pitch(fx: FactLookup, src: Path) -> dict[str, Any]:
                     ["EV / FY26E EBITDA"] + [f"{g[3]:.1f}x" for g in grid],
                 ],
                 "source": "Company capitalization table; management projections (August 2026)",
-                "notes": f"calc: illustrative prices $21.00, $23.00, $25.00 = steps chosen for discussion [{i_px}]. "
+                "notes": "assume: $21.00, $23.00, $25.00 (illustrative prices for discussion). "
                 + " ".join(
                     f"calc: at ${p:.2f}: premium {100 * (p / px - 1):.1f}% = {p} / {px} - 1; equity "
                     f"{g[0]:,.0f} = {p} x {sh}; EV {g[1]:,.0f} = {g[0]:,.0f} + {nd:.0f}; {g[2]:.1f}x = "
@@ -276,15 +277,16 @@ def pitch(fx: FactLookup, src: Path) -> dict[str, Any]:
                     "convention."
                 ],
                 "notes": f"52-week range ${lo_px:.2f} [{i_lo}] to ${hi_px:.2f} [{i_hi}]. "
-                + " ".join(
-                    f"calc: {lab}: ${lo:.2f} to ${hi:.2f} per share = (multiple x EBITDA - {nd:.0f}) / {sh} "
-                    f"[{i_ntm}, {i_ltm}, {i_nd}, {i_sh}, {fx.span(TC)}, {fx.span(PT)}]."
-                    for lab, lo, hi in ranges[1:3]
-                )
+                + f"calc: comps low ${ranges[1][1]:.2f} = ({ntm_rng[0]} x {ntm:.0f} - {nd:.0f}) / {sh}; high "
+                f"${ranges[1][2]:.2f} = ({ntm_rng[1]} x {ntm:.0f} - {nd:.0f}) / {sh} "
+                f"[{i_ntm}, {i_nd}, {i_sh}, {fx.span(TC)}]. calc: precedents low ${ranges[2][1]:.2f} = "
+                f"({pr_lo} x {ltm:.0f} - {nd:.0f}) / {sh}; high ${ranges[2][2]:.2f} = "
+                f"({pr_hi} x {ltm:.0f} - {nd:.0f}) / "
+                f"{sh} [{i_ltm}, {fx.span(PT)}]."
                 + f" calc: DCF ${min(flat):.2f} to ${max(flat):.2f} = 3 x 3 grid of WACC and TGR [{', '.join(i_fcf)}, "
                 f"{', '.join(wacc_ids)}]. calc: {above} of {len(ranges)} ranges start above ${px:.2f} [{i_px}]. "
-                f"calc: comps range {ntm_rng[0]:.1f}x–{ntm_rng[1]:.1f}x = second-lowest and second-highest of "
-                f"{', '.join(f'{x:.1f}x' for x in ntm_x)} [{fx.span(TC)}].",
+                f"The comps range drops the lowest and highest of {', '.join(f'{x:.1f}x' for x in ntm_x)} "
+                f"[{fx.span(TC)}].",
             },
             {
                 "type": "table",
@@ -320,7 +322,10 @@ def pitch(fx: FactLookup, src: Path) -> dict[str, Any]:
                     f"[{fx.span(TC)}]."
                     for n, e, l_, t in comps
                 )
-                + f" calc: medians = middle of five values [{fx.span(TC)}]. calc: Halden {ev_now:,.0f}, "
+                + f" calc: median EV {statistics.median(c[1] for c in comps):,.0f} = MEDIAN("
+                f"{', '.join(f'{c[1]:.0f}' for c in comps)}); LTM {statistics.median(ltm_x):.1f}x = "
+                f"MEDIAN({', '.join(f'{x:.1f}' for x in ltm_x)}); NTM {statistics.median(ntm_x):.1f}x = "
+                f"MEDIAN({', '.join(f'{x:.1f}' for x in ntm_x)}) [{fx.span(TC)}]. calc: Halden {ev_now:,.0f}, "
                 f"{ev_now / ltm:.1f}x, {ev_now / ntm:.1f}x [{i_px}, {i_sh}, {i_nd}, {i_ltm}, {i_ntm}].",
             },
             {
@@ -347,7 +352,7 @@ def pitch(fx: FactLookup, src: Path) -> dict[str, Any]:
                 "colW": [2.6, 2.2, 1.6, 5.9],
                 "rows": buyer_rows,
                 "source": "Advisor buyer screen; public filings and fund announcements",
-                "notes": f"Capacities [{cap_ids}]. Buyer names are code names.",
+                "notes": f"Capacities [{cap_ids}]; tiers [{tier_ids}]. Buyer names are code names.",
             },
             {
                 "type": "roadmap",

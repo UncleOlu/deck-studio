@@ -158,7 +158,7 @@
    "footnotes": [
     "Per-share values use 112.6M diluted shares and $845M net debt. Comps ranges drop the lowest and highest multiple. DCF discounts FY26E–FY30E unlevered FCF to the start of FY26 (end-year convention; no stub-period adjustment for the May 2026 valuation date)."
    ],
-   "notes": "52-week range $16.66 [F0036] to $21.68 [F0087]. calc: Trading comps (8.7x–9.5x FY26E EBITDA): $18.22 to $20.61 per share = (multiple x EBITDA - 845) / 112.6 [F0013, F0007, F0006, F0027, F0088-F0102, F0028-F0035]. calc: Trading comps (9.2x–10.0x LTM EBITDA): $17.87 to $20.16 per share = (multiple x EBITDA - 845) / 112.6 [F0013, F0007, F0006, F0027, F0088-F0102, F0028-F0035]. calc: Precedent transactions (9.1x–12.2x LTM EBITDA): $17.55 to $26.08 per share = (multiple x EBITDA - 845) / 112.6 [F0013, F0007, F0006, F0027, F0088-F0102, F0028-F0035]. calc: DCF $19.60 to $29.41 from the sensitivity grid [F0018, F0019, F0020, F0021, F0022, F0023, F0024, F0025, F0026]. Offer [F0004]; unaffected [F0003]. calc: 4 of 5 ranges end below $27.00 [F0004]."
+   "notes": "52-week range $16.66 [F0036] to $21.68 [F0087]. calc: NTM comps low $18.22 = (3,420 / 392 x 332 - 845) / 112.6; high $20.61 = (6,150 / 645 x 332 - 845) / 112.6 [F0013, F0006, F0027, F0088-F0102]. calc: LTM comps low $17.87 = (3,420 / 371 x 310 - 845) / 112.6; high $20.16 = (6,150 / 612 x 310 - 845) / 112.6 [F0007, F0088-F0102]. calc: precedents low $17.55 = (9.1 x 310 - 845) / 112.6; high $26.08 = (12.2 x 310 - 845) / 112.6 [F0028-F0035]. calc: DCF $19.60 to $29.41 from the sensitivity grid [F0018, F0019, F0020, F0021, F0022, F0023, F0024, F0025, F0026]. Offer [F0004]; unaffected [F0003]. calc: 4 of 5 ranges end below $27.00 [F0004]."
   },
   {
    "type": "chart",
@@ -186,7 +186,7 @@
    "format": "0.0\"%\"",
    "unit": "(Premium implied by the $27.00 offer, %)",
    "source": "Company capitalization table; daily closing prices, calendar 2025",
-   "notes": "Offer [F0004]; unaffected [F0003]; 2025 high [F0087]; 2025 low [F0036]; closes [F0036-F0087]. calc: 26.2% = 27.0 / 21.4 - 1 [F0004, F0003]. calc: 24.5% = 27.0 / 21.68 - 1 [F0004, F0087]. calc: 39.6% = 27.0 / 19.34 - 1, where $19.34 is the mean of 52 2025 closes [F0004, F0036-F0087]. calc: 62.1% = 27.0 / 16.66 - 1 [F0004, F0036]."
+   "notes": "Offer [F0004]; unaffected [F0003]; 2025 high [F0087]; 2025 low [F0036]; closes [F0036-F0087]. calc: 26.2% = 27.0 / 21.4 - 1 [F0004, F0003]. calc: 24.5% = 27.0 / 21.68 - 1 [F0004, F0087]. calc: 39.6% = 27.0 / AVERAGE(F0036:F0087) - 1 (the mean of the weekly closes) [F0004, F0036-F0087]. calc: 62.1% = 27.0 / 16.66 - 1 [F0004, F0036]."
   },
   {
    "type": "table",
@@ -259,7 +259,7 @@
    "footnotes": [
     "NTM EBITDA for Corvane is management's FY26E."
    ],
-   "notes": "calc: Peer Aster 10.0x = 6,150 / 612 and 9.5x = 6,150 / 645 [F0088, F0089, F0090]. calc: Peer Brio 9.2x = 3,420 / 371 and 8.7x = 3,420 / 392 [F0091, F0092, F0093]. calc: Peer Calder 10.8x = 8,800 / 812 and 10.2x = 8,800 / 861 [F0094, F0095, F0096]. calc: Peer Delta 8.8x = 2,480 / 283 and 8.4x = 2,480 / 297 [F0097, F0098, F0099]. calc: Peer Ember 10.0x = 4,010 / 402 and 9.4x = 4,010 / 428 [F0100, F0101, F0102]. calc: medians EV 4,010, LTM 10.0x, NTM 9.4x = middle of five values [F0088-F0102]. calc: Corvane 3,885, 12.5x, 11.7x [F0004, F0027, F0006, F0007, F0013]."
+   "notes": "calc: Peer Aster 10.0x = 6,150 / 612 and 9.5x = 6,150 / 645 [F0088, F0089, F0090]. calc: Peer Brio 9.2x = 3,420 / 371 and 8.7x = 3,420 / 392 [F0091, F0092, F0093]. calc: Peer Calder 10.8x = 8,800 / 812 and 10.2x = 8,800 / 861 [F0094, F0095, F0096]. calc: Peer Delta 8.8x = 2,480 / 283 and 8.4x = 2,480 / 297 [F0097, F0098, F0099]. calc: Peer Ember 10.0x = 4,010 / 402 and 9.4x = 4,010 / 428 [F0100, F0101, F0102]. calc: median EV 4,010 = MEDIAN(6150, 3420, 8800, 2480, 4010); LTM 10.0x = MEDIAN(8.8, 9.2, 10.0, 10.0, 10.8); NTM 9.4x = MEDIAN(8.4, 8.7, 9.4, 9.5, 10.2) [F0088-F0102]. calc: Corvane 3,885, 12.5x, 11.7x [F0004, F0027, F0006, F0007, F0013]."
   },
   {
    "type": "table",
@@ -338,7 +338,7 @@
     }
    ],
    "source": "Precedent transaction announcements; company capitalization table",
-   "notes": "Transactions [F0028-F0035]. calc: median EV 4,000 and multiple 10.9x = mean of the middle two values [F0028-F0035]. calc: Corvane 3,885 and 12.5x [F0004, F0027, F0006, F0007]."
+   "notes": "Transactions [F0028-F0035]. calc: median EV 4,000 = MEDIAN(F0028, F0030, F0032, F0034); multiple 10.9x = MEDIAN(F0029, F0031, F0033, F0035) [F0028-F0035]. calc: Corvane 3,885 and 12.5x [F0004, F0027, F0006, F0007]."
   },
   {
    "type": "sensitivity",

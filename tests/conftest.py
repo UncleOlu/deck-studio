@@ -23,6 +23,7 @@ def load_script(name: str) -> types.ModuleType:
     spec = importlib.util.spec_from_file_location(name.replace("-", "_"), path)
     assert spec is not None and spec.loader is not None, f"cannot load {path}"
     mod = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = mod  # dataclasses look their module up while the class is built
     spec.loader.exec_module(mod)
     return mod
 

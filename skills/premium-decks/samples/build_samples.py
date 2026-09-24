@@ -247,6 +247,25 @@ def consulting(fx: Facts) -> dict[str, Any]:
     seg_en = {k: v[2] * 1000 / v[3] for k, v in seg.items()}
     order_en = sorted(seg_en, key=seg_en.__getitem__)
     rows_span = fx.span(X)
+
+    def hid(
+        col: str, name: str
+    ) -> str:  # a cell of the "Hotels ($k)" sheet: C rooms, D revenue, E hk, F energy, G nights
+        r = next(i for i, h in enumerate(HOTELS, start=2) if h[0] == name)
+        return fx.id(X, f"Hotels ($k)!{col}{r}")
+
+    def ids_of(col: str, segment: str | None = None, names: set[str] | None = None) -> str:
+        return ", ".join(
+            hid(col, h[0]) for h in HOTELS if (segment is None or h[1] == segment) and (names is None or h[0] in names)
+        )
+
+    seg_hk_calc = "; ".join(
+        f"{k} {seg_hk[k]:.1f}% = SUM({ids_of('E', k)}) / SUM({ids_of('D', k)})" for k in ("City", "Resort", "Airport")
+    )
+    seg_en_calc = "; ".join(
+        f"{k} ${seg_en[k]:.1f} = SUM({ids_of('F', k)}) x 1000 / SUM({ids_of('G', k)})"
+        for k in ("City", "Airport", "Resort")
+    )
     top_hk = max(((h[0], 100 * h[4] / h[3]) for h in HOTELS), key=lambda t: t[1])
     top_en = max(((h[0], h[5] * 1000 / h[6]) for h in HOTELS), key=lambda t: t[1])
     conflict_email = next(f for f in fx.rows if f["file"] == "coo_email.txt" and f["unit"] == "USD")
@@ -264,8 +283,8 @@ def consulting(fx: Facts) -> dict[str, Any]:
         f"{m(hk_gap)} = {hk:.1f} - {hk_med}% x {rev:.1f} [{i_hkm}]."
     )
     calc_en = (
-        f"calc: energy ${en_night:.1f} per room-night = {en:.1f}M / {nights:,} room-nights (sum of hotel rows) "
-        f"[{i_en}, {rows_span}]. calc: gap {m(en_gap)} = ({en_night:.1f} - {en_med}) x {nights:,} [{i_enm}]."
+        f"calc: room-nights {nights:,} = SUM({ids_of('G')}). calc: energy ${en_night:.1f} per room-night = "
+        f"{en:.1f}M / {nights:,} [{i_en}]. calc: gap {m(en_gap)} = ({en_night:.1f} - {en_med}) x {nights:,} [{i_enm}]."
     )
     return {
         "_about": "Fictional sample built by samples/build_samples.py from samples/source/alder-vale-hotels/input via "
@@ -336,8 +355,8 @@ def consulting(fx: Facts) -> dict[str, Any]:
                 f"EBITDA {m(ebitda)} [{i_eb}]; peer medians [{i_hkm}, {i_enm}]. {calc_hk} {calc_en} calc: "
                 f"{m(total)} = {hk_gap:.1f} + {en_gap:.1f}. calc: {margin0:.1f}% = {ebitda:.1f} / {rev:.1f}; "
                 f"{margin1:.1f}% = ({ebitda:.1f} + {total:.1f}) / {rev:.1f}; {margin1 - margin0:.1f} pts = "
-                f"{margin1:.1f} - {margin0:.1f} [{i_rev}]. calc: {hot_hk} {seg_hk[hot_hk]:.1f}% from the "
-                f"hotel rows [{rows_span}]. Board ask 2 points [{fx.find('coo_email.txt', 2)}]. Thermostats "
+                f"{margin1:.1f} - {margin0:.1f} [{i_rev}]. calc: {hot_hk} {seg_hk[hot_hk]:.1f}% = "
+                f"SUM({ids_of('E', hot_hk)}) / SUM({ids_of('D', hot_hk)}) [{rows_span}]. Board ask 2 points [{fx.find('coo_email.txt', 2)}]. Thermostats "
                 f"3 of 10 [{fx.find('gm_interviews.md', 3)}, {i_10}, {i_n}].",
             },
             {
@@ -369,9 +388,7 @@ def consulting(fx: Facts) -> dict[str, Any]:
                         },
                     ]
                 },
-                "notes": f"calc: segment % = sum(housekeeping_k) / sum(rooms_revenue_k) per segment: City "
-                f"{seg_hk['City']:.1f}%, Resort {seg_hk['Resort']:.1f}%, Airport {seg_hk['Airport']:.1f}% "
-                f"[{rows_span}]. Total {hk_pct:.1f}% [{i_hk}, {i_rev}]; median {hk_med}% [{i_hkm}].",
+                "notes": f"calc: {seg_hk_calc} [{rows_span}]. Total {hk_pct:.1f}% [{i_hk}, {i_rev}]; median {hk_med}% [{i_hkm}].",
             },
             {
                 "type": "chart",
@@ -403,9 +420,7 @@ def consulting(fx: Facts) -> dict[str, Any]:
                         },
                     ]
                 },
-                "notes": f"calc: segment $/room-night = sum(energy_k) x 1000 / sum(room_nights): City "
-                f"{seg_en['City']:.1f}, Airport {seg_en['Airport']:.1f}, Resort {seg_en['Resort']:.1f} "
-                f"[{rows_span}]. {calc_en} calc: {en_night - en_med:.1f} = {en_night:.1f} - {en_med} [{i_enm}]. "
+                "notes": f"calc: {seg_en_calc} [{rows_span}]. {calc_en} calc: {en_night - en_med:.1f} = {en_night:.1f} - {en_med} [{i_enm}]. "
                 f"30% [{fx.find('gm_interviews.md', 30)}].",
             },
             {
@@ -465,7 +480,7 @@ def consulting(fx: Facts) -> dict[str, Any]:
                 "takeaway": "The first two levers leave what guests notice unchanged.",
                 "source": "General manager and engineering interviews, July 2026",
                 "notes": f"Interview facts: short-stay standard [{fx.find('gm_interviews.md', 3)}]; thermostats 3 of "
-                f"10 and $1,100 per room [{fx.find('gm_interviews.md', 3)}, "
+                f"10 and $1,100 per room [{fx.find('gm_interviews.md', 3)}, {i_10}, "
                 f"{fx.find('gm_interviews.md', 1100)}].",
             },
             {
@@ -531,9 +546,9 @@ def consulting(fx: Facts) -> dict[str, Any]:
                     ["Set the guest-satisfaction guardrail for the pilot", "Operations", "Before launch"],
                 ],
                 "source": "Alder & Vale FY25 hotel P&L; COO email; interviews",
-                "notes": f"calc: 7 hotels = 10 hotels less the 3 with controls [{i_n}, "
-                f"{fx.find('gm_interviews.md', 3)}]. calc: {retro_rooms:,} rooms = rooms in the 7 hotels "
-                f"without controls [{rows_span}]. calc: ${budget:.1f}M = {retro_rooms:,} x $1,100 [{i_1100}]. "
+                "notes": f"calc: 7 hotels = 10 - 3 [{i_n}, {fx.find('gm_interviews.md', 3)}]. calc: {retro_rooms:,} "
+                f"rooms = SUM({ids_of('C', names={h[0] for h in HOTELS} - controlled)}) (hotels without "
+                f"controls) [{rows_span}]. calc: ${budget:.1f}M = {retro_rooms:,} x $1,100 [{i_1100}]. "
                 f"Revenue figures [{i_rev}, {conflict_email['id']}].",
             },
             {"type": "divider", "section": "Appendix", "title": "Appendix"},
@@ -575,7 +590,7 @@ def consulting(fx: Facts) -> dict[str, Any]:
                     f"${h[5] * 1000 / h[6]:.1f} = {h[5]:,}k / {h[6]:,} room-nights [{rows_span}]."
                     for h in HOTELS
                 )
-                + f" calc: {sum(h[2] for h in HOTELS):,} rooms = sum of hotel rows [{rows_span}]. {calc_hk} {calc_en}",
+                + f" calc: {sum(h[2] for h in HOTELS):,} rooms = SUM({ids_of('C')}) [{rows_span}]. {calc_hk} {calc_en}",
             },
             {
                 "type": "chart",
@@ -682,10 +697,19 @@ def banking(fx: Facts) -> dict[str, Any]:
     n_above = sum(hi < offer for _, _, hi in ranges)
     if not 0 < n_above < len(ranges) or any(lo > offer for _, lo, _ in ranges):
         raise ValueError("football-field title assumes the offer is above some ranges and inside the rest")
-    calc_ranges = " ".join(
-        f"calc: {lab}: ${lo:.2f} to ${hi:.2f} per share = (multiple x EBITDA - {nd:.0f}) / {sh}"
-        f" [{i_ntm}, {i_ltm}, {i_nd}, {sh_note['id']}, {comps_span}, {fx.span(PT)}]."
-        for lab, lo, hi in ranges[1:4]
+    by_ntm = sorted(comps, key=lambda c: c[1] / c[3])  # (name, ev, ltm, ntm, ids)
+    by_ltm = sorted(comps, key=lambda c: c[1] / c[2])
+
+    def per_share(ev_: float, ebitda_: float, base: float) -> str:  # the peer's own multiple, unrounded
+        return f"({ev_:,.0f} / {ebitda_:.0f} x {base:.0f} - {nd:.0f}) / {sh}"
+
+    calc_ranges = (
+        f"calc: NTM comps low ${ranges[1][1]:.2f} = {per_share(by_ntm[1][1], by_ntm[1][3], ntm)}; high "
+        f"${ranges[1][2]:.2f} = {per_share(by_ntm[-2][1], by_ntm[-2][3], ntm)} [{i_ntm}, {i_nd}, {sh_note['id']}, "
+        f"{comps_span}]. calc: LTM comps low ${ranges[2][1]:.2f} = {per_share(by_ltm[1][1], by_ltm[1][2], ltm)}; "
+        f"high ${ranges[2][2]:.2f} = {per_share(by_ltm[-2][1], by_ltm[-2][2], ltm)} [{i_ltm}, {comps_span}]. "
+        f"calc: precedents low ${ranges[3][1]:.2f} = ({pr_lo} x {ltm:.0f} - {nd:.0f}) / {sh}; high "
+        f"${ranges[3][2]:.2f} = ({pr_hi} x {ltm:.0f} - {nd:.0f}) / {sh} [{fx.span(PT)}]."
     )
     return {
         "_about": "Fictional sample built by samples/build_samples.py from samples/source/corvane-instruments/input via "
@@ -799,8 +823,8 @@ def banking(fx: Facts) -> dict[str, Any]:
                 "notes": f"Offer [{i_of}]; unaffected [{i_un}]; 2025 high [{i_hi}]; 2025 low [{i_lo}]; closes "
                 f"[{fx.span(SP)}]. calc: {100 * (offer / unaff - 1):.1f}% = {offer} / {unaff} - 1 [{i_of}, {i_un}]. calc: "
                 f"{100 * (offer / hi_px - 1):.1f}% = {offer} / {hi_px} - 1 [{i_of}, {i_hi}]. calc: "
-                f"{100 * (offer / avg_px - 1):.1f}% = {offer} / {avg_px:.2f} - 1, where ${avg_px:.2f} is the mean of "
-                f"{len(prices)} 2025 closes [{i_of}, {fx.span(SP)}]. calc: "
+                f"{100 * (offer / avg_px - 1):.1f}% = {offer} / AVERAGE({fx.span(SP).replace('-', ':')}) - 1 "
+                f"(the mean of the weekly closes) [{i_of}, {fx.span(SP)}]. calc: "
                 f"{100 * (offer / lo_px - 1):.1f}% = {offer} / {lo_px} - 1 [{i_of}, {i_lo}].",
             },
             {
@@ -834,9 +858,10 @@ def banking(fx: Facts) -> dict[str, Any]:
                     f"[{', '.join(ids)}]."
                     for n, e, l_, t, ids in comps
                 )
-                + f" calc: medians EV {statistics.median([c[1] for c in comps]):,.0f}, LTM "
-                f"{statistics.median(ltm_x):.1f}x, NTM {statistics.median(ntm_x):.1f}x = middle of five values "
-                f"[{comps_span}]. calc: Corvane {ev:,.0f}, {ev / ltm:.1f}x, {ev / ntm:.1f}x [{i_of}, "
+                + f" calc: median EV {statistics.median([c[1] for c in comps]):,.0f} = MEDIAN("
+                f"{', '.join(f'{c[1]:.0f}' for c in comps)}); LTM {statistics.median(ltm_x):.1f}x = "
+                f"MEDIAN({', '.join(f'{x:.1f}' for x in ltm_x)}); NTM {statistics.median(ntm_x):.1f}x = "
+                f"MEDIAN({', '.join(f'{x:.1f}' for x in ntm_x)}) [{comps_span}]. calc: Corvane {ev:,.0f}, {ev / ltm:.1f}x, {ev / ntm:.1f}x [{i_of}, "
                 f"{sh_note['id']}, {i_nd}, {i_ltm}, {i_ntm}].",
             },
             {
@@ -867,8 +892,9 @@ def banking(fx: Facts) -> dict[str, Any]:
                 ],
                 "source": "Precedent transaction announcements; company capitalization table",
                 "notes": f"Transactions [{fx.span(PT)}]. calc: median EV "
-                f"{statistics.median(p[0] for p in prec):,.0f} and multiple "
-                f"{statistics.median(p[1] for p in prec):.1f}x = mean of the middle two values [{fx.span(PT)}]. "
+                f"{statistics.median(p[0] for p in prec):,.0f} = MEDIAN({', '.join(p[2] for p in prec)}); multiple "
+                f"{statistics.median(p[1] for p in prec):.1f}x = MEDIAN({', '.join(p[3] for p in prec)}) "
+                f"[{fx.span(PT)}]. "
                 f"calc: Corvane {ev:,.0f} and {ev / ltm:.1f}x [{i_of}, {sh_note['id']}, {i_nd}, {i_ltm}].",
             },
             {
