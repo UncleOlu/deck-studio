@@ -93,7 +93,6 @@ jobs:
   python-deps:
     name: Dependency CVEs (pip)
     runs-on: ubuntu-latest
-    if: hashFiles('requirements.txt') != ''
     steps:
       - uses: actions/checkout@v4
 
