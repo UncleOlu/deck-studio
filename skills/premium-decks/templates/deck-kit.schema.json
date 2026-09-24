@@ -1,0 +1,1562 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "deck-kit.schema.json",
+ "title": "deck-kit deck JSON",
+ "type": "object",
+ "required": [
+  "slides"
+ ],
+ "properties": {
+  "_about": {
+   "type": "string"
+  },
+  "output": {
+   "type": "string"
+  },
+  "kind": {
+   "type": "string"
+  },
+  "meta": {
+   "type": "object",
+   "properties": {
+    "title": {
+     "type": "string"
+    },
+    "author": {
+     "type": "string"
+    },
+    "label": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "theme": {
+   "type": "object",
+   "properties": {
+    "colors": {
+     "type": "object"
+    },
+    "fonts": {
+     "type": "object"
+    },
+    "sizes": {
+     "type": "object"
+    }
+   },
+   "additionalProperties": false
+  },
+  "sections": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "maxItems": 7
+  },
+  "slides": {
+   "type": "array",
+   "minItems": 2,
+   "items": {
+    "type": "object",
+    "required": [
+     "type"
+    ],
+    "properties": {
+     "type": {
+      "enum": [
+       "cover",
+       "disclaimer",
+       "divider",
+       "exec-summary",
+       "text",
+       "chart",
+       "waterfall",
+       "football-field",
+       "table",
+       "sensitivity",
+       "options",
+       "roadmap",
+       "marimekko"
+      ]
+     }
+    },
+    "allOf": [
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "cover"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "subtitle": {
+         "type": "string"
+        },
+        "footer": {
+         "type": "string"
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "disclaimer"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "text"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "text": {
+         "type": "string"
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "divider"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "agendaTitle": {
+         "type": "string"
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "exec-summary"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "points",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "answer": {
+         "type": "string"
+        },
+        "points": {
+         "type": "array",
+         "minItems": 2,
+         "maxItems": 5,
+         "items": {
+          "type": "object",
+          "required": [
+           "lead"
+          ],
+          "properties": {
+           "lead": {
+            "type": "string"
+           },
+           "text": {
+            "type": "string"
+           },
+           "dashes": {
+            "type": "array",
+            "items": {
+             "type": "string"
+            }
+           }
+          },
+          "additionalProperties": false
+         }
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "text"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "points",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "columns": {
+         "type": "integer",
+         "minimum": 1,
+         "maximum": 3
+        },
+        "points": {
+         "type": "array",
+         "minItems": 1,
+         "maxItems": 6,
+         "items": {
+          "type": "object",
+          "required": [
+           "lead"
+          ],
+          "properties": {
+           "lead": {
+            "type": "string"
+           },
+           "text": {
+            "type": "string"
+           },
+           "dashes": {
+            "type": "array",
+            "items": {
+             "type": "string"
+            }
+           }
+          },
+          "additionalProperties": false
+         }
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "chart"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "labels",
+        "series",
+        "source",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "kind": {
+         "enum": [
+          "bar",
+          "column",
+          "line",
+          "stacked"
+         ]
+        },
+        "labels": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "series": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "required": [
+           "name",
+           "values"
+          ],
+          "properties": {
+           "name": {
+            "type": "string"
+           },
+           "values": {
+            "type": "array",
+            "items": {
+             "type": "number"
+            }
+           },
+           "accent": {
+            "type": "boolean"
+           }
+          },
+          "additionalProperties": false
+         }
+        },
+        "highlight": {
+         "type": "integer"
+        },
+        "format": {
+         "type": "string"
+        },
+        "axisFormat": {
+         "type": "string"
+        },
+        "labelEvery": {
+         "type": "integer"
+        },
+        "min": {
+         "type": "number"
+        },
+        "max": {
+         "type": "number"
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "waterfall"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "steps",
+        "source",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "steps": {
+         "type": "array",
+         "minItems": 3,
+         "maxItems": 9,
+         "items": {
+          "type": "object",
+          "required": [
+           "label",
+           "value"
+          ],
+          "properties": {
+           "label": {
+            "type": "string"
+           },
+           "value": {
+            "type": "number"
+           },
+           "total": {
+            "type": "boolean"
+           },
+           "display": {
+            "type": "string"
+           }
+          },
+          "additionalProperties": false
+         }
+        },
+        "accentStep": {
+         "type": "integer"
+        },
+        "fmt": {
+         "type": "string"
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "football-field"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "ranges",
+        "min",
+        "max",
+        "source",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "ranges": {
+         "type": "array",
+         "minItems": 3,
+         "items": {
+          "type": "object",
+          "required": [
+           "label",
+           "low",
+           "high"
+          ],
+          "properties": {
+           "label": {
+            "type": "string"
+           },
+           "low": {
+            "type": "number"
+           },
+           "high": {
+            "type": "number"
+           },
+           "lowLabel": {
+            "type": "string"
+           },
+           "highLabel": {
+            "type": "string"
+           }
+          },
+          "additionalProperties": false
+         }
+        },
+        "min": {
+         "type": "number"
+        },
+        "max": {
+         "type": "number"
+        },
+        "step": {
+         "type": "number"
+        },
+        "axisFormat": {
+         "type": "string"
+        },
+        "lines": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "required": [
+           "value",
+           "label"
+          ],
+          "properties": {
+           "value": {
+            "type": "number"
+           },
+           "label": {
+            "type": "string"
+           },
+           "accent": {
+            "type": "boolean"
+           }
+          },
+          "additionalProperties": false
+         }
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "table"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "header",
+        "rows",
+        "source",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "header": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "rows": {
+         "type": "array",
+         "items": {
+          "oneOf": [
+           {
+            "type": "array",
+            "items": {
+             "type": [
+              "string",
+              "number"
+             ]
+            }
+           },
+           {
+            "type": "object",
+            "required": [
+             "cells"
+            ],
+            "properties": {
+             "cells": {
+              "type": "array",
+              "items": {
+               "type": [
+                "string",
+                "number"
+               ]
+              }
+             },
+             "kind": {
+              "enum": [
+               "summary",
+               "subject"
+              ]
+             },
+             "rag": {
+              "type": "object"
+             }
+            },
+            "additionalProperties": false
+           }
+          ]
+         }
+        },
+        "align": {
+         "type": "array",
+         "items": {
+          "enum": [
+           "l",
+           "r"
+          ]
+         }
+        },
+        "colW": {
+         "type": "array",
+         "items": {
+          "type": "number"
+         }
+        },
+        "rowH": {
+         "type": "number"
+        },
+        "fontSize": {
+         "type": "number"
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "sensitivity"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "corner",
+        "rows",
+        "cols",
+        "values",
+        "threshold",
+        "source",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "corner": {
+         "type": "string"
+        },
+        "rows": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "cols": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "values": {
+         "type": "array",
+         "items": {
+          "type": "array",
+          "items": {
+           "type": "number"
+          }
+         }
+        },
+        "threshold": {
+         "type": "number"
+        },
+        "format": {
+         "type": "string"
+        },
+        "base": {
+         "type": "array",
+         "items": {
+          "type": "integer"
+         },
+         "minItems": 2,
+         "maxItems": 2
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "options"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "criteria",
+        "options",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "criteria": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "options": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "required": [
+           "name",
+           "scores"
+          ],
+          "properties": {
+           "name": {
+            "type": "string"
+           },
+           "scores": {
+            "type": "array",
+            "items": {
+             "type": "integer",
+             "minimum": 0,
+             "maximum": 4
+            }
+           },
+           "recommended": {
+            "type": "boolean"
+           }
+          },
+          "additionalProperties": false
+         }
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "roadmap"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "periods",
+        "rows",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "periods": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "rows": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "required": [
+           "name",
+           "start",
+           "end"
+          ],
+          "properties": {
+           "name": {
+            "type": "string"
+           },
+           "start": {
+            "type": "number"
+           },
+           "end": {
+            "type": "number"
+           },
+           "accent": {
+            "type": "boolean"
+           },
+           "milestones": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "required": [
+              "at"
+             ],
+             "properties": {
+              "at": {
+               "type": "number"
+              },
+              "label": {
+               "type": "string"
+              }
+             },
+             "additionalProperties": false
+            }
+           }
+          },
+          "additionalProperties": false
+         }
+        }
+       },
+       "additionalProperties": false
+      }
+     },
+     {
+      "if": {
+       "properties": {
+        "type": {
+         "const": "marimekko"
+        }
+       }
+      },
+      "then": {
+       "required": [
+        "type",
+        "title",
+        "segments",
+        "source",
+        "notes"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "section": {
+         "type": "string"
+        },
+        "unit": {
+         "type": "string"
+        },
+        "source": {
+         "type": "string"
+        },
+        "footnotes": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "notes": {
+         "type": "string"
+        },
+        "side": {
+         "type": "object",
+         "properties": {
+          "points": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "required": [
+             "lead"
+            ],
+            "properties": {
+             "lead": {
+              "type": "string"
+             },
+             "text": {
+              "type": "string"
+             },
+             "dashes": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             }
+            },
+            "additionalProperties": false
+           }
+          }
+         },
+         "additionalProperties": false
+        },
+        "takeaway": {
+         "type": "string"
+        },
+        "segments": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "required": [
+           "label",
+           "size",
+           "parts"
+          ],
+          "properties": {
+           "label": {
+            "type": "string"
+           },
+           "size": {
+            "type": "number"
+           },
+           "parts": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "required": [
+              "name",
+              "share"
+             ],
+             "properties": {
+              "name": {
+               "type": "string"
+              },
+              "share": {
+               "type": "number"
+              }
+             },
+             "additionalProperties": false
+            }
+           }
+          },
+          "additionalProperties": false
+         }
+        },
+        "focus": {
+         "type": "string"
+        }
+       },
+       "additionalProperties": false
+      }
+     }
+    ]
+   }
+  },
+  "register": {
+   "type": "string"
+  }
+ },
+ "additionalProperties": false
+}

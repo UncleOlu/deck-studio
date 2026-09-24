@@ -1,0 +1,27 @@
+{
+  "grocer-costout": [
+    "FY25 revenue",
+    "$4,820M @ store_pnl_FY25.xlsx!Summary!B3",
+    "$4.61B @ cfo_email.txt"
+  ],
+  "market-entry": [
+    "2029 addressable market",
+    "EUR 6.26B (formula) @ market_sizing.xlsx!Summary!C9",
+    "EUR 7.4B @ partner_notes.md"
+  ],
+  "steerco-update": [
+    "Finance go-live date",
+    "2027-03 @ workstream_status.csv",
+    "May 2027 @ pmo_weekly_note.md"
+  ],
+  "take-private-valuation": [
+    "Diluted shares outstanding",
+    "58.2M @ capitalization.xlsx!Cap!B4",
+    "57.4M @ management_projections.xlsx!Notes!A3"
+  ],
+  "sell-side-pitch": [
+    "FY25 adjusted EBITDA",
+    "$91M @ tidewater_financials.xlsx!P&L!F9",
+    "$86M @ owner_call_notes.md"
+  ]
+}

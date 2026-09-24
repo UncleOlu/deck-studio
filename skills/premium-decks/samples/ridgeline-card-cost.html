@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFFFF">
+<title>Ridgeline Payments — Card-cost programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- DNA: Meadow Ledger. Type pairing: Anton (ultra-heavy display) + Inter (quiet body). -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    /* primitive */
+    --white: #FFFFFF;
+    --ink-900: #0E0F0C;
+    --forest-800: #163300;
+    --lime-400: #9FE870;
+    --calm-100: #ECF9F9;
+    --gray-600: #6A6C6A;
+    --font-display: "Anton", "Arial Black", Impact, sans-serif;
+    --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    /* title floor is 1.85rem against a 0.9rem body floor: the ratio never
+       drops below 2x anywhere in the clamp range */
+    --size-hero: clamp(3.2rem, 8.6vw, 7rem);
+    --size-title: clamp(1.85rem, 2.7vw, 2.15rem);
+    --size-body: clamp(0.9rem, 1.25vw, 1.05rem);
+    --size-lede: 1.15rem;
+    --size-caption: 0.78rem;
+    --size-stat: clamp(2.6rem, 5vw, 3.6rem);
+    --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 48px;
+
+    /* semantic */
+    --color-bg: var(--white);
+    --color-fg: var(--ink-900);
+    --color-primary: var(--forest-800);
+    --color-support: var(--calm-100);
+    --color-accent: var(--lime-400);
+    --color-muted: var(--gray-600);
+
+    /* component — Meadow Ledger has no shadows: depth is hairlines and surface */
+    --hairline: rgba(14, 15, 12, 0.14);          /* structure: rules, dividers */
+    --chart-grid: rgba(14, 15, 12, 0.10);
+    /* data shapes carry meaning, so their edge must clear 3:1 (this is 3.98:1) */
+    --data-edge: color-mix(in srgb, var(--color-primary) 60%, transparent);
+    --ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font-body);
+    font-size: var(--size-body);
+    line-height: 1.45;
+    color: var(--color-fg);
+    background: var(--color-bg);
+    overflow: hidden;
+  }
+  .deck { height: 100dvh; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    /* every value is a multiple of 8; the short-screen step keeps the fixed
+       nav controls clear of content without leaving the grid */
+    gap: var(--space-3);
+    padding: var(--space-4) 80px 88px;
+    background: var(--color-bg);
+  }
+  @media (max-height: 700px) { .slide { padding: 32px 80px 72px; } }
+  .slide.active { display: flex; }
+  /* the single lime plane — Meadow Ledger allows exactly one */
+  .slide.punch { background: var(--color-accent); justify-content: space-between; }
+  .slide.punch .pager { color: var(--color-fg); }   /* muted fails 4.5:1 on lime */
+  .punch .title-block { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  h1 { font-size: var(--size-hero); line-height: 0.92; text-transform: uppercase; }
+  /* 1.0, not 0.92: at the title scale Anton's descenders hit the next cap line.
+     min-height reserves three lines so every content slide starts its body at
+     the same y, whether its title runs two lines or three. */
+  h2 { font-size: var(--size-title); line-height: 1.0; min-height: 3em; max-width: 30ch; }
+  p, dd, li { text-wrap: pretty; max-width: 52ch; }   /* ~70 characters in Inter */
+  .eyebrow { font-size: var(--size-body); }
+  .lede { font-size: var(--size-lede); max-width: 46ch; }
+  .caption { font-size: var(--size-caption); color: var(--color-muted); margin-top: auto;
+             max-width: none; }
+  .split { display: grid; grid-template-columns: 1fr minmax(0, 300px);
+           gap: var(--space-4); align-items: start; }
+  .num, .kpi-val { font-variant-numeric: tabular-nums; }
+
+  /* one authored reveal per slide; the title plane alone is staggered, and no
+     slide replays its entrance when the presenter arrows back into it */
+  .slide.active > * { animation: rise 420ms var(--ease-premium) both; }
+  .slide.punch.active > *:nth-child(2) { animation-delay: 70ms; }
+  .slide.seen > * { animation: none; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .slide.active > * { animation: none; }
+    * { transition-duration: 1ms !important; }
+  }
+
+  /* ---- process / stepper row ---- */
+  .steps { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; align-items: start; }
+  .step {
+    display: grid; justify-items: center; gap: var(--space-1);
+    position: relative; padding-inline: var(--space-2); text-align: center;
+  }
+  .step::before {
+    content: ""; position: absolute; top: 19px; left: -50%; right: 50%;
+    height: 2px; background: var(--chart-grid);
+  }
+  .step:first-child::before { display: none; }
+  /* the connector left of a step is complete when the step before it is */
+  .step.is-done::before, .step.is-now::before { background: var(--color-primary); }
+  .step-dot {
+    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--color-support); border: 1px solid var(--data-edge);
+    font-weight: 600; font-variant-numeric: tabular-nums; position: relative;
+  }
+  .step.is-done .step-dot { background: var(--color-primary); color: var(--color-bg); border-color: transparent; }
+  /* one lime mark per slide (design-dna.md §7): on this slide it is the
+     current-step dot, so the KPI fill below stays forest. The lime keeps its
+     --data-edge ring — lime on white is 1.5:1 and would vanish on a projector. */
+  .step.is-now  .step-dot { background: var(--color-accent); color: var(--color-fg); }
+  .step b { font-weight: 600; }
+  .step small { color: var(--color-muted); font-size: var(--size-caption); }
+
+  /* ---- roadmap gantt ---- */
+  .gantt {
+    display: grid; grid-template-columns: 22ch repeat(6, 1fr) 6ch;
+    row-gap: var(--space-3); align-items: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .gantt-head {
+    grid-column: 2 / 8; display: grid; grid-template-columns: subgrid;
+    color: var(--color-muted); font-size: var(--size-caption);
+    border-bottom: 1px solid var(--hairline); padding-bottom: var(--space-1);
+  }
+  .gantt-head span { border-left: 1px solid var(--hairline); padding-left: 6px; }
+  .gantt-row { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; }
+  .gantt-bar {
+    height: 20px; border-radius: 10px; background: var(--color-support);
+    border: 1px solid var(--data-edge); position: relative; overflow: hidden;
+  }
+  .gantt-bar > i { position: absolute; inset: 0 auto 0 0; display: block; background: var(--color-primary); }
+  .gantt-row.is-point .gantt-bar > i { background: var(--color-accent); }
+  .gantt-row > span:first-child { padding-right: var(--space-2); }
+  .gantt-pct { grid-column: 8 / 9; text-align: right; color: var(--color-muted);
+               font-size: var(--size-caption); }
+
+  /* ---- dense data table ---- */
+  .dtable { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .dtable th, .dtable td {
+    padding: var(--space-1) var(--space-2); text-align: left;
+    border-bottom: 1px solid var(--chart-grid);
+  }
+  /* the outer cells lose their padding so the table sits on the slide margin */
+  .dtable th:first-child, .dtable td:first-child { padding-left: 0; font-weight: 600; }
+  .dtable th:last-child,  .dtable td:last-child  { padding-right: var(--space-1); }
+  .dtable th { font-weight: 500; color: var(--color-muted); font-size: var(--size-caption); }
+  .dtable .num { text-align: right; }
+  /* the tint goes on the cell, not on a span: the digits keep their exact
+     right alignment and nothing bleeds past the slide margin */
+  .dtable td.is-point { background: var(--color-accent); font-weight: 600; }
+  .dtable tfoot td { border-bottom: none; border-top: 2px solid var(--color-fg); font-weight: 600; }
+  @media (max-height: 700px) { .dtable th, .dtable td { padding-block: 4px; } }
+
+  /* ---- KPI row with attainment ---- */
+  .kpi { display: grid; gap: var(--space-1); }
+  .kpi-top { display: flex; justify-content: space-between; align-items: baseline;
+             color: var(--color-muted); font-size: var(--size-caption); }
+  .kpi-val { font-size: var(--size-stat); line-height: 0.95; font-family: var(--font-display);
+             letter-spacing: -0.01em; }
+  .kpi-track { height: 6px; border-radius: 3px; background: var(--color-support);
+               border: 1px solid var(--data-edge); overflow: hidden; }
+  .kpi-fill { height: 100%; background: var(--color-primary); }
+  .kpi.is-point .kpi-fill { background: var(--color-accent); }
+  .kpi small { color: var(--color-muted); font-size: var(--size-caption); }
+
+  /* ---- shell chrome ---- */
+  /* html-mode.md's --color-accent is a styling default and Meadow Ledger
+     rations lime to one plane, so the guardrail wins: SKILL.md Precedence,
+     rule 3 over rule 4. */
+  .progress { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--color-primary); }
+  .pager {
+    position: fixed; right: 80px; bottom: 27px;   /* centred on the 44px nav buttons */
+    font-size: var(--size-caption); color: var(--color-muted); font-variant-numeric: tabular-nums;
+  }
+  .nav { position: fixed; left: 80px; bottom: 14px; display: flex; gap: var(--space-1); }
+  .nav button {
+    width: 44px; height: 44px; display: grid; place-items: center;
+    background: transparent; border: 1px solid var(--hairline); border-radius: 22px;
+    color: var(--color-fg); font: inherit; cursor: pointer;
+    transition: background-color 140ms var(--ease-premium), scale 140ms var(--ease-premium);
+  }
+  .nav button:hover { background: var(--color-support); }
+  .nav button:active { scale: 0.96; }
+  .nav button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+  .notes { display: none; }
+
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { overflow: visible; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .slide { display: flex !important; position: relative; height: 720px; break-after: page; }
+    .slide.active > * { animation: none; }
+    /* notes stay off the printed page: the PDF is the delivered artifact, and
+       the talk track is not for the audience */
+    .nav, .pager, .progress, .notes { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<main class="deck">
+
+  <!-- 1 · title. The one lime plane in the deck. -->
+  <section class="slide punch active" aria-label="Title">
+    <p class="eyebrow">Ridgeline Payments · Finance Committee · 26 August 2026</p>
+    <div class="title-block">
+      <h1>Card-cost<br>programme</h1>
+      <p class="lede">Where each lane stands against the 0.94% ceiling, what runs next,
+        and the gate every merchant clears before we reroute its traffic.</p>
+    </div>
+    <aside class="notes">Illustrative deck. Every number here is invented and must be replaced
+      from the card-cost ledger. Open by naming the decision: continue the programme at the
+      current pace, or move the cross-border workstream forward. Two minutes on this slide.</aside>
+  </section>
+
+  <!-- 2 · roadmap · gantt recipe -->
+  <section class="slide" aria-label="Roadmap">
+    <h2>Interchange routing finishes in Q1&nbsp;2027 and releases the three workstreams behind it</h2>
+    <div class="gantt">
+      <div class="gantt-head">
+        <span>Q3 2026</span><span>Q4 2026</span><span>Q1 2027</span>
+        <span>Q2 2027</span><span>Q3 2027</span><span>Q4 2027</span>
+      </div>
+      <div class="gantt-row is-point">
+        <span>Interchange routing</span>
+        <div class="gantt-bar" style="grid-column: 2 / 5;"><i style="width: 60%;"></i></div>
+        <span class="gantt-pct">60%</span>
+      </div>
+      <div class="gantt-row">
+        <span>Vendor renegotiation</span>
+        <div class="gantt-bar" style="grid-column: 2 / 4;"><i style="width: 90%;"></i></div>
+        <span class="gantt-pct">90%</span>
+      </div>
+      <div class="gantt-row">
+        <span>Merchant re-tiering</span>
+        <div class="gantt-bar" style="grid-column: 3 / 6;"><i style="width: 25%;"></i></div>
+        <span class="gantt-pct">25%</span>
+      </div>
+      <div class="gantt-row">
+        <span>Settlement netting</span>
+        <div class="gantt-bar" style="grid-column: 4 / 7;"><i style="width: 0%;"></i></div>
+        <span class="gantt-pct">0%</span>
+      </div>
+      <div class="gantt-row">
+        <span>Chargeback automation</span>
+        <div class="gantt-bar" style="grid-column: 5 / 8;"><i style="width: 0%;"></i></div>
+        <span class="gantt-pct">0%</span>
+      </div>
+    </div>
+    <p class="caption">Bar fill and the right-hand figure are work complete.
+      Programme plan v4, 14&nbsp;August 2026 (illustrative).</p>
+    <aside class="notes">Interchange routing is the accented bar because every other date moves
+      with it. Vendor renegotiation is 90% complete and closes in Q4 2026. Settlement netting and
+      chargeback automation have not started. Source: programme plan v4.</aside>
+  </section>
+
+  <!-- 3 · process · stepper recipe + KPI attainment -->
+  <section class="slide" aria-label="Merchant gates">
+    <h2>Every merchant clears four gates before we reroute its traffic</h2>
+    <div class="steps">
+      <div class="step is-done">
+        <span class="step-dot">1</span>
+        <b>Baseline pricing</b>
+        <small>148 of 189 priced</small>
+      </div>
+      <div class="step is-now">
+        <span class="step-dot">2</span>
+        <b>Reroute test</b>
+        <small>41 of 60 in test</small>
+      </div>
+      <div class="step">
+        <span class="step-dot">3</span>
+        <b>Risk sign-off</b>
+        <small>Opens 12 October 2026</small>
+      </div>
+      <div class="step">
+        <span class="step-dot">4</span>
+        <b>Cut over</b>
+        <small>Opens 4 January 2027</small>
+      </div>
+    </div>
+    <div class="split">
+      <p>A merchant that fails the reroute test returns to baseline pricing — 6 did in
+        July. Risk sign-off needs the fraud model refresh, which lands in October.</p>
+      <div class="kpi">
+        <div class="kpi-top"><span>Merchants in the reroute test</span><span>Plan 60</span></div>
+        <div class="kpi-val">41</div>
+        <div class="kpi-track"><div class="kpi-fill" style="width: 68%;"></div></div>
+        <small>68% of the gate&#8209;2 plan. The fraud model sets the pace, not merchant demand.</small>
+      </div>
+    </div>
+    <p class="caption">Merchant pipeline, 22&nbsp;August 2026 (illustrative).</p>
+    <aside class="notes">The accented dot is the gate we work now. 41 merchants of a plan of 60
+      are in the reroute test. The gap is the fraud model refresh, not merchant demand.
+      Source: merchant pipeline export, 22 August 2026.</aside>
+  </section>
+
+  <!-- 4 · dense data · table recipe -->
+  <section class="slide" aria-label="Lane pricing">
+    <h2>Cross-border carries 89% of the excess above the 0.94% ceiling</h2>
+    <table class="dtable">
+      <thead>
+        <tr>
+          <th scope="col">Lane</th>
+          <th scope="col" class="num">2026 volume</th>
+          <th scope="col" class="num">Blended rate</th>
+          <th scope="col" class="num">Gap to ceiling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Domestic debit</td><td class="num">$412.0M</td><td class="num">0.61%</td><td class="num">−0.33&nbsp;pt</td></tr>
+        <tr><td>Domestic credit</td><td class="num">$268.4M</td><td class="num">0.97%</td><td class="num">+0.03&nbsp;pt</td></tr>
+        <tr><td>Cross-border</td><td class="num">$74.1M</td><td class="num">1.84%</td><td class="num is-point">+0.90&nbsp;pt</td></tr>
+        <tr><td>Wallet</td><td class="num">$51.6M</td><td class="num">0.88%</td><td class="num">−0.06&nbsp;pt</td></tr>
+        <tr><td>Recurring</td><td class="num">$39.2M</td><td class="num">0.71%</td><td class="num">−0.23&nbsp;pt</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>All lanes</td><td class="num">$845.3M</td><td class="num">0.85%</td><td class="num">−0.09&nbsp;pt</td></tr>
+      </tfoot>
+    </table>
+    <p>The ceiling is per lane. Two lanes breach it, and cross-border is 89% of the
+      breach on 9% of the volume. Move it ahead of merchant re-tiering.</p>
+    <p class="caption">Card-cost ledger, January–July&nbsp;2026, annualised. Ceiling 0.94% per lane; the
+      All&nbsp;lanes row is the volume-weighted blend, for reference. All figures illustrative.</p>
+    <aside class="notes">Read the last column only. Three of five lanes price under the
+      ceiling. Two breach it: domestic credit by 0.03 pt, cross-border by 0.90 pt.
+      The ask is to reorder the roadmap, not to add budget. Source: card-cost ledger.</aside>
+  </section>
+
+</main>
+
+<div class="progress" style="width: 25%;"></div>
+<nav class="nav" aria-label="Slide navigation">
+  <button type="button" id="prev" aria-label="Previous slide">‹</button>
+  <button type="button" id="next" aria-label="Next slide">›</button>
+</nav>
+<div class="pager" aria-live="polite">1 / 4</div>
+
+<script>
+  const slides = [...document.querySelectorAll(".slide")];
+  const progress = document.querySelector(".progress");
+  const pager = document.querySelector(".pager");
+  const seen = new Set();
+  let i = 0;
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    // an entrance is authored for the first view only, never on the way back
+    slides[i].classList.toggle("seen", seen.has(i));
+    seen.add(i);
+    slides.forEach((s, k) => s.classList.toggle("active", k === i));
+    progress.style.width = ((i + 1) / slides.length * 100) + "%";
+    pager.textContent = (i + 1) + " / " + slides.length;
+    // read the ground from the token layer — never hard-code a hex here
+    document.querySelector('meta[name="theme-color"]')
+      .setAttribute("content", getComputedStyle(slides[i]).backgroundColor);
+  }
+  document.getElementById("next").addEventListener("click", (e) => { e.stopPropagation(); show(i + 1); });
+  document.getElementById("prev").addEventListener("click", (e) => { e.stopPropagation(); show(i - 1); });
+  addEventListener("keydown", (e) => {
+    if (["ArrowRight", "ArrowDown", " ", "PageDown"].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === "Home") { e.preventDefault(); show(0); }
+    if (e.key === "End") { e.preventDefault(); show(slides.length - 1); }
+  });
+  addEventListener("click", (e) => { if (!e.target.closest("button, a")) show(i + 1); });
+  show(0);
+</script>
+</body>
+</html>

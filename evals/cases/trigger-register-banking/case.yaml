@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.1",
+  "name": "trigger-register-banking",
+  "tags": [
+    "trigger",
+    "positive"
+  ],
+  "execution": {
+    "prompt": "Put together a board book for the special committee on the take-private offer: trading comps, precedents, DCF, and a football field. Work autonomously: I approve any checkpoint in advance. In your first reply, state which register (keynote, consulting, or banking) the deck uses.",
+    "runs": 3,
+    "max_turns": 8,
+    "timeout_seconds": 300,
+    "allowed_tools": [
+      "Skill",
+      "Read"
+    ]
+  },
+  "graders": [
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "premium-decks"
+    },
+    {
+      "name": "register-banking",
+      "type": "llm",
+      "focus": "trace",
+      "criteria": "PASS only if the agent states that the deck uses the banking register (in a message or a file it writes). FAIL if it picks another register, or never states one."
+    }
+  ],
+  "runs": 3
+}

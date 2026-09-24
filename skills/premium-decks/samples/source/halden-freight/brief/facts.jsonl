@@ -1,0 +1,110 @@
+{"id": "F0001", "value": 1.0, "unit": "", "scale": 1.0, "period": "", "text": "Strategic A | tier", "file": "buyer_universe.csv", "locator": "row 2, tier"}
+{"id": "F0002", "value": 14.2, "unit": "USD", "scale": 1000000000.0, "period": "", "text": "Strategic A | capacity_usd_bn", "file": "buyer_universe.csv", "locator": "row 2, capacity_usd_bn"}
+{"id": "F0003", "value": 1.0, "unit": "", "scale": 1.0, "period": "", "text": "Strategic B | tier", "file": "buyer_universe.csv", "locator": "row 3, tier"}
+{"id": "F0004", "value": 9.8, "unit": "USD", "scale": 1000000000.0, "period": "", "text": "Strategic B | capacity_usd_bn", "file": "buyer_universe.csv", "locator": "row 3, capacity_usd_bn"}
+{"id": "F0005", "value": 2.0, "unit": "", "scale": 1.0, "period": "", "text": "Strategic C | tier", "file": "buyer_universe.csv", "locator": "row 4, tier"}
+{"id": "F0006", "value": 4.1, "unit": "USD", "scale": 1000000000.0, "period": "", "text": "Strategic C | capacity_usd_bn", "file": "buyer_universe.csv", "locator": "row 4, capacity_usd_bn"}
+{"id": "F0007", "value": 1.0, "unit": "", "scale": 1.0, "period": "", "text": "Sponsor D | tier", "file": "buyer_universe.csv", "locator": "row 5, tier"}
+{"id": "F0008", "value": 18.0, "unit": "USD", "scale": 1000000000.0, "period": "", "text": "Sponsor D | capacity_usd_bn", "file": "buyer_universe.csv", "locator": "row 5, capacity_usd_bn"}
+{"id": "F0009", "value": 2.0, "unit": "", "scale": 1.0, "period": "", "text": "Sponsor E | tier", "file": "buyer_universe.csv", "locator": "row 6, tier"}
+{"id": "F0010", "value": 6.5, "unit": "USD", "scale": 1000000000.0, "period": "", "text": "Sponsor E | capacity_usd_bn", "file": "buyer_universe.csv", "locator": "row 6, capacity_usd_bn"}
+{"id": "F0011", "value": 18.6, "unit": "USD", "scale": 1.0, "period": "2026", "text": "Halden Freight Systems (fictional) \u2014 capitalization | Share price (1 Sep 2026) value", "file": "capitalization.xlsx", "locator": "Cap!B2"}
+{"id": "F0012", "value": 86.0, "unit": "", "scale": 1000000.0, "period": "", "text": "Halden Freight Systems (fictional) \u2014 capitalization | Diluted shares outstanding value", "file": "capitalization.xlsx", "locator": "Cap!B3"}
+{"id": "F0013", "value": 410.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Halden Freight Systems (fictional) \u2014 capitalization | Net debt value", "file": "capitalization.xlsx", "locator": "Cap!B4"}
+{"id": "F0014", "value": 212.0, "unit": "USD", "scale": 1000000.0, "period": "LTM", "text": "Halden Freight Systems (fictional) \u2014 capitalization | LTM EBITDA value", "file": "capitalization.xlsx", "locator": "Cap!B5"}
+{"id": "F0015", "value": 1480.0, "unit": "USD", "scale": 1000000.0, "period": "LTM", "text": "Halden Freight Systems (fictional) \u2014 capitalization | LTM revenue value", "file": "capitalization.xlsx", "locator": "Cap!B6"}
+{"id": "F0016", "value": 1560.0, "unit": "USD", "scale": 1000000.0, "period": "FY26E", "text": " | Revenue FY26E", "file": "management_projections.xlsx", "locator": "Projections ($M)!B2"}
+{"id": "F0017", "value": 1640.0, "unit": "USD", "scale": 1000000.0, "period": "FY27E", "text": " | Revenue FY27E", "file": "management_projections.xlsx", "locator": "Projections ($M)!C2"}
+{"id": "F0018", "value": 1720.0, "unit": "USD", "scale": 1000000.0, "period": "FY28E", "text": " | Revenue FY28E", "file": "management_projections.xlsx", "locator": "Projections ($M)!D2"}
+{"id": "F0019", "value": 1800.0, "unit": "USD", "scale": 1000000.0, "period": "FY29E", "text": " | Revenue FY29E", "file": "management_projections.xlsx", "locator": "Projections ($M)!E2"}
+{"id": "F0020", "value": 1870.0, "unit": "USD", "scale": 1000000.0, "period": "FY30E", "text": " | Revenue FY30E", "file": "management_projections.xlsx", "locator": "Projections ($M)!F2"}
+{"id": "F0021", "value": 228.0, "unit": "USD", "scale": 1000000.0, "period": "FY26E", "text": " | EBITDA FY26E", "file": "management_projections.xlsx", "locator": "Projections ($M)!B3"}
+{"id": "F0022", "value": 246.0, "unit": "USD", "scale": 1000000.0, "period": "FY27E", "text": " | EBITDA FY27E", "file": "management_projections.xlsx", "locator": "Projections ($M)!C3"}
+{"id": "F0023", "value": 263.0, "unit": "USD", "scale": 1000000.0, "period": "FY28E", "text": " | EBITDA FY28E", "file": "management_projections.xlsx", "locator": "Projections ($M)!D3"}
+{"id": "F0024", "value": 279.0, "unit": "USD", "scale": 1000000.0, "period": "FY29E", "text": " | EBITDA FY29E", "file": "management_projections.xlsx", "locator": "Projections ($M)!E3"}
+{"id": "F0025", "value": 294.0, "unit": "USD", "scale": 1000000.0, "period": "FY30E", "text": " | EBITDA FY30E", "file": "management_projections.xlsx", "locator": "Projections ($M)!F3"}
+{"id": "F0026", "value": 118.0, "unit": "USD", "scale": 1000000.0, "period": "FY26E", "text": " | Unlevered FCF FY26E", "file": "management_projections.xlsx", "locator": "Projections ($M)!B4"}
+{"id": "F0027", "value": 131.0, "unit": "USD", "scale": 1000000.0, "period": "FY27E", "text": " | Unlevered FCF FY27E", "file": "management_projections.xlsx", "locator": "Projections ($M)!C4"}
+{"id": "F0028", "value": 144.0, "unit": "USD", "scale": 1000000.0, "period": "FY28E", "text": " | Unlevered FCF FY28E", "file": "management_projections.xlsx", "locator": "Projections ($M)!D4"}
+{"id": "F0029", "value": 156.0, "unit": "USD", "scale": 1000000.0, "period": "FY29E", "text": " | Unlevered FCF FY29E", "file": "management_projections.xlsx", "locator": "Projections ($M)!E4"}
+{"id": "F0030", "value": 167.0, "unit": "USD", "scale": 1000000.0, "period": "FY30E", "text": " | Unlevered FCF FY30E", "file": "management_projections.xlsx", "locator": "Projections ($M)!F4"}
+{"id": "F0031", "value": 8.5, "unit": "%", "scale": 1.0, "period": "", "text": "WACC range used by management: 8.5% -9.5%; terminal growth 2.0%-3.0%.", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0032", "value": 9.5, "unit": "%", "scale": 1.0, "period": "", "text": "WACC range used by management: 8.5% -9.5% ; terminal growth 2.0%-3.0%.", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0033", "value": 2.0, "unit": "%", "scale": 1.0, "period": "", "text": "range used by management: 8.5%-9.5%; terminal growth 2.0% -3.0%.", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0034", "value": 3.0, "unit": "%", "scale": 1.0, "period": "", "text": "used by management: 8.5%-9.5%; terminal growth 2.0% -3.0% .", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0035", "value": 2.0, "unit": "", "scale": 1.0, "period": "", "text": "Level 2 of the car park", "file": "parking_memo.txt", "locator": "line 1"}
+{"id": "F0036", "value": 1500.0, "unit": "USD", "scale": 1000000.0, "period": "2023", "text": "2023-05 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 2, ev_usd_m"}
+{"id": "F0037", "value": 9.6, "unit": "x", "scale": 1.0, "period": "2023", "text": "2023-05 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 2, ev_ltm_ebitda_x"}
+{"id": "F0038", "value": 2300.0, "unit": "USD", "scale": 1000000.0, "period": "2024", "text": "2024-02 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 3, ev_usd_m"}
+{"id": "F0039", "value": 10.4, "unit": "x", "scale": 1.0, "period": "2024", "text": "2024-02 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 3, ev_ltm_ebitda_x"}
+{"id": "F0040", "value": 3100.0, "unit": "USD", "scale": 1000000.0, "period": "2025", "text": "2025-04 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 4, ev_usd_m"}
+{"id": "F0041", "value": 11.8, "unit": "x", "scale": 1.0, "period": "2025", "text": "2025-04 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 4, ev_ltm_ebitda_x"}
+{"id": "F0042", "value": 1900.0, "unit": "USD", "scale": 1000000.0, "period": "2026", "text": "2026-01 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 5, ev_usd_m"}
+{"id": "F0043", "value": 10.1, "unit": "x", "scale": 1.0, "period": "2026", "text": "2026-01 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 5, ev_ltm_ebitda_x"}
+{"id": "F0044", "value": 19.6, "unit": "USD", "scale": 1.0, "period": "", "text": "W01 | close_usd", "file": "share_price_52w.csv", "locator": "row 2, close_usd"}
+{"id": "F0045", "value": 20.02, "unit": "USD", "scale": 1.0, "period": "", "text": "W02 | close_usd", "file": "share_price_52w.csv", "locator": "row 3, close_usd"}
+{"id": "F0046", "value": 19.69, "unit": "USD", "scale": 1.0, "period": "", "text": "W03 | close_usd", "file": "share_price_52w.csv", "locator": "row 4, close_usd"}
+{"id": "F0047", "value": 19.37, "unit": "USD", "scale": 1.0, "period": "", "text": "W04 | close_usd", "file": "share_price_52w.csv", "locator": "row 5, close_usd"}
+{"id": "F0048", "value": 19.04, "unit": "USD", "scale": 1.0, "period": "", "text": "W05 | close_usd", "file": "share_price_52w.csv", "locator": "row 6, close_usd"}
+{"id": "F0049", "value": 18.71, "unit": "USD", "scale": 1.0, "period": "", "text": "W06 | close_usd", "file": "share_price_52w.csv", "locator": "row 7, close_usd"}
+{"id": "F0050", "value": 19.13, "unit": "USD", "scale": 1.0, "period": "", "text": "W07 | close_usd", "file": "share_price_52w.csv", "locator": "row 8, close_usd"}
+{"id": "F0051", "value": 18.8, "unit": "USD", "scale": 1.0, "period": "", "text": "W08 | close_usd", "file": "share_price_52w.csv", "locator": "row 9, close_usd"}
+{"id": "F0052", "value": 18.48, "unit": "USD", "scale": 1.0, "period": "", "text": "W09 | close_usd", "file": "share_price_52w.csv", "locator": "row 10, close_usd"}
+{"id": "F0053", "value": 18.15, "unit": "USD", "scale": 1.0, "period": "", "text": "W10 | close_usd", "file": "share_price_52w.csv", "locator": "row 11, close_usd"}
+{"id": "F0054", "value": 17.82, "unit": "USD", "scale": 1.0, "period": "", "text": "W11 | close_usd", "file": "share_price_52w.csv", "locator": "row 12, close_usd"}
+{"id": "F0055", "value": 18.24, "unit": "USD", "scale": 1.0, "period": "", "text": "W12 | close_usd", "file": "share_price_52w.csv", "locator": "row 13, close_usd"}
+{"id": "F0056", "value": 17.91, "unit": "USD", "scale": 1.0, "period": "", "text": "W13 | close_usd", "file": "share_price_52w.csv", "locator": "row 14, close_usd"}
+{"id": "F0057", "value": 17.59, "unit": "USD", "scale": 1.0, "period": "", "text": "W14 | close_usd", "file": "share_price_52w.csv", "locator": "row 15, close_usd"}
+{"id": "F0058", "value": 17.26, "unit": "USD", "scale": 1.0, "period": "", "text": "W15 | close_usd", "file": "share_price_52w.csv", "locator": "row 16, close_usd"}
+{"id": "F0059", "value": 16.93, "unit": "USD", "scale": 1.0, "period": "", "text": "W16 | close_usd", "file": "share_price_52w.csv", "locator": "row 17, close_usd"}
+{"id": "F0060", "value": 17.35, "unit": "USD", "scale": 1.0, "period": "", "text": "W17 | close_usd", "file": "share_price_52w.csv", "locator": "row 18, close_usd"}
+{"id": "F0061", "value": 17.02, "unit": "USD", "scale": 1.0, "period": "", "text": "W18 | close_usd", "file": "share_price_52w.csv", "locator": "row 19, close_usd"}
+{"id": "F0062", "value": 16.69, "unit": "USD", "scale": 1.0, "period": "", "text": "W19 | close_usd", "file": "share_price_52w.csv", "locator": "row 20, close_usd"}
+{"id": "F0063", "value": 16.37, "unit": "USD", "scale": 1.0, "period": "", "text": "W20 | close_usd", "file": "share_price_52w.csv", "locator": "row 21, close_usd"}
+{"id": "F0064", "value": 16.04, "unit": "USD", "scale": 1.0, "period": "", "text": "W21 | close_usd", "file": "share_price_52w.csv", "locator": "row 22, close_usd"}
+{"id": "F0065", "value": 16.46, "unit": "USD", "scale": 1.0, "period": "", "text": "W22 | close_usd", "file": "share_price_52w.csv", "locator": "row 23, close_usd"}
+{"id": "F0066", "value": 16.13, "unit": "USD", "scale": 1.0, "period": "", "text": "W23 | close_usd", "file": "share_price_52w.csv", "locator": "row 24, close_usd"}
+{"id": "F0067", "value": 16.11, "unit": "USD", "scale": 1.0, "period": "", "text": "W24 | close_usd", "file": "share_price_52w.csv", "locator": "row 25, close_usd"}
+{"id": "F0068", "value": 16.09, "unit": "USD", "scale": 1.0, "period": "", "text": "W25 | close_usd", "file": "share_price_52w.csv", "locator": "row 26, close_usd"}
+{"id": "F0069", "value": 16.08, "unit": "USD", "scale": 1.0, "period": "", "text": "W26 | close_usd", "file": "share_price_52w.csv", "locator": "row 27, close_usd"}
+{"id": "F0070", "value": 16.81, "unit": "USD", "scale": 1.0, "period": "", "text": "W27 | close_usd", "file": "share_price_52w.csv", "locator": "row 28, close_usd"}
+{"id": "F0071", "value": 16.79, "unit": "USD", "scale": 1.0, "period": "", "text": "W28 | close_usd", "file": "share_price_52w.csv", "locator": "row 29, close_usd"}
+{"id": "F0072", "value": 16.77, "unit": "USD", "scale": 1.0, "period": "", "text": "W29 | close_usd", "file": "share_price_52w.csv", "locator": "row 30, close_usd"}
+{"id": "F0073", "value": 16.75, "unit": "USD", "scale": 1.0, "period": "", "text": "W30 | close_usd", "file": "share_price_52w.csv", "locator": "row 31, close_usd"}
+{"id": "F0074", "value": 16.73, "unit": "USD", "scale": 1.0, "period": "", "text": "W31 | close_usd", "file": "share_price_52w.csv", "locator": "row 32, close_usd"}
+{"id": "F0075", "value": 17.46, "unit": "USD", "scale": 1.0, "period": "", "text": "W32 | close_usd", "file": "share_price_52w.csv", "locator": "row 33, close_usd"}
+{"id": "F0076", "value": 17.44, "unit": "USD", "scale": 1.0, "period": "", "text": "W33 | close_usd", "file": "share_price_52w.csv", "locator": "row 34, close_usd"}
+{"id": "F0077", "value": 17.42, "unit": "USD", "scale": 1.0, "period": "", "text": "W34 | close_usd", "file": "share_price_52w.csv", "locator": "row 35, close_usd"}
+{"id": "F0078", "value": 17.4, "unit": "USD", "scale": 1.0, "period": "", "text": "W35 | close_usd", "file": "share_price_52w.csv", "locator": "row 36, close_usd"}
+{"id": "F0079", "value": 17.39, "unit": "USD", "scale": 1.0, "period": "", "text": "W36 | close_usd", "file": "share_price_52w.csv", "locator": "row 37, close_usd"}
+{"id": "F0080", "value": 18.12, "unit": "USD", "scale": 1.0, "period": "", "text": "W37 | close_usd", "file": "share_price_52w.csv", "locator": "row 38, close_usd"}
+{"id": "F0081", "value": 18.1, "unit": "USD", "scale": 1.0, "period": "", "text": "W38 | close_usd", "file": "share_price_52w.csv", "locator": "row 39, close_usd"}
+{"id": "F0082", "value": 18.08, "unit": "USD", "scale": 1.0, "period": "", "text": "W39 | close_usd", "file": "share_price_52w.csv", "locator": "row 40, close_usd"}
+{"id": "F0083", "value": 18.06, "unit": "USD", "scale": 1.0, "period": "", "text": "W40 | close_usd", "file": "share_price_52w.csv", "locator": "row 41, close_usd"}
+{"id": "F0084", "value": 18.04, "unit": "USD", "scale": 1.0, "period": "", "text": "W41 | close_usd", "file": "share_price_52w.csv", "locator": "row 42, close_usd"}
+{"id": "F0085", "value": 18.77, "unit": "USD", "scale": 1.0, "period": "", "text": "W42 | close_usd", "file": "share_price_52w.csv", "locator": "row 43, close_usd"}
+{"id": "F0086", "value": 18.75, "unit": "USD", "scale": 1.0, "period": "", "text": "W43 | close_usd", "file": "share_price_52w.csv", "locator": "row 44, close_usd"}
+{"id": "F0087", "value": 18.73, "unit": "USD", "scale": 1.0, "period": "", "text": "W44 | close_usd", "file": "share_price_52w.csv", "locator": "row 45, close_usd"}
+{"id": "F0088", "value": 18.71, "unit": "USD", "scale": 1.0, "period": "", "text": "W45 | close_usd", "file": "share_price_52w.csv", "locator": "row 46, close_usd"}
+{"id": "F0089", "value": 18.54, "unit": "USD", "scale": 1.0, "period": "", "text": "W46 | close_usd", "file": "share_price_52w.csv", "locator": "row 47, close_usd"}
+{"id": "F0090", "value": 19.12, "unit": "USD", "scale": 1.0, "period": "", "text": "W47 | close_usd", "file": "share_price_52w.csv", "locator": "row 48, close_usd"}
+{"id": "F0091", "value": 18.94, "unit": "USD", "scale": 1.0, "period": "", "text": "W48 | close_usd", "file": "share_price_52w.csv", "locator": "row 49, close_usd"}
+{"id": "F0092", "value": 18.77, "unit": "USD", "scale": 1.0, "period": "", "text": "W49 | close_usd", "file": "share_price_52w.csv", "locator": "row 50, close_usd"}
+{"id": "F0093", "value": 18.6, "unit": "USD", "scale": 1.0, "period": "", "text": "W50 | close_usd", "file": "share_price_52w.csv", "locator": "row 51, close_usd"}
+{"id": "F0094", "value": 18.42, "unit": "USD", "scale": 1.0, "period": "", "text": "W51 | close_usd", "file": "share_price_52w.csv", "locator": "row 52, close_usd"}
+{"id": "F0095", "value": 19.0, "unit": "USD", "scale": 1.0, "period": "", "text": "W52 | close_usd", "file": "share_price_52w.csv", "locator": "row 53, close_usd"}
+{"id": "F0096", "value": 3900.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Arden | ev_usd_m", "file": "trading_comps.csv", "locator": "row 2, ev_usd_m"}
+{"id": "F0097", "value": 402.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Arden | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 2, ebitda_ltm_usd_m"}
+{"id": "F0098", "value": 425.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Arden | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 2, ebitda_ntm_usd_m"}
+{"id": "F0099", "value": 2650.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Bexley | ev_usd_m", "file": "trading_comps.csv", "locator": "row 3, ev_usd_m"}
+{"id": "F0100", "value": 298.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Bexley | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 3, ebitda_ltm_usd_m"}
+{"id": "F0101", "value": 315.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Bexley | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 3, ebitda_ntm_usd_m"}
+{"id": "F0102", "value": 5200.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Cairn | ev_usd_m", "file": "trading_comps.csv", "locator": "row 4, ev_usd_m"}
+{"id": "F0103", "value": 498.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Cairn | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 4, ebitda_ltm_usd_m"}
+{"id": "F0104", "value": 530.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Cairn | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 4, ebitda_ntm_usd_m"}
+{"id": "F0105", "value": 1800.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Dunmore | ev_usd_m", "file": "trading_comps.csv", "locator": "row 5, ev_usd_m"}
+{"id": "F0106", "value": 214.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Dunmore | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 5, ebitda_ltm_usd_m"}
+{"id": "F0107", "value": 226.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Dunmore | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 5, ebitda_ntm_usd_m"}
+{"id": "F0108", "value": 4400.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Esker | ev_usd_m", "file": "trading_comps.csv", "locator": "row 6, ev_usd_m"}
+{"id": "F0109", "value": 418.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Esker | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 6, ebitda_ltm_usd_m"}
+{"id": "F0110", "value": 447.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Esker | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 6, ebitda_ntm_usd_m"}

@@ -1,0 +1,6 @@
+workstream,owner,status_rag,pct_complete,planned_go_live,note
+Finance (ERP GL/AP/AR),Controller,Amber,64,2027-03,Data migration mock 2 slipped 3 weeks
+Procurement,CPO,Green,71,2027-03,On track
+HR & Payroll,CHRO,Red,38,2027-06,Payroll vendor contract unsigned
+Supply chain,COO,Green,55,2027-06,On track
+Reporting & analytics,CFO office,Amber,42,2027-06,Scope added: 14 new reports

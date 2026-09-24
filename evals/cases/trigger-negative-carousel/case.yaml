@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.1",
+  "name": "trigger-negative-carousel",
+  "tags": [
+    "trigger",
+    "negative"
+  ],
+  "execution": {
+    "prompt": "In my React app the image carousel skips a slide when I click next twice quickly. Here's the handler: `const next = () => setIdx(idx + 1)`. What's the bug?",
+    "runs": 3,
+    "max_turns": 6,
+    "timeout_seconds": 300,
+    "allowed_tools": [
+      "Skill",
+      "Read"
+    ]
+  },
+  "graders": [
+    {
+      "name": "skill-not-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "premium-decks",
+      "min": 0,
+      "max": 0
+    }
+  ],
+  "runs": 3
+}

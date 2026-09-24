@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.1",
+  "name": "keynote-conference",
+  "tags": [
+    "keynote",
+    "deck-build"
+  ],
+  "context": {
+    "scaffold_script": "setup.sh"
+  },
+  "execution": {
+    "prompt": "The folder input/ in your working directory holds everything I have for this. Build the 30-minute conference talk. Deliver a PowerPoint file and a PDF render of it in the current working directory. Work autonomously: I approve any storyline or outline checkpoint in advance, so do not stop to ask. In your final message, list any data problems you found in the folder.",
+    "runs": 1,
+    "max_turns": 150,
+    "timeout_seconds": 3600,
+    "allowed_tools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "premium-decks",
+      "arm": "with-only"
+    },
+    {
+      "name": "pptx-delivered",
+      "type": "file_exists",
+      "path": "**/*.pptx"
+    },
+    {
+      "name": "pdf-delivered",
+      "type": "file_exists",
+      "path": "**/*.pdf"
+    }
+  ],
+  "runs": 1
+}

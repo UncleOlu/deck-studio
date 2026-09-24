@@ -1,0 +1,6 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Consulting deck JSON (build-consulting.js)",
+ "description": "deck-kit schema; the builder also requires the exec-summary at slide 2 or 3 (R4).",
+ "$ref": "deck-kit.schema.json"
+}

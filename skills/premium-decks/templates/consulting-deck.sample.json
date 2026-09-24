@@ -1,0 +1,493 @@
+{
+ "_about": "Fictional sample built by samples/build_samples.py from samples/source/alder-vale-hotels/input via scripts/ingest.py. Every number cites a fact id or a calc: line. Build: node build-consulting.js consulting-deck.sample.json",
+ "output": "alder-vale-margin-diagnostic.pptx",
+ "meta": {
+  "title": "Alder & Vale Hotels — housekeeping and energy diagnostic",
+  "author": "Strategy team",
+  "label": "Draft for discussion"
+ },
+ "sections": [
+  "Diagnosis",
+  "Levers",
+  "Plan",
+  "Appendix"
+ ],
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Housekeeping and energy can fund the board's margin target",
+   "subtitle": "Alder & Vale Hotels · diagnostic for the COO",
+   "footer": "Fictional sample · deck-studio",
+   "notes": "Fictional company and data. Built from samples/source/alder-vale-hotels/input via scripts/ingest.py. Data decision: the COO email gives rooms revenue as about $240M [F0002]; the FY25 summary gives $233M [F0009]. The deck uses the summary, the system figure."
+  },
+  {
+   "type": "exec-summary",
+   "section": "Diagnosis",
+   "title": "Matching the peer median on housekeeping and energy adds 2.2 pts of EBITDA margin",
+   "answer": "The two gaps are worth $5.0M a year and lift EBITDA margin from 15.8% to 18.0%, without cutting the service standard guests notice.",
+   "points": [
+    {
+     "lead": "Housekeeping costs 13.9% of rooms revenue, above the 12.9% peer median: $2.4M a year.",
+     "dashes": [
+      "Airport hotels run highest at 15.9%.",
+      "Every room gets a full clean daily, even on one-night stays."
+     ]
+    },
+    {
+     "lead": "Energy costs $39.9 per room-night sold, above the $34.9 median: $2.6M a year.",
+     "dashes": [
+      "Guest-room HVAC runs whether or not the room is sold.",
+      "Only 3 of 10 hotels have occupancy-linked thermostats."
+     ]
+    },
+    {
+     "lead": "Together the gaps add 2.2 points, more than the 2 the board asked for.",
+     "dashes": [
+      "The surplus gives room to protect service scores."
+     ]
+    },
+    {
+     "lead": "Start with a light-refresh standard for short stays and thermostat retrofits.",
+     "dashes": [
+      "Each acts on the largest driver of its gap."
+     ]
+    }
+   ],
+   "notes": "Rooms revenue $233M [F0009]; housekeeping $32.4M [F0010]; energy $20.8M [F0011]; EBITDA $36.8M [F0013]; peer medians [F0071, F0072]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: $5.0M = 2.4 + 2.6. calc: 15.8% = 36.8 / 232.6; 18.0% = (36.8 + 5.0) / 232.6; 2.2 pts = 18.0 - 15.8 [F0009]. calc: Airport 15.9% from the hotel rows [F0008-F0064]. Board ask 2 points [F0001]. Thermostats 3 of 10 [F0005, F0006, F0008]."
+  },
+  {
+   "type": "chart",
+   "section": "Diagnosis",
+   "title": "Housekeeping costs 13.9% of rooms revenue, highest in Airport hotels at 15.9%",
+   "kind": "column",
+   "labels": [
+    "City",
+    "Resort",
+    "Airport",
+    "All hotels",
+    "Peer median"
+   ],
+   "series": [
+    {
+     "name": "Housekeeping, % of rooms revenue",
+     "values": [
+      12.4,
+      15.1,
+      15.9,
+      13.9,
+      12.9
+     ]
+    }
+   ],
+   "highlight": 2,
+   "format": "0.0\"%\"",
+   "unit": "Housekeeping cost, % of rooms revenue, FY25, by segment",
+   "source": "Alder & Vale FY25 hotel P&L (hotel rows); peer benchmarks (public filings, industry survey)",
+   "side": {
+    "points": [
+     {
+      "lead": "Short stays drive it.",
+      "text": "Airport guests stay one night, and every room still gets a full daily clean."
+     },
+     {
+      "lead": "Guests would accept less.",
+      "text": "Short-stay guests say a light refresh is enough (GM interviews)."
+     }
+    ]
+   },
+   "notes": "calc: segment % = sum(housekeeping_k) / sum(rooms_revenue_k) per segment: City 12.4%, Resort 15.1%, Airport 15.9% [F0008-F0064]. Total 13.9% [F0010, F0009]; median 12.9% [F0071]."
+  },
+  {
+   "type": "chart",
+   "section": "Diagnosis",
+   "title": "Energy costs $39.9 per room-night sold, $5.0 above the peer median",
+   "kind": "column",
+   "labels": [
+    "City",
+    "Airport",
+    "Resort",
+    "All hotels",
+    "Peer median"
+   ],
+   "series": [
+    {
+     "name": "Energy, $ per room-night",
+     "values": [
+      33.3,
+      34.5,
+      71.9,
+      39.9,
+      34.9
+     ]
+    }
+   ],
+   "highlight": 2,
+   "format": "\"$\"0.0",
+   "unit": "Energy cost, $ per room-night sold, FY25, by segment",
+   "source": "Alder & Vale FY25 hotel P&L (hotel rows); peer benchmarks; GM interview (AV Dunes), July 2026",
+   "side": {
+    "points": [
+     {
+      "lead": "Empty rooms still use energy.",
+      "text": "Unsold rooms take about 30% of guest-room energy in the low season (AV Dunes GM estimate)."
+     },
+     {
+      "lead": "Resort hotels pay most.",
+      "text": "Resort hotels spend $71.9 a room-night, against $34.9 for the peer median."
+     }
+    ]
+   },
+   "notes": "calc: segment $/room-night = sum(energy_k) x 1000 / sum(room_nights): City 33.3, Airport 34.5, Resort 71.9 [F0008-F0064]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: 5.0 = 39.9 - 34.9 [F0072]. 30% [F0004]."
+  },
+  {
+   "type": "waterfall",
+   "section": "Diagnosis",
+   "title": "Closing both gaps lifts hotel EBITDA from $36.8M to $41.8M",
+   "steps": [
+    {
+     "label": "FY25 EBITDA",
+     "value": 36.8,
+     "total": true,
+     "display": "$36.8M"
+    },
+    {
+     "label": "Housekeeping to median",
+     "value": 2.4,
+     "display": "+$2.4M"
+    },
+    {
+     "label": "Energy to median",
+     "value": 2.6,
+     "display": "+$2.6M"
+    },
+    {
+     "label": "EBITDA at median",
+     "value": 41.8,
+     "total": true,
+     "display": "$41.8M"
+    }
+   ],
+   "accentStep": 2,
+   "unit": "Hotel EBITDA, $ millions, FY25 base",
+   "source": "Alder & Vale FY25 hotel P&L; peer benchmarks",
+   "side": {
+    "points": [
+     {
+      "lead": "The margin moves from 15.8% to 18.0%.",
+      "text": "That exceeds the board's 2-point ask."
+     }
+    ]
+   },
+   "notes": "EBITDA $36.8M [F0013]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]. calc: $41.8M = 36.8 + 2.4 + 2.6; 15.8% and 18.0% on 232.6 [F0009]. calc: 2-point ask [F0001]."
+  },
+  {
+   "type": "text",
+   "section": "Levers",
+   "title": "Three levers act on how rooms are cleaned, cooled, and scheduled; two come first",
+   "points": [
+    {
+     "lead": "Light refresh for short stays.",
+     "text": "Clean one-night rooms to a refresh standard (bed, bathroom, bins) and keep the full clean for stays of two nights or more."
+    },
+    {
+     "lead": "Occupancy-linked thermostats.",
+     "text": "Set unsold rooms to a set-back temperature. Only 3 of 10 hotels have the controls; a retrofit costs about $1,100 per room."
+    },
+    {
+     "lead": "Housekeeping scheduling.",
+     "text": "Plan housekeeping hours from forecast departures, not from a fixed daily roster."
+    }
+   ],
+   "takeaway": "The first two levers leave what guests notice unchanged.",
+   "source": "General manager and engineering interviews, July 2026",
+   "notes": "Interview facts: short-stay standard [F0005]; thermostats 3 of 10 and $1,100 per room [F0005, F0007]."
+  },
+  {
+   "type": "options",
+   "section": "Levers",
+   "title": "The light-refresh standard and thermostat retrofits score highest; start with both",
+   "criteria": [
+    "Size of the gap it closes",
+    "Speed to impact",
+    "Guest experience protected",
+    "Evidence in the data"
+   ],
+   "options": [
+    {
+     "name": "Light refresh for short stays",
+     "scores": [
+      4,
+      4,
+      3,
+      3
+     ],
+     "recommended": true
+    },
+    {
+     "name": "Occupancy-linked thermostats",
+     "scores": [
+      3,
+      2,
+      4,
+      3
+     ],
+     "recommended": true
+    },
+    {
+     "name": "Housekeeping scheduling",
+     "scores": [
+      2,
+      3,
+      4,
+      2
+     ]
+    },
+    {
+     "name": "Supplier re-tender",
+     "scores": [
+      1,
+      2,
+      4,
+      1
+     ]
+    }
+   ],
+   "notes": "Qualitative team scoring from the interviews and the P&L; there are no numbers on this slide."
+  },
+  {
+   "type": "roadmap",
+   "section": "Plan",
+   "title": "Both first levers go live within a year",
+   "periods": [
+    "Q4 2026",
+    "Q1 2027",
+    "Q2 2027",
+    "Q3 2027",
+    "Q4 2027",
+    "Q1 2028"
+   ],
+   "rows": [
+    {
+     "name": "Light refresh (Airport first)",
+     "start": 0,
+     "end": 2,
+     "accent": true,
+     "milestones": [
+      {
+       "at": 1,
+       "label": "Guest survey read-out"
+      }
+     ]
+    },
+    {
+     "name": "Thermostat retrofits",
+     "start": 0,
+     "end": 4,
+     "accent": true,
+     "milestones": [
+      {
+       "at": 1.5,
+       "label": "Resorts complete"
+      }
+     ]
+    },
+    {
+     "name": "Housekeeping scheduling",
+     "start": 2,
+     "end": 6
+    }
+   ],
+   "notes": "Phasing is the team's proposal for approval; the dates are plan dates, not facts."
+  },
+  {
+   "type": "table",
+   "section": "Plan",
+   "title": "The COO can approve the Airport pilot and a $1.5M retrofit budget this quarter",
+   "header": [
+    "Decision or action",
+    "Owner",
+    "When"
+   ],
+   "align": [
+    "l",
+    "l",
+    "l"
+   ],
+   "colW": [
+    7.3,
+    2.6,
+    2.4
+   ],
+   "rows": [
+    {
+     "cells": [
+      "Approve the light-refresh pilot at both Airport hotels",
+      "COO",
+      "This quarter"
+     ],
+     "kind": "subject"
+    },
+    [
+     "Approve thermostat retrofits: 7 hotels, 1,330 rooms, $1.5M",
+     "COO",
+     "This quarter"
+    ],
+    [
+     "Confirm FY25 rooms revenue: summary vs the figure in the email",
+     "Finance",
+     "Before the board"
+    ],
+    [
+     "Set the guest-satisfaction guardrail for the pilot",
+     "Operations",
+     "Before launch"
+    ]
+   ],
+   "source": "Alder & Vale FY25 hotel P&L; COO email; interviews",
+   "notes": "calc: 7 hotels = 10 hotels less the 3 with controls [F0008, F0005]. calc: 1,330 rooms = rooms in the 7 hotels without controls [F0008-F0064]. calc: $1.5M = 1,330 x $1,100 [F0007]. Revenue figures [F0009, F0002]."
+  },
+  {
+   "type": "divider",
+   "section": "Appendix",
+   "title": "Appendix"
+  },
+  {
+   "type": "table",
+   "section": "Appendix",
+   "title": "Appendix: AV Airport South has the highest housekeeping share (16.4%) and AV Dunes the highest energy cost per room-night ($74.4)",
+   "header": [
+    "Hotel",
+    "Segment",
+    "Rooms",
+    "Housekeeping, % of rooms revenue",
+    "Energy, $ per room-night sold"
+   ],
+   "align": [
+    "l",
+    "l",
+    "r",
+    "r",
+    "r"
+   ],
+   "colW": [
+    3.0,
+    1.9,
+    1.4,
+    3.0,
+    3.0
+   ],
+   "rows": [
+    [
+     "AV Harbourside",
+     "City",
+     "240",
+     "12.4%",
+     "$33.0"
+    ],
+    [
+     "AV Old Town",
+     "City",
+     "180",
+     "12.8%",
+     "$34.0"
+    ],
+    [
+     "AV Riverside",
+     "City",
+     "210",
+     "11.8%",
+     "$33.2"
+    ],
+    [
+     "AV Station",
+     "City",
+     "160",
+     "13.8%",
+     "$34.7"
+    ],
+    [
+     "AV Cathedral",
+     "City",
+     "150",
+     "11.5%",
+     "$31.6"
+    ],
+    [
+     "AV Airport",
+     "Airport",
+     "300",
+     "15.6%",
+     "$33.6"
+    ],
+    [
+     "AV Airport South",
+     "Airport",
+     "260",
+     "16.4%",
+     "$35.6"
+    ],
+    [
+     "AV Lakeside",
+     "Resort",
+     "120",
+     "15.1%",
+     "$68.8"
+    ],
+    [
+     "AV Dunes",
+     "Resort",
+     "140",
+     "15.4%",
+     "$74.4"
+    ],
+    [
+     "AV Pinewood",
+     "Resort",
+     "110",
+     "14.9%",
+     "$72.1"
+    ],
+    {
+     "cells": [
+      "All hotels",
+      "",
+      "1,870",
+      "13.9%",
+      "$39.9"
+     ],
+     "kind": "summary"
+    }
+   ],
+   "source": "Alder & Vale FY25 hotel P&L (hotel rows)",
+   "notes": "Hotel rows [F0008-F0064]. calc: AV Harbourside 12.4% = 3,870 / 31,200 and $33.0 = 2,310k / 70,100 room-nights [F0008-F0064]. calc: AV Old Town 12.8% = 3,060 / 23,900 and $34.0 = 1,790k / 52,600 room-nights [F0008-F0064]. calc: AV Riverside 11.8% = 3,160 / 26,800 and $33.2 = 2,020k / 60,900 room-nights [F0008-F0064]. calc: AV Station 13.8% = 2,640 / 19,100 and $34.7 = 1,610k / 46,400 room-nights [F0008-F0064]. calc: AV Cathedral 11.5% = 2,120 / 18,400 and $31.6 = 1,350k / 42,700 room-nights [F0008-F0064]. calc: AV Airport 15.6% = 4,300 / 27,600 and $33.6 = 2,980k / 88,800 room-nights [F0008-F0064]. calc: AV Airport South 16.4% = 3,620 / 22,100 and $35.6 = 2,710k / 76,100 room-nights [F0008-F0064]. calc: AV Lakeside 15.1% = 3,230 / 21,400 and $68.8 = 1,920k / 27,900 room-nights [F0008-F0064]. calc: AV Dunes 15.4% = 3,810 / 24,800 and $74.4 = 2,350k / 31,600 room-nights [F0008-F0064]. calc: AV Pinewood 14.9% = 2,580 / 17,300 and $72.1 = 1,760k / 24,400 room-nights [F0008-F0064]. calc: 1,870 rooms = sum of hotel rows [F0008-F0064]. calc: housekeeping 13.9% = 32.4 / 232.6 [F0010, F0009]. calc: gap $2.4M = 32.4 - 12.9% x 232.6 [F0071]. calc: energy $39.9 per room-night = 20.8M / 521,500 room-nights (sum of hotel rows) [F0011, F0008-F0064]. calc: gap $2.6M = (39.9 - 34.9) x 521,500 [F0072]."
+  },
+  {
+   "type": "chart",
+   "section": "Appendix",
+   "title": "Appendix: housekeeping at 13.9% sits above all three peers (12.4%–13.4%)",
+   "kind": "bar",
+   "labels": [
+    "Peer North",
+    "Peer Crest",
+    "Peer Bay",
+    "Alder & Vale"
+   ],
+   "series": [
+    {
+     "name": "Housekeeping, % of rooms revenue",
+     "values": [
+      12.4,
+      12.9,
+      13.4,
+      13.9
+     ]
+    }
+   ],
+   "highlight": 3,
+   "format": "0.0\"%\"",
+   "unit": "Housekeeping cost, % of rooms revenue, FY25",
+   "source": "Peer benchmarks (public filings, industry survey); Alder & Vale FY25 hotel P&L",
+   "notes": "Peers Peer North 12.4% [F0065], Peer Crest 12.9% [F0067], Peer Bay 13.4% [F0069]. Alder & Vale 13.9% [F0010, F0009]."
+  }
+ ]
+}

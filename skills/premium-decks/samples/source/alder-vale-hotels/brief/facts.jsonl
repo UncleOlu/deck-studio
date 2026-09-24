@@ -1,0 +1,72 @@
+{"id": "F0001", "value": 2.0, "unit": "", "scale": 1.0, "period": "", "text": "energy can lift hotel EBITDA margin by 2 points", "file": "coo_email.txt", "locator": "line 4"}
+{"id": "F0002", "value": 240.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "without cutting service. Rooms revenue was about $240M last year. Please size", "file": "coo_email.txt", "locator": "line 5"}
+{"id": "F0003", "value": "2026-07", "unit": "date", "scale": 1.0, "period": "", "text": "# General manager interviews \u2014 July 2026 (internal)", "file": "gm_interviews.md", "locator": "line 1"}
+{"id": "F0004", "value": 30.0, "unit": "%", "scale": 1.0, "period": "", "text": "rooms account for about 30% of guest-room energy in", "file": "gm_interviews.md", "locator": "line 7"}
+{"id": "F0005", "value": 3.0, "unit": "", "scale": 1.0, "period": "", "text": "**Director of Engineering.** Only 3 of 10 hotels (Harbourside,", "file": "gm_interviews.md", "locator": "line 9"}
+{"id": "F0006", "value": 10.0, "unit": "", "scale": 1.0, "period": "", "text": "**Director of Engineering.** Only 3 of 10 hotels (Harbourside, Old Town,", "file": "gm_interviews.md", "locator": "line 9"}
+{"id": "F0007", "value": 1100.0, "unit": "USD", "scale": 1.0, "period": "", "text": "occupancy-linked thermostats. Retrofits cost about $1,100 per room and pay", "file": "gm_interviews.md", "locator": "line 10"}
+{"id": "F0008", "value": 10.0, "unit": "USD", "scale": 1000000.0, "period": "FY25", "text": "Alder & Vale Hotels \u2014 FY25 summary | Hotels $M", "file": "hotel_pnl_FY25.xlsx", "locator": "Summary!B2"}
+{"id": "F0009", "value": 232.6, "unit": "USD", "scale": 1000000.0, "period": "FY25", "text": "Alder & Vale Hotels \u2014 FY25 summary | Rooms revenue $M", "file": "hotel_pnl_FY25.xlsx", "locator": "Summary!B3"}
+{"id": "F0010", "value": 32.4, "unit": "USD", "scale": 1000000.0, "period": "FY25", "text": "Alder & Vale Hotels \u2014 FY25 summary | Housekeeping cost $M", "file": "hotel_pnl_FY25.xlsx", "locator": "Summary!B4"}
+{"id": "F0011", "value": 20.8, "unit": "USD", "scale": 1000000.0, "period": "FY25", "text": "Alder & Vale Hotels \u2014 FY25 summary | Energy cost $M", "file": "hotel_pnl_FY25.xlsx", "locator": "Summary!B5"}
+{"id": "F0012", "value": 142.6, "unit": "USD", "scale": 1000000.0, "period": "FY25", "text": "Alder & Vale Hotels \u2014 FY25 summary | Other operating cost $M", "file": "hotel_pnl_FY25.xlsx", "locator": "Summary!B6"}
+{"id": "F0013", "value": 36.8, "unit": "USD", "scale": 1000000.0, "period": "FY25", "text": "Alder & Vale Hotels \u2014 FY25 summary | Hotel EBITDA $M [formula =B3-B4-B5-B6]", "file": "hotel_pnl_FY25.xlsx", "locator": "Summary!B7"}
+{"id": "F0014", "value": 15.821152, "unit": "%", "scale": 1.0, "period": "FY25", "text": "Alder & Vale Hotels \u2014 FY25 summary | EBITDA margin $M [formula =B7/B3]", "file": "hotel_pnl_FY25.xlsx", "locator": "Summary!B8"}
+{"id": "F0015", "value": 240.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Harbourside rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C2"}
+{"id": "F0016", "value": 31200.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Harbourside rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D2"}
+{"id": "F0017", "value": 3870.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Harbourside housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E2"}
+{"id": "F0018", "value": 2310.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Harbourside energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F2"}
+{"id": "F0019", "value": 70100.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Harbourside room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G2"}
+{"id": "F0020", "value": 180.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Old Town rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C3"}
+{"id": "F0021", "value": 23900.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Old Town rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D3"}
+{"id": "F0022", "value": 3060.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Old Town housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E3"}
+{"id": "F0023", "value": 1790.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Old Town energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F3"}
+{"id": "F0024", "value": 52600.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Old Town room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G3"}
+{"id": "F0025", "value": 210.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Riverside rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C4"}
+{"id": "F0026", "value": 26800.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Riverside rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D4"}
+{"id": "F0027", "value": 3160.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Riverside housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E4"}
+{"id": "F0028", "value": 2020.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Riverside energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F4"}
+{"id": "F0029", "value": 60900.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Riverside room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G4"}
+{"id": "F0030", "value": 160.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Station rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C5"}
+{"id": "F0031", "value": 19100.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Station rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D5"}
+{"id": "F0032", "value": 2640.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Station housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E5"}
+{"id": "F0033", "value": 1610.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Station energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F5"}
+{"id": "F0034", "value": 46400.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Station room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G5"}
+{"id": "F0035", "value": 150.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Cathedral rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C6"}
+{"id": "F0036", "value": 18400.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Cathedral rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D6"}
+{"id": "F0037", "value": 2120.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Cathedral housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E6"}
+{"id": "F0038", "value": 1350.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Cathedral energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F6"}
+{"id": "F0039", "value": 42700.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Cathedral room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G6"}
+{"id": "F0040", "value": 300.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C7"}
+{"id": "F0041", "value": 27600.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D7"}
+{"id": "F0042", "value": 4300.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E7"}
+{"id": "F0043", "value": 2980.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F7"}
+{"id": "F0044", "value": 88800.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G7"}
+{"id": "F0045", "value": 260.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport South rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C8"}
+{"id": "F0046", "value": 22100.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport South rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D8"}
+{"id": "F0047", "value": 3620.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport South housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E8"}
+{"id": "F0048", "value": 2710.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport South energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F8"}
+{"id": "F0049", "value": 76100.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Airport South room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G8"}
+{"id": "F0050", "value": 120.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Lakeside rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C9"}
+{"id": "F0051", "value": 21400.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Lakeside rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D9"}
+{"id": "F0052", "value": 3230.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Lakeside housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E9"}
+{"id": "F0053", "value": 1920.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Lakeside energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F9"}
+{"id": "F0054", "value": 27900.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Lakeside room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G9"}
+{"id": "F0055", "value": 140.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Dunes rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C10"}
+{"id": "F0056", "value": 24800.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Dunes rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D10"}
+{"id": "F0057", "value": 3810.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Dunes housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E10"}
+{"id": "F0058", "value": 2350.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Dunes energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F10"}
+{"id": "F0059", "value": 31600.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Dunes room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G10"}
+{"id": "F0060", "value": 110.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Pinewood rooms", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!C11"}
+{"id": "F0061", "value": 17300.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Pinewood rooms_revenue_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!D11"}
+{"id": "F0062", "value": 2580.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Pinewood housekeeping_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!E11"}
+{"id": "F0063", "value": 1760.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Pinewood energy_k", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!F11"}
+{"id": "F0064", "value": 24400.0, "unit": "USD", "scale": 1000.0, "period": "", "text": "hotel | AV Pinewood room_nights", "file": "hotel_pnl_FY25.xlsx", "locator": "Hotels ($k)!G11"}
+{"id": "F0065", "value": 12.4, "unit": "%", "scale": 1.0, "period": "", "text": "Peer North (public filings) | housekeeping_pct_rooms_revenue", "file": "peer_benchmarks.csv", "locator": "row 2, housekeeping_pct_rooms_revenue"}
+{"id": "F0066", "value": 31.5, "unit": "USD", "scale": 1.0, "period": "", "text": "Peer North (public filings) | energy_usd_per_room_night", "file": "peer_benchmarks.csv", "locator": "row 2, energy_usd_per_room_night"}
+{"id": "F0067", "value": 12.9, "unit": "%", "scale": 1.0, "period": "", "text": "Peer Crest (public filings) | housekeeping_pct_rooms_revenue", "file": "peer_benchmarks.csv", "locator": "row 3, housekeeping_pct_rooms_revenue"}
+{"id": "F0068", "value": 34.9, "unit": "USD", "scale": 1.0, "period": "", "text": "Peer Crest (public filings) | energy_usd_per_room_night", "file": "peer_benchmarks.csv", "locator": "row 3, energy_usd_per_room_night"}
+{"id": "F0069", "value": 13.4, "unit": "%", "scale": 1.0, "period": "", "text": "Peer Bay (industry survey) | housekeeping_pct_rooms_revenue", "file": "peer_benchmarks.csv", "locator": "row 4, housekeeping_pct_rooms_revenue"}
+{"id": "F0070", "value": 36.8, "unit": "USD", "scale": 1.0, "period": "", "text": "Peer Bay (industry survey) | energy_usd_per_room_night", "file": "peer_benchmarks.csv", "locator": "row 4, energy_usd_per_room_night"}
+{"id": "F0071", "value": 12.9, "unit": "%", "scale": 1.0, "period": "", "text": "Median | housekeeping_pct_rooms_revenue", "file": "peer_benchmarks.csv", "locator": "row 5, housekeeping_pct_rooms_revenue"}
+{"id": "F0072", "value": 34.9, "unit": "USD", "scale": 1.0, "period": "", "text": "Median | energy_usd_per_room_night", "file": "peer_benchmarks.csv", "locator": "row 5, energy_usd_per_room_night"}
