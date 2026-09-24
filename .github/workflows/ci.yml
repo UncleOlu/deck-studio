@@ -1,0 +1,79 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:  # also runs the trigger smoke eval (needs the ANTHROPIC_API_KEY repository secret)
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        run: python -m pip install -r requirements.txt pytest ruff jsonschema
+      - name: Lint
+        run: ruff check .
+      - name: Tests
+        run: python -m pytest -q
+      - name: Doctor
+        run: python skills/premium-decks/scripts/doctor.py
+
+  samples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        run: |
+          python -m pip install -r requirements.txt
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends libreoffice-impress poppler-utils \
+            fonts-crosextra-carlito fonts-crosextra-caladea  # metric-compatible Calibri and Cambria
+      - name: Rebuild samples from their inputs
+        run: |
+          python skills/premium-decks/samples/build_samples.py
+          git diff --exit-code -- skills/premium-decks/templates/*.sample.json
+      - name: Build and QA each sample
+        working-directory: skills/premium-decks/templates
+        run: |
+          set -e
+          node build-consulting.js consulting-deck.sample.json
+          node build-pitchbook.js pitchbook.sample.json
+          node build-pitchbook.js pitchbook-pitch.sample.json
+          S=../scripts; SRC=../samples/source
+          python $S/qa-deck.py alder-vale-margin-diagnostic.pptx --register consulting --facts $SRC/alder-vale-hotels/brief/facts.jsonl --data consulting-deck.sample.json
+          python $S/qa-deck.py corvane-special-committee-book.pptx --register banking --facts $SRC/corvane-instruments/brief/facts.jsonl --data pitchbook.sample.json
+          python $S/qa-deck.py halden-strategic-alternatives.pptx --register banking --facts $SRC/halden-freight/brief/facts.jsonl --data pitchbook-pitch.sample.json
+
+  smoke-eval:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+      - name: Trigger evals (skill fires on deck requests, picks the register, stays quiet otherwise)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: claude plugin eval . --tag trigger --trust-plugin --ablation none --no-publish --runs 1 --threshold 1

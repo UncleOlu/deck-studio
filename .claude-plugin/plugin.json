@@ -1,0 +1,10 @@
+{
+  "name": "deck-studio",
+  "description": "premium-decks: consulting-, banking-, and keynote-grade decks from a folder of analysis. Ingests xlsx/csv/docx/pdf/pptx/md into a traced fact base, builds an answer-first storyline and ghost deck for approval, and renders client-editable .pptx (slide master, native charts, finance recipes: waterfall, football field, comps, sensitivity, Harvey balls) or HTML. QA gates: storyline, number tracing, arithmetic integrity, layout, and PowerPoint render. Rules derived from a study of 131 public consulting and banking decks (95 coded, 28 held out) plus 8 banker discussion books.",
+  "version": "2.0.0",
+  "author": {
+    "name": "Olu"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/UncleOlu/deck-studio"
+}

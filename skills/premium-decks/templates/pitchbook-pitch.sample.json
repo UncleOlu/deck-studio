@@ -1,0 +1,485 @@
+{
+ "_about": "Fictional strategic-alternatives sample built by samples/build_samples.py from samples/source/halden-freight/input via scripts/ingest.py. Page order follows the sell-side skeleton in references/banking-pitchbook.md. Build: node build-pitchbook.js pitchbook-pitch.sample.json",
+ "output": "halden-strategic-alternatives.pptx",
+ "kind": "pitch",
+ "meta": {
+  "title": "Project Heron — strategic alternatives review",
+  "author": "Advisor team",
+  "label": "Confidential · Preliminary draft"
+ },
+ "sections": [
+  "Situation",
+  "Valuation",
+  "Alternatives",
+  "Process"
+ ],
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Project Heron: strategic alternatives review",
+   "subtitle": "Discussion materials for the Board of Halden Freight Systems",
+   "footer": "Fictional sample · deck-studio",
+   "notes": "Fictional company and data. Built from samples/source/halden-freight/input via scripts/ingest.py."
+  },
+  {
+   "type": "exec-summary",
+   "title": "Key considerations",
+   "points": [
+    {
+     "lead": "Is the plan worth more than a sale?",
+     "text": "Compare the stand-alone DCF with what buyers can pay today."
+    },
+    {
+     "lead": "Who could pay the most?",
+     "text": "Two tier-1 strategics overlap Halden's hubs and could pay for the savings."
+    },
+    {
+     "lead": "How much certainty does the Board need?",
+     "text": "A sponsor offers speed; a strategic may need antitrust review."
+    },
+    {
+     "lead": "What would a process cost the business?",
+     "text": "A short process with a small, tiered buyer list limits disruption."
+    }
+   ],
+   "notes": "Framing page: questions for the Board, no figures. Answers follow the analysis (valuation, alternatives, buyers, process) and the recommendation comes after them."
+  },
+  {
+   "type": "table",
+   "section": "Situation",
+   "title": "Market snapshot: $18.60 per share, 9.5x LTM EBITDA",
+   "unit": "($ in millions, except per-share values)",
+   "header": [
+    "Metric",
+    "Value",
+    "Basis"
+   ],
+   "align": [
+    "l",
+    "r",
+    "l"
+   ],
+   "colW": [
+    5.2,
+    2.2,
+    4.9
+   ],
+   "rows": [
+    {
+     "cells": [
+      "Share price (1 Sep 2026)",
+      "$18.60",
+      "Market close"
+     ],
+     "kind": "subject"
+    },
+    [
+     "52-week low / high",
+     "$16.04 / $20.02",
+     "Weekly closes"
+    ],
+    [
+     "Diluted shares",
+     "86.0M",
+     "Capitalization table"
+    ],
+    [
+     "Equity value",
+     "1,600",
+     "Price × diluted shares"
+    ],
+    [
+     "Net debt",
+     "410",
+     "Capitalization table"
+    ],
+    [
+     "Enterprise value",
+     "2,010",
+     "Equity value + net debt"
+    ],
+    [
+     "EV / LTM EBITDA ($212M)",
+     "9.5x",
+     "EV / LTM EBITDA"
+    ],
+    [
+     "EV / FY26E EBITDA ($228M)",
+     "8.8x",
+     "Management case"
+    ]
+   ],
+   "source": "Company capitalization table; weekly closing prices to 1 Sep 2026; management projections (August 2026)",
+   "notes": "Price [F0011]; low [F0064]; high [F0045]; shares [F0012]; net debt [F0013]; LTM EBITDA [F0014]; FY26E EBITDA [F0021]. calc: 1,600 = 18.6 x 86.0 [F0011, F0012]. calc: 2,010 = 1,600 + 410 [F0013]. calc: 9.5x = 2,010 / 212 [F0014]. calc: 8.8x = 2,010 / 228 [F0021]."
+  },
+  {
+   "type": "table",
+   "section": "Valuation",
+   "title": "Illustrative analysis at various prices",
+   "unit": "($ in millions, except per-share values)",
+   "header": [
+    "",
+    "Current",
+    "Illustrative",
+    "Illustrative",
+    "Illustrative"
+   ],
+   "align": [
+    "l",
+    "r",
+    "r",
+    "r",
+    "r"
+   ],
+   "colW": [
+    3.9,
+    2.1,
+    2.1,
+    2.1,
+    2.1
+   ],
+   "rows": [
+    {
+     "cells": [
+      "Price per share",
+      "$18.60",
+      "$21.00",
+      "$23.00",
+      "$25.00"
+     ],
+     "kind": "subject"
+    },
+    [
+     "Premium to current",
+     "—",
+     "12.9%",
+     "23.7%",
+     "34.4%"
+    ],
+    [
+     "Equity value",
+     "1,600",
+     "1,806",
+     "1,978",
+     "2,150"
+    ],
+    [
+     "Enterprise value",
+     "2,010",
+     "2,216",
+     "2,388",
+     "2,560"
+    ],
+    [
+     "EV / LTM EBITDA",
+     "9.5x",
+     "10.5x",
+     "11.3x",
+     "12.1x"
+    ],
+    [
+     "EV / FY26E EBITDA",
+     "8.8x",
+     "9.7x",
+     "10.5x",
+     "11.2x"
+    ]
+   ],
+   "source": "Company capitalization table; management projections (August 2026)",
+   "notes": "calc: illustrative prices $21.00, $23.00, $25.00 = steps chosen for discussion [F0011]. calc: at $18.60: premium 0.0% = 18.6 / 18.6 - 1; equity 1,600 = 18.6 x 86.0; EV 2,010 = 1,600 + 410; 9.5x = 2,010 / 212; 8.8x = 2,010 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $21.00: premium 12.9% = 21.0 / 18.6 - 1; equity 1,806 = 21.0 x 86.0; EV 2,216 = 1,806 + 410; 10.5x = 2,216 / 212; 9.7x = 2,216 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $23.00: premium 23.7% = 23.0 / 18.6 - 1; equity 1,978 = 23.0 x 86.0; EV 2,388 = 1,978 + 410; 11.3x = 2,388 / 212; 10.5x = 2,388 / 228 [F0011, F0012, F0013, F0014, F0021]. calc: at $25.00: premium 34.4% = 25.0 / 18.6 - 1; equity 2,150 = 25.0 x 86.0; EV 2,560 = 2,150 + 410; 12.1x = 2,560 / 212; 11.2x = 2,560 / 228 [F0011, F0012, F0013, F0014, F0021]."
+  },
+  {
+   "type": "football-field",
+   "section": "Valuation",
+   "title": "Illustrative valuation: 1 of 4 ranges sit above $18.60",
+   "unit": "(Implied value per share, $) (1)",
+   "min": 10,
+   "max": 30,
+   "step": 5,
+   "ranges": [
+    {
+     "label": "52-week trading range",
+     "low": 16.04,
+     "high": 20.02
+    },
+    {
+     "label": "Trading comps (8.4x–9.8x FY26E EBITDA)",
+     "low": 17.5,
+     "high": 21.21
+    },
+    {
+     "label": "Precedent transactions (9.6x–11.8x LTM EBITDA)",
+     "low": 18.9,
+     "high": 24.32
+    },
+    {
+     "label": "DCF (WACC 8.5%–9.5%, TGR 2.0%–3.0%)",
+     "low": 18.3,
+     "high": 25.89
+    }
+   ],
+   "lines": [
+    {
+     "value": 18.6,
+     "label": "Current $18.60"
+    }
+   ],
+   "source": "Management projections (August 2026); peer company filings; precedent transaction announcements; weekly closing prices to 1 Sep 2026",
+   "footnotes": [
+    "Per-share values use 86.0M diluted shares and $410M net debt. Comps drop the lowest and highest multiple. DCF discounts FY26E–FY30E unlevered FCF, end-year convention."
+   ],
+   "notes": "52-week range $16.04 [F0064] to $20.02 [F0045]. calc: Trading comps (8.4x–9.8x FY26E EBITDA): $17.50 to $21.21 per share = (multiple x EBITDA - 410) / 86.0 [F0021, F0014, F0013, F0012, F0096-F0110, F0036-F0043]. calc: Precedent transactions (9.6x–11.8x LTM EBITDA): $18.90 to $24.32 per share = (multiple x EBITDA - 410) / 86.0 [F0021, F0014, F0013, F0012, F0096-F0110, F0036-F0043]. calc: DCF $18.30 to $25.89 = 3 x 3 grid of WACC and TGR [F0026, F0027, F0028, F0029, F0030, F0031, F0032, F0033, F0034]. calc: 1 of 4 ranges start above $18.60 [F0011]. calc: comps range 8.4x–9.8x = second-lowest and second-highest of 8.0x, 8.4x, 9.2x, 9.8x, 9.8x [F0096-F0110]."
+  },
+  {
+   "type": "table",
+   "section": "Valuation",
+   "title": "Trading comps: peers trade at a 9.2x FY26E median",
+   "unit": "($ in millions)",
+   "header": [
+    "Company",
+    "Enterprise value",
+    "EV / LTM EBITDA",
+    "EV / NTM EBITDA"
+   ],
+   "colW": [
+    4.8,
+    2.5,
+    2.5,
+    2.5
+   ],
+   "rows": [
+    [
+     "Peer Arden",
+     "3,900",
+     "9.7x",
+     "9.2x"
+    ],
+    [
+     "Peer Bexley",
+     "2,650",
+     "8.9x",
+     "8.4x"
+    ],
+    [
+     "Peer Cairn",
+     "5,200",
+     "10.4x",
+     "9.8x"
+    ],
+    [
+     "Peer Dunmore",
+     "1,800",
+     "8.4x",
+     "8.0x"
+    ],
+    [
+     "Peer Esker",
+     "4,400",
+     "10.5x",
+     "9.8x"
+    ],
+    {
+     "cells": [
+      "Median",
+      "3,900",
+      "9.7x",
+      "9.2x"
+     ],
+     "kind": "summary"
+    },
+    {
+     "cells": [
+      "Halden at current",
+      "2,010",
+      "9.5x",
+      "8.8x"
+     ],
+     "kind": "subject"
+    }
+   ],
+   "source": "Peer company filings; company capitalization table as of 1 Sep 2026",
+   "notes": "calc: Peer Arden 9.7x = 3,900 / 402 and 9.2x = 3,900 / 425 [F0096-F0110]. calc: Peer Bexley 8.9x = 2,650 / 298 and 8.4x = 2,650 / 315 [F0096-F0110]. calc: Peer Cairn 10.4x = 5,200 / 498 and 9.8x = 5,200 / 530 [F0096-F0110]. calc: Peer Dunmore 8.4x = 1,800 / 214 and 8.0x = 1,800 / 226 [F0096-F0110]. calc: Peer Esker 10.5x = 4,400 / 418 and 9.8x = 4,400 / 447 [F0096-F0110]. calc: medians = middle of five values [F0096-F0110]. calc: Halden 2,010, 9.5x, 8.8x [F0011, F0012, F0013, F0014, F0021]."
+  },
+  {
+   "type": "options",
+   "section": "Alternatives",
+   "title": "Alternatives: four paths compared on the Board's criteria",
+   "criteria": [
+    "Value to shareholders",
+    "Certainty of value",
+    "Speed to close",
+    "Low disruption"
+   ],
+   "options": [
+    {
+     "name": "Stand-alone plan",
+     "scores": [
+      2,
+      1,
+      4,
+      4
+     ]
+    },
+    {
+     "name": "Leveraged recapitalisation",
+     "scores": [
+      2,
+      2,
+      3,
+      3
+     ]
+    },
+    {
+     "name": "Sale to a strategic",
+     "scores": [
+      4,
+      3,
+      1,
+      2
+     ]
+    },
+    {
+     "name": "Sale to a sponsor",
+     "scores": [
+      3,
+      3,
+      3,
+      3
+     ]
+    }
+   ],
+   "notes": "Qualitative advisor scoring for discussion; no figures on this page. No option is marked recommended here: the recommendation follows the buyer and process pages."
+  },
+  {
+   "type": "table",
+   "section": "Alternatives",
+   "title": "Buyer universe: three strategics and two sponsors, tiered",
+   "unit": "(Capacity: market capitalisation or fund size, $ in billions)",
+   "header": [
+    "Tier",
+    "Buyer",
+    "Capacity",
+    "Rationale"
+   ],
+   "align": [
+    "l",
+    "l",
+    "r",
+    "l"
+   ],
+   "colW": [
+    2.6,
+    2.2,
+    1.6,
+    5.9
+   ],
+   "rows": [
+    [
+     "Strategic · tier 1",
+     "Strategic A",
+     "14.2",
+     "Adds cross-border lanes; overlap in three hubs"
+    ],
+    [
+     "Strategic · tier 1",
+     "Strategic B",
+     "9.8",
+     "Fills its cold-chain gap"
+    ],
+    [
+     "Strategic · tier 2",
+     "Strategic C",
+     "4.1",
+     "Regional consolidation"
+    ],
+    [
+     "Sponsor · tier 1",
+     "Sponsor D",
+     "18.0",
+     "Logistics platform in its current fund"
+    ],
+    [
+     "Sponsor · tier 2",
+     "Sponsor E",
+     "6.5",
+     "Prior freight investments"
+    ]
+   ],
+   "source": "Advisor buyer screen; public filings and fund announcements",
+   "notes": "Capacities [F0002, F0004, F0006, F0008, F0010]. Buyer names are code names."
+  },
+  {
+   "type": "roadmap",
+   "section": "Process",
+   "title": "Illustrative process: launch in September, signing in December",
+   "periods": [
+    "Sep 2026",
+    "Oct 2026",
+    "Nov 2026",
+    "Dec 2026"
+   ],
+   "rows": [
+    {
+     "name": "Preparation and buyer outreach",
+     "start": 0,
+     "end": 0.6
+    },
+    {
+     "name": "First round: indications",
+     "start": 0.6,
+     "end": 1.6,
+     "milestones": [
+      {
+       "at": 1.6,
+       "label": "Board: shortlist"
+      }
+     ]
+    },
+    {
+     "name": "Second round: diligence and bids",
+     "start": 1.6,
+     "end": 3.0,
+     "accent": true
+    },
+    {
+     "name": "Negotiation and signing",
+     "start": 3.0,
+     "end": 3.5,
+     "milestones": [
+      {
+       "at": 3.5,
+       "label": "Board: approve"
+      }
+     ]
+    }
+   ],
+   "notes": "Plan dates for discussion, not facts."
+  },
+  {
+   "type": "text",
+   "section": "Process",
+   "title": "Recommendation and next steps",
+   "points": [
+    {
+     "lead": "Recommendation.",
+     "text": "Run a targeted sale process to the two tier-1 strategics and Sponsor D, keeping the stand-alone plan as the walk-away."
+    },
+    {
+     "lead": "Why.",
+     "text": "Most valuation ranges sit above today's price, the tier-1 strategics can pay for hub savings, and a tiered list limits disruption."
+    },
+    {
+     "lead": "Next steps.",
+     "text": "Board approval of the process; advisers prepare the teaser and management presentation; outreach starts in September."
+    }
+   ],
+   "notes": "Recommendation in the advisor's voice, after the analysis (research/pitchbook-findings.md rule 4). It restates earlier pages and adds no new figures."
+  },
+  {
+   "type": "disclaimer",
+   "title": "Disclaimer",
+   "text": "These materials were prepared for the Board's use in reviewing strategic alternatives. They rely on public information and on projections prepared by management, which we have not verified independently. They are preliminary and illustrative, are not a valuation opinion, and are not a recommendation to any shareholder. The company and figures are fictional.",
+   "notes": "Disclaimer written for this sample and placed at the back, as in 5 of 8 coded pitch books."
+  }
+ ]
+}

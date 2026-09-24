@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.1",
+  "name": "trigger-negative-spreadsheet",
+  "tags": [
+    "trigger",
+    "negative"
+  ],
+  "execution": {
+    "prompt": "What's the Excel formula to compute a compound annual growth rate from a start value in B2 to an end value in F2 over 4 years?",
+    "runs": 3,
+    "max_turns": 6,
+    "timeout_seconds": 300,
+    "allowed_tools": [
+      "Skill",
+      "Read"
+    ]
+  },
+  "graders": [
+    {
+      "name": "skill-not-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "premium-decks",
+      "min": 0,
+      "max": 0
+    }
+  ],
+  "runs": 3
+}

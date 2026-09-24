@@ -1,0 +1,331 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "deck-studio/research/coding-schema.json",
+  "title": "Deck deconstruction codebook v3",
+  "description": "One record per corpus deck. Coders see page images only. Every enum has an 'other' or 'none' escape; use it rather than forcing a fit. v2 = v1 revised after the 6-deck pilot; v3 adds four archetypes and one chart type surfaced by coding batch 2 (see corpus-findings.md, Method). v2 records remain valid under v3.",
+  "type": "object",
+  "required": [
+    "deck_id",
+    "coder",
+    "deck",
+    "slides"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "deck_id": {
+      "type": "string"
+    },
+    "coder": {
+      "type": "string"
+    },
+    "deck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "advisor_or_firm_on_cover",
+        "storyline_type",
+        "exec_summary_position",
+        "exec_summary_form",
+        "navigation_system",
+        "divider_style",
+        "appendix_share",
+        "page_count",
+        "footnote_system",
+        "confidentiality_label",
+        "page_aspect",
+        "palette_count",
+        "primary_hue",
+        "title_font_class",
+        "body_font_class"
+      ],
+      "properties": {
+        "advisor_or_firm_on_cover": {
+          "type": "string",
+          "description": "As printed on the cover; 'none' if absent."
+        },
+        "storyline_type": {
+          "enum": [
+            "answer-first-scr",
+            "pyramid-grouped",
+            "hypothesis-led",
+            "analysis-sequence",
+            "chronological-status",
+            "reference-book",
+            "other"
+          ],
+          "description": "answer-first-scr: recommendation/answer stated in the first pages, then support. pyramid-grouped: sections are the key-line arguments. hypothesis-led: sections test named hypotheses. analysis-sequence: a fixed sequence of analyses with no up-front answer (typical banker book). chronological-status: status/progress by workstream. reference-book: a report or fact pack with no argument."
+        },
+        "exec_summary_position": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Page number of the page that summarises the whole deck's conclusions (executive summary, key takeaways, or a banker's summary-of-analyses/valuation-summary page); 0 if none."
+        },
+        "exec_summary_form": {
+          "enum": [
+            "dot-dash-text",
+            "numbered-findings",
+            "table",
+            "graphic",
+            "none"
+          ]
+        },
+        "navigation_system": {
+          "enum": [
+            "tracker-tabs",
+            "breadcrumb-text",
+            "agenda-repeat-highlight",
+            "section-number-only",
+            "none"
+          ]
+        },
+        "divider_style": {
+          "enum": [
+            "full-colour-page",
+            "agenda-highlight",
+            "title-only-page",
+            "none"
+          ]
+        },
+        "appendix_share": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Share of pages after an 'Appendix' divider."
+        },
+        "page_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "footnote_system": {
+          "enum": [
+            "numbered-notes-plus-source",
+            "source-line-only",
+            "lettered-notes",
+            "symbol-notes",
+            "bracketed-endnotes",
+            "none"
+          ]
+        },
+        "confidentiality_label": {
+          "enum": [
+            "confidential-draft",
+            "confidential",
+            "preliminary-draft",
+            "draft",
+            "none"
+          ]
+        },
+        "page_aspect": {
+          "enum": [
+            "16:9",
+            "4:3",
+            "letter-or-a4-landscape",
+            "portrait",
+            "other"
+          ]
+        },
+        "palette_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "description": "Distinct non-neutral hues used for meaning across the deck."
+        },
+        "primary_hue": {
+          "enum": [
+            "navy",
+            "blue",
+            "teal",
+            "green",
+            "red",
+            "burgundy",
+            "orange",
+            "gold",
+            "purple",
+            "black",
+            "grey",
+            "other"
+          ]
+        },
+        "title_font_class": {
+          "enum": [
+            "serif",
+            "sans",
+            "mixed"
+          ]
+        },
+        "body_font_class": {
+          "enum": [
+            "serif",
+            "sans",
+            "mixed"
+          ]
+        }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "description": "The sampled pages (see sampling rule in the coder prompt), in order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page",
+          "archetype",
+          "title_is_assertion",
+          "title_words",
+          "title_lines",
+          "has_unit_line",
+          "chart_type",
+          "has_takeaway_box",
+          "has_source_line",
+          "has_numbered_notes",
+          "element_count",
+          "grid_columns",
+          "callout_devices",
+          "text_density",
+          "has_tracker",
+          "accent_on_one_datum"
+        ],
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "archetype": {
+            "enum": [
+              "cover",
+              "disclaimer",
+              "agenda",
+              "divider",
+              "exec-summary",
+              "situation-context",
+              "chart-single",
+              "chart-multi",
+              "table-data",
+              "comps-table",
+              "football-field",
+              "waterfall-bridge",
+              "matrix-2x2",
+              "framework-diagram",
+              "issue-driver-tree",
+              "process-flow",
+              "timeline-roadmap",
+              "options-evaluation",
+              "recommendation",
+              "next-steps",
+              "text-structured",
+              "quote-evidence",
+              "map",
+              "org-team",
+              "financial-summary",
+              "sensitivity-table",
+              "findings-table",
+              "conclusion",
+              "credentials",
+              "structure-chart",
+              "company-profile",
+              "redacted",
+              "appendix-backup",
+              "other"
+            ]
+          },
+          "title_is_assertion": {
+            "type": "boolean",
+            "description": "True only when the title states a finding or implication as a full sentence. Method statements ('We built a forecast model') and topic labels are false."
+          },
+          "title_words": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Whitespace-separated tokens of the page-specific title. A standalone '&' or '/' counts as a word; '3/3' counts as one."
+          },
+          "title_lines": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "has_unit_line": {
+            "type": "boolean",
+            "description": "A line directly under the title stating the metric, unit, or scope, e.g. '($ in millions)'. Axis or legend labels inside the chart body do not count."
+          },
+          "chart_type": {
+            "enum": [
+              "none",
+              "bar-vertical",
+              "bar-horizontal",
+              "stacked-bar",
+              "stacked-100",
+              "line",
+              "area",
+              "waterfall",
+              "football-field",
+              "marimekko",
+              "scatter-bubble",
+              "pie-donut",
+              "table",
+              "harvey-balls",
+              "gantt",
+              "map",
+              "sankey",
+              "tornado",
+              "other"
+            ]
+          },
+          "has_takeaway_box": {
+            "type": "boolean",
+            "description": "A visually set-off 'so what' box/callout that states the implication."
+          },
+          "has_source_line": {
+            "type": "boolean"
+          },
+          "has_numbered_notes": {
+            "type": "boolean"
+          },
+          "element_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Distinct content blocks (charts, tables, text boxes, callouts), excluding title/footer."
+          },
+          "grid_columns": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6
+          },
+          "callout_devices": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "circled-numbers",
+                "brackets-braces",
+                "highlight-box",
+                "arrow-annotation",
+                "harvey-balls",
+                "rag-status",
+                "icons",
+                "bold-lead-in",
+                "cagr-arrow",
+                "chart-annotation-text",
+                "star-marker",
+                "none"
+              ]
+            }
+          },
+          "text_density": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "low <40 words, medium 40-120, high >120 body words (estimate)."
+          },
+          "has_tracker": {
+            "type": "boolean",
+            "description": "True when a navigation marker repeated across pages shows where the page sits: tabs, a highlighted section strip, or a section label in a fixed corner/top band."
+          },
+          "accent_on_one_datum": {
+            "type": "boolean",
+            "description": "True when a single highlight colour marks the datum that carries the point, with others in neutral/secondary."
+          }
+        }
+      }
+    }
+  }
+}

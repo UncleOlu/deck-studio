@@ -1,0 +1,413 @@
+{
+ "_about": "Fictional sample built by samples/build_samples.py from samples/source/corvane-instruments/input via scripts/ingest.py. Every number cites a fact id or a calc: line. Build: node build-pitchbook.js pitchbook.sample.json",
+ "output": "corvane-special-committee-book.pptx",
+ "kind": "board-book",
+ "meta": {
+  "title": "Project Cobalt — discussion materials for the Special Committee",
+  "author": "Advisor team",
+  "label": "Confidential · Preliminary draft"
+ },
+ "sections": [
+  "Situation",
+  "Valuation",
+  "Analyses"
+ ],
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Project Cobalt: discussion materials",
+   "subtitle": "Prepared for the Special Committee of the Board of Corvane Instruments",
+   "footer": "Fictional sample · deck-studio",
+   "notes": "Fictional company and data. Built from samples/source/corvane-instruments/input via scripts/ingest.py. Data decision: diluted shares appear as 114.0M [F0005] and 112.6M [F0027]; per-share values use 112.6M, as management directs."
+  },
+  {
+   "type": "disclaimer",
+   "title": "Disclaimer",
+   "text": "These materials were prepared for the Special Committee's use in evaluating the proposal. They rely on public information and on projections prepared by management, which we have not verified independently. They are preliminary, are not a fairness opinion, and are not a recommendation to any shareholder. The company and figures are fictional.",
+   "notes": "Disclaimer written for this sample; never copy a bank's legal text."
+  },
+  {
+   "type": "table",
+   "section": "Situation",
+   "title": "The $27.00 offer is a 26.2% premium to the unaffected price and 12.5x LTM EBITDA",
+   "unit": "($ in millions, except per-share values)",
+   "header": [
+    "Metric",
+    "Value",
+    "Basis"
+   ],
+   "align": [
+    "l",
+    "r",
+    "l"
+   ],
+   "colW": [
+    5.2,
+    2.2,
+    4.9
+   ],
+   "rows": [
+    {
+     "cells": [
+      "Offer price per share",
+      "$27.00",
+      "Sponsor proposal"
+     ],
+     "kind": "subject"
+    },
+    [
+     "Unaffected share price (15 May 2026)",
+     "$21.40",
+     "Capitalization table"
+    ],
+    [
+     "Premium to unaffected price",
+     "26.2%",
+     "Offer / unaffected − 1"
+    ],
+    [
+     "Premium to 2025 high close (1)",
+     "24.5%",
+     "High close $21.68"
+    ],
+    [
+     "Diluted shares (2)",
+     "112.6M",
+     "Treasury method at the offer (management)"
+    ],
+    [
+     "Implied equity value",
+     "$3,040",
+     "Offer × diluted shares"
+    ],
+    [
+     "Net debt",
+     "$845",
+     "Capitalization table"
+    ],
+    [
+     "Implied enterprise value",
+     "$3,885",
+     "Equity value + net debt"
+    ],
+    [
+     "EV / LTM EBITDA ($310M)",
+     "12.5x",
+     "EV / LTM EBITDA"
+    ],
+    [
+     "EV / FY26E EBITDA ($332M)",
+     "11.7x",
+     "EV / FY26E EBITDA"
+    ]
+   ],
+   "source": "Company capitalization table; management projections (June 2026); daily closing prices, calendar 2025",
+   "footnotes": [
+    "Data note: the share price history covers calendar 2025 only, so the 2025 high is shown and labelled as such rather than a 52-week high to the 15 May 2026 unaffected date.",
+    "Data note: the capitalization table shows 114.0M diluted shares; management directs 112.6M (treasury method at the offer) for per-share values."
+   ],
+   "notes": "Offer [F0004]; unaffected [F0003]; shares [F0027, F0005]; net debt [F0006]; LTM EBITDA [F0007]; FY26E EBITDA [F0013]; 52-week high [F0087]. calc: 26.2% = 27.0 / 21.4 - 1 [F0004, F0003]. calc: 24.5% = 27.0 / 21.68 - 1 [F0087]. calc: $3,040 = 27.0 x 112.6 [F0004]. calc: $3,885 = 3,040 + 845 [F0006]. calc: 12.5x = 3,885 / 310 [F0007]. calc: 11.7x = 3,885 / 332 [F0013]."
+  },
+  {
+   "type": "football-field",
+   "section": "Valuation",
+   "title": "The $27.00 offer sits above 4 of 5 valuation ranges and inside the other 1",
+   "unit": "(Implied value per share, $) (1)",
+   "min": 10,
+   "max": 35,
+   "step": 5,
+   "ranges": [
+    {
+     "label": "2025 trading range",
+     "low": 16.66,
+     "high": 21.68
+    },
+    {
+     "label": "Trading comps (8.7x–9.5x FY26E EBITDA)",
+     "low": 18.22,
+     "high": 20.61
+    },
+    {
+     "label": "Trading comps (9.2x–10.0x LTM EBITDA)",
+     "low": 17.87,
+     "high": 20.16
+    },
+    {
+     "label": "Precedent transactions (9.1x–12.2x LTM EBITDA)",
+     "low": 17.55,
+     "high": 26.08
+    },
+    {
+     "label": "DCF (WACC 8.0%–9.0%, TGR 2.0%–3.0%)",
+     "low": 19.6,
+     "high": 29.41
+    }
+   ],
+   "lines": [
+    {
+     "value": 27.0,
+     "label": "Offer $27.00"
+    },
+    {
+     "value": 21.4,
+     "label": "Unaffected $21.40",
+     "accent": false
+    }
+   ],
+   "source": "Management projections (June 2026); peer company filings; precedent transaction announcements; daily closing prices, calendar 2025",
+   "footnotes": [
+    "Per-share values use 112.6M diluted shares and $845M net debt. Comps ranges drop the lowest and highest multiple. DCF discounts FY26E–FY30E unlevered FCF to the start of FY26 (end-year convention; no stub-period adjustment for the May 2026 valuation date)."
+   ],
+   "notes": "52-week range $16.66 [F0036] to $21.68 [F0087]. calc: Trading comps (8.7x–9.5x FY26E EBITDA): $18.22 to $20.61 per share = (multiple x EBITDA - 845) / 112.6 [F0013, F0007, F0006, F0027, F0088-F0102, F0028-F0035]. calc: Trading comps (9.2x–10.0x LTM EBITDA): $17.87 to $20.16 per share = (multiple x EBITDA - 845) / 112.6 [F0013, F0007, F0006, F0027, F0088-F0102, F0028-F0035]. calc: Precedent transactions (9.1x–12.2x LTM EBITDA): $17.55 to $26.08 per share = (multiple x EBITDA - 845) / 112.6 [F0013, F0007, F0006, F0027, F0088-F0102, F0028-F0035]. calc: DCF $19.60 to $29.41 from the sensitivity grid [F0018, F0019, F0020, F0021, F0022, F0023, F0024, F0025, F0026]. Offer [F0004]; unaffected [F0003]. calc: 4 of 5 ranges end below $27.00 [F0004]."
+  },
+  {
+   "type": "chart",
+   "section": "Analyses",
+   "title": "The smallest premium is to the 2025 high: the $27.00 offer is 24.5% above it",
+   "kind": "column",
+   "labels": [
+    "Unaffected (15 May 2026)",
+    "2025 high",
+    "2025 average",
+    "2025 low"
+   ],
+   "series": [
+    {
+     "name": "Premium implied by the offer",
+     "values": [
+      26.2,
+      24.5,
+      39.6,
+      62.1
+     ]
+    }
+   ],
+   "highlight": 1,
+   "format": "0.0\"%\"",
+   "unit": "(Premium implied by the $27.00 offer, %)",
+   "source": "Company capitalization table; daily closing prices, calendar 2025",
+   "notes": "Offer [F0004]; unaffected [F0003]; 2025 high [F0087]; 2025 low [F0036]; closes [F0036-F0087]. calc: 26.2% = 27.0 / 21.4 - 1 [F0004, F0003]. calc: 24.5% = 27.0 / 21.68 - 1 [F0004, F0087]. calc: 39.6% = 27.0 / 19.34 - 1, where $19.34 is the mean of 52 2025 closes [F0004, F0036-F0087]. calc: 62.1% = 27.0 / 16.66 - 1 [F0004, F0036]."
+  },
+  {
+   "type": "table",
+   "section": "Analyses",
+   "title": "Trading comps: the offer values Corvane at 12.5x LTM EBITDA against a 10.0x peer median",
+   "unit": "($ in millions)",
+   "header": [
+    "Company",
+    "Enterprise value",
+    "EV / LTM EBITDA",
+    "EV / NTM EBITDA"
+   ],
+   "colW": [
+    4.8,
+    2.5,
+    2.5,
+    2.5
+   ],
+   "rows": [
+    [
+     "Peer Aster",
+     "6,150",
+     "10.0x",
+     "9.5x"
+    ],
+    [
+     "Peer Brio",
+     "3,420",
+     "9.2x",
+     "8.7x"
+    ],
+    [
+     "Peer Calder",
+     "8,800",
+     "10.8x",
+     "10.2x"
+    ],
+    [
+     "Peer Delta",
+     "2,480",
+     "8.8x",
+     "8.4x"
+    ],
+    [
+     "Peer Ember",
+     "4,010",
+     "10.0x",
+     "9.4x"
+    ],
+    {
+     "cells": [
+      "Median",
+      "4,010",
+      "10.0x",
+      "9.4x"
+     ],
+     "kind": "summary"
+    },
+    {
+     "cells": [
+      "Corvane at offer (1)",
+      "3,885",
+      "12.5x",
+      "11.7x"
+     ],
+     "kind": "subject"
+    }
+   ],
+   "source": "Peer company filings; company capitalization table; management projections (June 2026)",
+   "footnotes": [
+    "NTM EBITDA for Corvane is management's FY26E."
+   ],
+   "notes": "calc: Peer Aster 10.0x = 6,150 / 612 and 9.5x = 6,150 / 645 [F0088, F0089, F0090]. calc: Peer Brio 9.2x = 3,420 / 371 and 8.7x = 3,420 / 392 [F0091, F0092, F0093]. calc: Peer Calder 10.8x = 8,800 / 812 and 10.2x = 8,800 / 861 [F0094, F0095, F0096]. calc: Peer Delta 8.8x = 2,480 / 283 and 8.4x = 2,480 / 297 [F0097, F0098, F0099]. calc: Peer Ember 10.0x = 4,010 / 402 and 9.4x = 4,010 / 428 [F0100, F0101, F0102]. calc: medians EV 4,010, LTM 10.0x, NTM 9.4x = middle of five values [F0088-F0102]. calc: Corvane 3,885, 12.5x, 11.7x [F0004, F0027, F0006, F0007, F0013]."
+  },
+  {
+   "type": "table",
+   "section": "Analyses",
+   "title": "Precedents: the offer's 12.5x LTM EBITDA compares with a 10.9x transaction median",
+   "unit": "($ in millions)",
+   "header": [
+    "Date",
+    "Target",
+    "Acquirer",
+    "Enterprise value",
+    "EV / LTM EBITDA"
+   ],
+   "colW": [
+    1.6,
+    2.8,
+    2.8,
+    2.5,
+    2.6
+   ],
+   "align": [
+    "l",
+    "l",
+    "l",
+    "r",
+    "r"
+   ],
+   "rows": [
+    [
+     "Mar 2023",
+     "Target Alpha",
+     "Sponsor E",
+     "2,900",
+     "9.8x"
+    ],
+    [
+     "Jun 2024",
+     "Target Beta",
+     "Strategic F",
+     "5,100",
+     "11.9x"
+    ],
+    [
+     "Jan 2025",
+     "Target Gamma",
+     "Sponsor G",
+     "1,800",
+     "9.1x"
+    ],
+    [
+     "Nov 2025",
+     "Target Omega",
+     "Strategic H",
+     "6,400",
+     "12.2x"
+    ],
+    {
+     "cells": [
+      "",
+      "Median",
+      "",
+      "4,000",
+      "10.9x"
+     ],
+     "kind": "summary"
+    },
+    {
+     "cells": [
+      "",
+      "Corvane at offer",
+      "",
+      "3,885",
+      "12.5x"
+     ],
+     "kind": "subject"
+    }
+   ],
+   "source": "Precedent transaction announcements; company capitalization table",
+   "notes": "Transactions [F0028-F0035]. calc: median EV 4,000 and multiple 10.9x = mean of the middle two values [F0028-F0035]. calc: Corvane 3,885 and 12.5x [F0004, F0027, F0006, F0007]."
+  },
+  {
+   "type": "sensitivity",
+   "section": "Analyses",
+   "title": "DCF: 2 of 15 cases reach the $27.00 offer; the base case is $23.69",
+   "unit": "(Implied value per share, $) (1)",
+   "corner": "WACC \\ TGR",
+   "cols": [
+    "2.0%",
+    "2.5%",
+    "3.0%"
+   ],
+   "rows": [
+    "8.00%",
+    "8.25%",
+    "8.50%",
+    "8.75%",
+    "9.00%"
+   ],
+   "values": [
+    [
+     24.23,
+     26.59,
+     29.41
+    ],
+    [
+     22.94,
+     25.08,
+     27.63
+    ],
+    [
+     21.74,
+     23.69,
+     26.0
+    ],
+    [
+     20.63,
+     22.42,
+     24.52
+    ],
+    [
+     19.6,
+     21.24,
+     23.16
+    ]
+   ],
+   "threshold": 27.0,
+   "format": "usd2",
+   "base": [
+    2,
+    1
+   ],
+   "source": "Management projections (June 2026); management WACC and growth ranges",
+   "side": {
+    "points": [
+     {
+      "lead": "Base case.",
+      "text": "$23.69 at 8.5% WACC and 2.5% growth."
+     },
+     {
+      "lead": "Against the offer.",
+      "text": "2 of 15 cases reach $27.00."
+     }
+    ]
+   },
+   "footnotes": [
+    "Unlevered FCF FY26E–FY30E; Gordon-growth terminal value; discounted to the start of FY26 with no stub-period adjustment."
+   ],
+   "notes": "calc: $24.23 at WACC 8.00%, TGR 2.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $26.59 at WACC 8.00%, TGR 2.5% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $29.41 at WACC 8.00%, TGR 3.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $22.94 at WACC 8.25%, TGR 2.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $25.08 at WACC 8.25%, TGR 2.5% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $27.63 at WACC 8.25%, TGR 3.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $21.74 at WACC 8.50%, TGR 2.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $23.69 at WACC 8.50%, TGR 2.5% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $26.00 at WACC 8.50%, TGR 3.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $20.63 at WACC 8.75%, TGR 2.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $22.42 at WACC 8.75%, TGR 2.5% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $24.52 at WACC 8.75%, TGR 3.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $19.60 at WACC 9.00%, TGR 2.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $21.24 at WACC 9.00%, TGR 2.5% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: $23.16 at WACC 9.00%, TGR 3.0% [F0018, F0019, F0020, F0021, F0022, F0006, F0027]. calc: 8.25% and 8.75% are steps inside the management range [F0023, F0024, F0025, F0026]. calc: 2 of 15 cases = count of the 5 x 3 grid at or above the offer [F0004, F0023, F0024, F0025, F0026]."
+  }
+ ]
+}

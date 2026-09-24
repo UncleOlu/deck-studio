@@ -1,0 +1,16 @@
+{
+  "name": "deck-studio",
+  "owner": {
+    "name": "Olu"
+  },
+  "metadata": {
+    "description": "premium-decks: consulting-, banking-, and keynote-grade decks from a folder of analysis"
+  },
+  "plugins": [
+    {
+      "name": "deck-studio",
+      "source": "./",
+      "description": "Consulting-, banking-, and keynote-grade .pptx and HTML decks from a folder of analysis, with traced numbers and a QA gate that can fail."
+    }
+  ]
+}

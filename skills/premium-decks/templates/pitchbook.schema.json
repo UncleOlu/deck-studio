@@ -1,0 +1,23 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Banking deck JSON (build-pitchbook.js)",
+ "description": "deck-kit schema plus kind: board-book | pitch. The builder requires the answer page (football-field or exec-summary) by slide 4 and, for a board book, a disclaimer.",
+ "allOf": [
+  {
+   "$ref": "deck-kit.schema.json"
+  },
+  {
+   "properties": {
+    "kind": {
+     "enum": [
+      "board-book",
+      "pitch"
+     ]
+    }
+   },
+   "required": [
+    "kind"
+   ]
+  }
+ ]
+}

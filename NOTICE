@@ -1,0 +1,71 @@
+deck-studio
+Copyright (c) 2026 Olu
+
+This product is licensed under the MIT License (see LICENSE). It includes or
+adapts the third-party material listed below. Each item keeps its original
+licence; the full licence texts are in the licenses/ directory.
+
+------------------------------------------------------------------------------
+1. UI UX Pro Max skill (design-system and slides skills)
+   https://github.com/nextlevelbuilder/ui-ux-pro-max-skill  (commit bc826e2)
+   Copyright (c) 2024 Next Level Builder
+   Licence: MIT (licenses/ui-ux-pro-max-skill-MIT.txt)
+
+   Included, with modifications:
+     skills/premium-decks/data/slide-backgrounds.csv, slide-color-logic.csv,
+       slide-copy.csv, slide-layout-logic.csv, slide-layouts.csv,
+       slide-typography.csv (unmodified)
+     skills/premium-decks/data/slide-strategies.csv, slide-charts.csv
+       (upstream rows unmodified; rows added by deck-studio)
+     skills/premium-decks/scripts/slide_search_core.py,
+       skills/premium-decks/scripts/search-slides.py (modified: archetype
+       domain, lint fixes)
+     skills/premium-decks/scripts/slide-token-validator.py (rewritten from the
+       upstream validator of the same name)
+   Adapted: the layout-pattern table in
+     skills/premium-decks/references/html-mode.md
+
+------------------------------------------------------------------------------
+2. Impeccable
+   https://github.com/pbakaus/impeccable
+   Copyright 2025 Paul Bakaus
+   Licence: Apache License 2.0 (licenses/impeccable-Apache-2.0.txt)
+   Design rules in skills/premium-decks/references/quality-floor.md are
+   informed by Impeccable's reference/craft-floor.md, restated in
+   deck-studio's own words.
+
+------------------------------------------------------------------------------
+3. taste-skill (high-end-visual-design)
+   https://github.com/leonxlnx/taste-skill
+   Copyright (c) 2026 Leonxlnx
+   Licence: MIT (licenses/taste-skill-MIT.txt)
+   Design rules in skills/premium-decks/references/quality-floor.md are
+   informed by this skill, restated in deck-studio's own words.
+
+------------------------------------------------------------------------------
+4. PptxGenJS 3.12.0 (vendored, unmodified)
+   skills/premium-decks/templates/lib/vendor/node_modules/pptxgenjs/
+   Copyright (c) 2015-2022 Brent Ely
+   Licence: MIT (pptxgenjs/LICENSE)
+
+5. JSZip 3.10.2 (vendored, unmodified)
+   skills/premium-decks/templates/lib/vendor/node_modules/jszip/
+   Copyright (c) 2009-2016 Stuart Knightley, David Duponchel,
+   Franz Buchinger, António Afonso
+   Licence: dual MIT / GPL-3.0-or-later; used and redistributed under MIT
+   (jszip/LICENSE.markdown)
+
+------------------------------------------------------------------------------
+Acknowledgements (ideas and guidelines only; no text or code copied)
+   - UI Skills Playbook, https://github.com/ibelick/ui-skills (MIT)
+   - Vercel Web Interface Guidelines,
+     https://github.com/vercel-labs/web-interface-guidelines (MIT),
+     via antfu/skills web-design-guidelines (MIT)
+   - ReUI component patterns, https://reui.io (MIT)
+   - Design System Checklist, https://designsystemchecklist.com
+   - coss.com/ui meter layout (idea only; no code used)
+   The seven directions in references/design-dna.md are modelled on the public
+   look of Linear, Framer, Railway, Apple, Anthropic, Cursor, and Wise, and are
+   described in deck-studio's own words. Product names are used descriptively.
+   No logos, brand assets, or fonts from those companies ship with this
+   product.

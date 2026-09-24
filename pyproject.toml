@@ -1,0 +1,33 @@
+[project]
+name = "deck-studio"
+version = "2.0.0"
+description = "premium-decks: consulting-, banking-, and keynote-grade slide decks for Claude Code"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Olu" }]
+dependencies = ["python-pptx>=1.0,<2", "lxml>=5,<7", "defusedxml>=0.7,<0.8", "Pillow>=10,<13", "openpyxl>=3.1,<4",
+                "pypdf>=4,<7"]  # exact tested pins: requirements.txt
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "jsonschema>=4"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP", "S", "I"]
+ignore = [
+  "S603",  # subprocess with a list argv is the safe form; every call passes a fixed argv
+  "S607",  # partial executable paths (pdftoppm, pdftotext) are resolved from PATH by design
+  "S101",  # assert is idiomatic in tests
+  "S310",  # urlopen: edgar_fetch.py allows only https sec.gov hosts, checked before each call
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "E402"]
+"evals/build_fixtures.py" = ["S311"]  # seeded random only makes deterministic fictional data
+"skills/premium-decks/samples/build_samples.py" = ["E501", "S603"]  # long prose f-strings; fixed argv to ingest.py
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

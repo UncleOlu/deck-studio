@@ -1,0 +1,5 @@
+peer,labour_pct_sales,shrink_pct_sales,ebit_margin_pct
+Peer A (public filings),10.4,2.1,4.9
+Peer B (public filings),11.0,2.4,4.1
+Peer C (industry survey),11.6,2.6,3.6
+Median,11.0,2.4,4.1

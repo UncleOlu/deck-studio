@@ -1,0 +1,81 @@
+# Universal pre-commit hooks — apply to every repo regardless of language.
+# /init-security concatenates this with the language fragments in this directory,
+# then runs `pre-commit autoupdate` so the pins below are only a starting point.
+
+default_stages: [pre-commit]
+default_language_version:
+  python: python3.12  # bandit >= 1.9 and mypy 2.x need Python >= 3.10; the system python3 is 3.9
+
+repos:
+  # ============================================
+  # SECRET DETECTION
+  # ============================================
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+        name: Detect hardcoded secrets
+        args: ['--no-banner']
+        exclude: '\.secrets\.baseline$'
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        name: Detect secrets (Yelp)
+        args: ['--baseline', '.secrets.baseline']
+
+  # ============================================
+  # FILE HYGIENE
+  # ============================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: debug-statements
+      - id: check-executables-have-shebangs
+
+  # ============================================
+  # COMMIT MESSAGE
+  # ============================================
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.19.0
+    hooks:
+      - id: commitizen
+        language_version: python3.12
+        name: Check commit message
+        stages: [commit-msg]
+  # ============================================
+  # PYTHON — appended when *.py files are present
+  # ============================================
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.9.4
+    hooks:
+      - id: bandit
+        language_version: python3.12
+        name: Python security scan (Bandit)
+        args: ['-ll', '-r', '.']
+        exclude: '^tests/'
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.8
+    hooks:
+      - id: ruff
+        name: Lint Python (Ruff)
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+        name: Format Python (Ruff)
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v2.3.1
+    hooks:
+      - id: mypy
+        language_version: python3.12
+        name: Type check (mypy)
+        args: ['--strict', '--ignore-missing-imports']

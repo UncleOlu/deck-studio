@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.1",
+  "name": "steerco-update",
+  "tags": [
+    "consulting",
+    "deck-build"
+  ],
+  "context": {
+    "scaffold_script": "setup.sh"
+  },
+  "execution": {
+    "prompt": "The folder input/ in your working directory holds everything I have for this. Build the SteerCo update for Project Meridian at Calder Health, ending with the two decisions the SteerCo must take on 14 Oct. Deliver a PowerPoint file and a PDF render of it in the current working directory. Work autonomously: I approve any storyline or outline checkpoint in advance, so do not stop to ask. In your final message, list any data problems you found in the folder.",
+    "runs": 1,
+    "max_turns": 150,
+    "timeout_seconds": 3600,
+    "allowed_tools": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Glob",
+      "Grep",
+      "Skill"
+    ]
+  },
+  "graders": [
+    {
+      "name": "skill-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "premium-decks",
+      "arm": "with-only"
+    },
+    {
+      "name": "pptx-delivered",
+      "type": "file_exists",
+      "path": "**/*.pptx"
+    },
+    {
+      "name": "pdf-delivered",
+      "type": "file_exists",
+      "path": "**/*.pdf"
+    },
+    {
+      "name": "conflict-flagged",
+      "type": "llm",
+      "focus": "last_message",
+      "weight": 2,
+      "criteria": "PASS only if the final message explicitly flags that the input folder gives two different values for Finance go-live date (2027-03 vs May 2027) and says which value the deck used or that it needs confirming. FAIL if the conflict is not mentioned."
+    },
+    {
+      "name": "irrelevant-ignored",
+      "type": "llm",
+      "focus": "trace",
+      "criteria": "PASS if no slide content is built from the obviously irrelevant files in the folder (office social menus, IT tickets, travel, lunch orders, parking memos, golf outings). FAIL if any such content appears on a slide."
+    }
+  ],
+  "runs": 1
+}

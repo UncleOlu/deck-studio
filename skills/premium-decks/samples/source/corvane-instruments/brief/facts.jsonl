@@ -1,0 +1,102 @@
+{"id": "F0001", "value": "2026-05", "unit": "date", "scale": 1.0, "period": "", "text": "Share price (unaffected, 15 May 2026 )", "file": "capitalization.xlsx", "locator": "Cap!A2 (text)"}
+{"id": "F0002", "value": 15.0, "unit": "", "scale": 1.0, "period": "2026", "text": "Share price (unaffected, 15 May 2026)", "file": "capitalization.xlsx", "locator": "Cap!A2 (text)"}
+{"id": "F0003", "value": 21.4, "unit": "USD", "scale": 1.0, "period": "2026", "text": "Corvane Instruments (fictional) \u2014 capitalization | Share price (unaffected, 15 May 2026) value", "file": "capitalization.xlsx", "locator": "Cap!B2"}
+{"id": "F0004", "value": 27.0, "unit": "USD", "scale": 1.0, "period": "", "text": "Corvane Instruments (fictional) \u2014 capitalization | Offer price (sponsor proposal) value", "file": "capitalization.xlsx", "locator": "Cap!B3"}
+{"id": "F0005", "value": 114.0, "unit": "", "scale": 1000000.0, "period": "", "text": "Corvane Instruments (fictional) \u2014 capitalization | Diluted shares outstanding value", "file": "capitalization.xlsx", "locator": "Cap!B4"}
+{"id": "F0006", "value": 845.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Corvane Instruments (fictional) \u2014 capitalization | Net debt value", "file": "capitalization.xlsx", "locator": "Cap!B5"}
+{"id": "F0007", "value": 310.0, "unit": "USD", "scale": 1000000.0, "period": "LTM", "text": "Corvane Instruments (fictional) \u2014 capitalization | LTM EBITDA value", "file": "capitalization.xlsx", "locator": "Cap!B6"}
+{"id": "F0008", "value": 2240.0, "unit": "USD", "scale": 1000000.0, "period": "FY26E", "text": " | Revenue FY26E", "file": "management_projections.xlsx", "locator": "Projections ($M)!B2"}
+{"id": "F0009", "value": 2360.0, "unit": "USD", "scale": 1000000.0, "period": "FY27E", "text": " | Revenue FY27E", "file": "management_projections.xlsx", "locator": "Projections ($M)!C2"}
+{"id": "F0010", "value": 2490.0, "unit": "USD", "scale": 1000000.0, "period": "FY28E", "text": " | Revenue FY28E", "file": "management_projections.xlsx", "locator": "Projections ($M)!D2"}
+{"id": "F0011", "value": 2610.0, "unit": "USD", "scale": 1000000.0, "period": "FY29E", "text": " | Revenue FY29E", "file": "management_projections.xlsx", "locator": "Projections ($M)!E2"}
+{"id": "F0012", "value": 2720.0, "unit": "USD", "scale": 1000000.0, "period": "FY30E", "text": " | Revenue FY30E", "file": "management_projections.xlsx", "locator": "Projections ($M)!F2"}
+{"id": "F0013", "value": 332.0, "unit": "USD", "scale": 1000000.0, "period": "FY26E", "text": " | EBITDA FY26E", "file": "management_projections.xlsx", "locator": "Projections ($M)!B3"}
+{"id": "F0014", "value": 356.0, "unit": "USD", "scale": 1000000.0, "period": "FY27E", "text": " | EBITDA FY27E", "file": "management_projections.xlsx", "locator": "Projections ($M)!C3"}
+{"id": "F0015", "value": 381.0, "unit": "USD", "scale": 1000000.0, "period": "FY28E", "text": " | EBITDA FY28E", "file": "management_projections.xlsx", "locator": "Projections ($M)!D3"}
+{"id": "F0016", "value": 404.0, "unit": "USD", "scale": 1000000.0, "period": "FY29E", "text": " | EBITDA FY29E", "file": "management_projections.xlsx", "locator": "Projections ($M)!E3"}
+{"id": "F0017", "value": 425.0, "unit": "USD", "scale": 1000000.0, "period": "FY30E", "text": " | EBITDA FY30E", "file": "management_projections.xlsx", "locator": "Projections ($M)!F3"}
+{"id": "F0018", "value": 176.0, "unit": "USD", "scale": 1000000.0, "period": "FY26E", "text": " | Unlevered FCF FY26E", "file": "management_projections.xlsx", "locator": "Projections ($M)!B4"}
+{"id": "F0019", "value": 192.0, "unit": "USD", "scale": 1000000.0, "period": "FY27E", "text": " | Unlevered FCF FY27E", "file": "management_projections.xlsx", "locator": "Projections ($M)!C4"}
+{"id": "F0020", "value": 209.0, "unit": "USD", "scale": 1000000.0, "period": "FY28E", "text": " | Unlevered FCF FY28E", "file": "management_projections.xlsx", "locator": "Projections ($M)!D4"}
+{"id": "F0021", "value": 224.0, "unit": "USD", "scale": 1000000.0, "period": "FY29E", "text": " | Unlevered FCF FY29E", "file": "management_projections.xlsx", "locator": "Projections ($M)!E4"}
+{"id": "F0022", "value": 238.0, "unit": "USD", "scale": 1000000.0, "period": "FY30E", "text": " | Unlevered FCF FY30E", "file": "management_projections.xlsx", "locator": "Projections ($M)!F4"}
+{"id": "F0023", "value": 8.0, "unit": "%", "scale": 1.0, "period": "", "text": "WACC range used by management: 8.0% -9.0%; terminal growth 2.0%-3.0%.", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0024", "value": 9.0, "unit": "%", "scale": 1.0, "period": "", "text": "WACC range used by management: 8.0% -9.0% ; terminal growth 2.0%-3.0%.", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0025", "value": 2.0, "unit": "%", "scale": 1.0, "period": "", "text": "range used by management: 8.0%-9.0%; terminal growth 2.0% -3.0%.", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0026", "value": 3.0, "unit": "%", "scale": 1.0, "period": "", "text": "used by management: 8.0%-9.0%; terminal growth 2.0% -3.0% .", "file": "management_projections.xlsx", "locator": "Notes!A2 (text)"}
+{"id": "F0027", "value": 112.6, "unit": "", "scale": 1000000.0, "period": "", "text": "Per-share values should use 112.6M diluted shares (treasury method", "file": "management_projections.xlsx", "locator": "Notes!A3 (text)"}
+{"id": "F0028", "value": 2900.0, "unit": "USD", "scale": 1000000.0, "period": "2023", "text": "2023-03 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 2, ev_usd_m"}
+{"id": "F0029", "value": 9.8, "unit": "x", "scale": 1.0, "period": "2023", "text": "2023-03 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 2, ev_ltm_ebitda_x"}
+{"id": "F0030", "value": 5100.0, "unit": "USD", "scale": 1000000.0, "period": "2024", "text": "2024-06 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 3, ev_usd_m"}
+{"id": "F0031", "value": 11.9, "unit": "x", "scale": 1.0, "period": "2024", "text": "2024-06 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 3, ev_ltm_ebitda_x"}
+{"id": "F0032", "value": 1800.0, "unit": "USD", "scale": 1000000.0, "period": "2025", "text": "2025-01 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 4, ev_usd_m"}
+{"id": "F0033", "value": 9.1, "unit": "x", "scale": 1.0, "period": "2025", "text": "2025-01 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 4, ev_ltm_ebitda_x"}
+{"id": "F0034", "value": 6400.0, "unit": "USD", "scale": 1000000.0, "period": "2025", "text": "2025-11 | ev_usd_m", "file": "precedent_transactions.csv", "locator": "row 5, ev_usd_m"}
+{"id": "F0035", "value": 12.2, "unit": "x", "scale": 1.0, "period": "2025", "text": "2025-11 | ev_ltm_ebitda_x", "file": "precedent_transactions.csv", "locator": "row 5, ev_ltm_ebitda_x"}
+{"id": "F0036", "value": 16.66, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W01 | close_usd", "file": "share_price_52w.csv", "locator": "row 2, close_usd"}
+{"id": "F0037", "value": 17.1, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W02 | close_usd", "file": "share_price_52w.csv", "locator": "row 3, close_usd"}
+{"id": "F0038", "value": 17.55, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W03 | close_usd", "file": "share_price_52w.csv", "locator": "row 4, close_usd"}
+{"id": "F0039", "value": 17.99, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W04 | close_usd", "file": "share_price_52w.csv", "locator": "row 5, close_usd"}
+{"id": "F0040", "value": 17.18, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W05 | close_usd", "file": "share_price_52w.csv", "locator": "row 6, close_usd"}
+{"id": "F0041", "value": 17.62, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W06 | close_usd", "file": "share_price_52w.csv", "locator": "row 7, close_usd"}
+{"id": "F0042", "value": 18.07, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W07 | close_usd", "file": "share_price_52w.csv", "locator": "row 8, close_usd"}
+{"id": "F0043", "value": 17.25, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W08 | close_usd", "file": "share_price_52w.csv", "locator": "row 9, close_usd"}
+{"id": "F0044", "value": 17.69, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W09 | close_usd", "file": "share_price_52w.csv", "locator": "row 10, close_usd"}
+{"id": "F0045", "value": 18.14, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W10 | close_usd", "file": "share_price_52w.csv", "locator": "row 11, close_usd"}
+{"id": "F0046", "value": 18.58, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W11 | close_usd", "file": "share_price_52w.csv", "locator": "row 12, close_usd"}
+{"id": "F0047", "value": 17.77, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W12 | close_usd", "file": "share_price_52w.csv", "locator": "row 13, close_usd"}
+{"id": "F0048", "value": 18.21, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W13 | close_usd", "file": "share_price_52w.csv", "locator": "row 14, close_usd"}
+{"id": "F0049", "value": 18.66, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W14 | close_usd", "file": "share_price_52w.csv", "locator": "row 15, close_usd"}
+{"id": "F0050", "value": 17.84, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W15 | close_usd", "file": "share_price_52w.csv", "locator": "row 16, close_usd"}
+{"id": "F0051", "value": 18.28, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W16 | close_usd", "file": "share_price_52w.csv", "locator": "row 17, close_usd"}
+{"id": "F0052", "value": 18.73, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W17 | close_usd", "file": "share_price_52w.csv", "locator": "row 18, close_usd"}
+{"id": "F0053", "value": 19.17, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W18 | close_usd", "file": "share_price_52w.csv", "locator": "row 19, close_usd"}
+{"id": "F0054", "value": 18.36, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W19 | close_usd", "file": "share_price_52w.csv", "locator": "row 20, close_usd"}
+{"id": "F0055", "value": 18.8, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W20 | close_usd", "file": "share_price_52w.csv", "locator": "row 21, close_usd"}
+{"id": "F0056", "value": 19.25, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W21 | close_usd", "file": "share_price_52w.csv", "locator": "row 22, close_usd"}
+{"id": "F0057", "value": 18.43, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W22 | close_usd", "file": "share_price_52w.csv", "locator": "row 23, close_usd"}
+{"id": "F0058", "value": 18.87, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W23 | close_usd", "file": "share_price_52w.csv", "locator": "row 24, close_usd"}
+{"id": "F0059", "value": 19.32, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W24 | close_usd", "file": "share_price_52w.csv", "locator": "row 25, close_usd"}
+{"id": "F0060", "value": 19.76, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W25 | close_usd", "file": "share_price_52w.csv", "locator": "row 26, close_usd"}
+{"id": "F0061", "value": 18.95, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W26 | close_usd", "file": "share_price_52w.csv", "locator": "row 27, close_usd"}
+{"id": "F0062", "value": 19.39, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W27 | close_usd", "file": "share_price_52w.csv", "locator": "row 28, close_usd"}
+{"id": "F0063", "value": 19.84, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W28 | close_usd", "file": "share_price_52w.csv", "locator": "row 29, close_usd"}
+{"id": "F0064", "value": 19.02, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W29 | close_usd", "file": "share_price_52w.csv", "locator": "row 30, close_usd"}
+{"id": "F0065", "value": 19.47, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W30 | close_usd", "file": "share_price_52w.csv", "locator": "row 31, close_usd"}
+{"id": "F0066", "value": 19.91, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W31 | close_usd", "file": "share_price_52w.csv", "locator": "row 32, close_usd"}
+{"id": "F0067", "value": 20.35, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W32 | close_usd", "file": "share_price_52w.csv", "locator": "row 33, close_usd"}
+{"id": "F0068", "value": 19.54, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W33 | close_usd", "file": "share_price_52w.csv", "locator": "row 34, close_usd"}
+{"id": "F0069", "value": 19.98, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W34 | close_usd", "file": "share_price_52w.csv", "locator": "row 35, close_usd"}
+{"id": "F0070", "value": 20.43, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W35 | close_usd", "file": "share_price_52w.csv", "locator": "row 36, close_usd"}
+{"id": "F0071", "value": 19.61, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W36 | close_usd", "file": "share_price_52w.csv", "locator": "row 37, close_usd"}
+{"id": "F0072", "value": 20.06, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W37 | close_usd", "file": "share_price_52w.csv", "locator": "row 38, close_usd"}
+{"id": "F0073", "value": 20.5, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W38 | close_usd", "file": "share_price_52w.csv", "locator": "row 39, close_usd"}
+{"id": "F0074", "value": 20.94, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W39 | close_usd", "file": "share_price_52w.csv", "locator": "row 40, close_usd"}
+{"id": "F0075", "value": 20.13, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W40 | close_usd", "file": "share_price_52w.csv", "locator": "row 41, close_usd"}
+{"id": "F0076", "value": 20.57, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W41 | close_usd", "file": "share_price_52w.csv", "locator": "row 42, close_usd"}
+{"id": "F0077", "value": 21.02, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W42 | close_usd", "file": "share_price_52w.csv", "locator": "row 43, close_usd"}
+{"id": "F0078", "value": 20.2, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W43 | close_usd", "file": "share_price_52w.csv", "locator": "row 44, close_usd"}
+{"id": "F0079", "value": 20.65, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W44 | close_usd", "file": "share_price_52w.csv", "locator": "row 45, close_usd"}
+{"id": "F0080", "value": 21.09, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W45 | close_usd", "file": "share_price_52w.csv", "locator": "row 46, close_usd"}
+{"id": "F0081", "value": 21.53, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W46 | close_usd", "file": "share_price_52w.csv", "locator": "row 47, close_usd"}
+{"id": "F0082", "value": 20.72, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W47 | close_usd", "file": "share_price_52w.csv", "locator": "row 48, close_usd"}
+{"id": "F0083", "value": 21.16, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W48 | close_usd", "file": "share_price_52w.csv", "locator": "row 49, close_usd"}
+{"id": "F0084", "value": 21.61, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W49 | close_usd", "file": "share_price_52w.csv", "locator": "row 50, close_usd"}
+{"id": "F0085", "value": 20.79, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W50 | close_usd", "file": "share_price_52w.csv", "locator": "row 51, close_usd"}
+{"id": "F0086", "value": 21.24, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W51 | close_usd", "file": "share_price_52w.csv", "locator": "row 52, close_usd"}
+{"id": "F0087", "value": 21.68, "unit": "USD", "scale": 1.0, "period": "2025", "text": "2025-W52 | close_usd", "file": "share_price_52w.csv", "locator": "row 53, close_usd"}
+{"id": "F0088", "value": 6150.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Aster | ev_usd_m", "file": "trading_comps.csv", "locator": "row 2, ev_usd_m"}
+{"id": "F0089", "value": 612.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Aster | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 2, ebitda_ltm_usd_m"}
+{"id": "F0090", "value": 645.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Aster | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 2, ebitda_ntm_usd_m"}
+{"id": "F0091", "value": 3420.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Brio | ev_usd_m", "file": "trading_comps.csv", "locator": "row 3, ev_usd_m"}
+{"id": "F0092", "value": 371.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Brio | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 3, ebitda_ltm_usd_m"}
+{"id": "F0093", "value": 392.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Brio | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 3, ebitda_ntm_usd_m"}
+{"id": "F0094", "value": 8800.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Calder | ev_usd_m", "file": "trading_comps.csv", "locator": "row 4, ev_usd_m"}
+{"id": "F0095", "value": 812.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Calder | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 4, ebitda_ltm_usd_m"}
+{"id": "F0096", "value": 861.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Calder | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 4, ebitda_ntm_usd_m"}
+{"id": "F0097", "value": 2480.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Delta | ev_usd_m", "file": "trading_comps.csv", "locator": "row 5, ev_usd_m"}
+{"id": "F0098", "value": 283.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Delta | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 5, ebitda_ltm_usd_m"}
+{"id": "F0099", "value": 297.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Delta | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 5, ebitda_ntm_usd_m"}
+{"id": "F0100", "value": 4010.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Ember | ev_usd_m", "file": "trading_comps.csv", "locator": "row 6, ev_usd_m"}
+{"id": "F0101", "value": 402.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Ember | ebitda_ltm_usd_m", "file": "trading_comps.csv", "locator": "row 6, ebitda_ltm_usd_m"}
+{"id": "F0102", "value": 428.0, "unit": "USD", "scale": 1000000.0, "period": "", "text": "Peer Ember | ebitda_ntm_usd_m", "file": "trading_comps.csv", "locator": "row 6, ebitda_ntm_usd_m"}

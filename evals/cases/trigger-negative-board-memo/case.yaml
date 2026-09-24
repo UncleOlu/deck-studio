@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.1",
+  "name": "trigger-negative-board-memo",
+  "tags": [
+    "trigger",
+    "negative"
+  ],
+  "execution": {
+    "prompt": "Write a short plain-text email to my board chair confirming the Q3 meeting has moved to 14 October at 2pm.",
+    "runs": 3,
+    "max_turns": 6,
+    "timeout_seconds": 300,
+    "allowed_tools": [
+      "Skill",
+      "Read"
+    ]
+  },
+  "graders": [
+    {
+      "name": "skill-not-fired",
+      "type": "tool_used",
+      "tool": "Skill",
+      "input_match": "premium-decks",
+      "min": 0,
+      "max": 0
+    }
+  ],
+  "runs": 3
+}

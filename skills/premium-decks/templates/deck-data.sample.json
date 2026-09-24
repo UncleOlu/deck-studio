@@ -1,0 +1,98 @@
+{
+  "_schema_note": "Every string appears on a slide exactly as written — format numbers as they should display ($3.1M, 94%). cost.chart labels/values MUST be in ascending value order. illustrative:true appends a placeholder disclaimer to every slide's speaker notes.",
+  "output": "vendor-consolidation-q3.pptx",
+  "illustrative": true,
+  "theme": {
+    "colors": {},
+    "fonts": {}
+  },
+  "meeting": {
+    "title": "Vendor consolidation",
+    "subtitle": "Proposal to the Q3 board — decision requested by October 1",
+    "footer": "Prepared for the CFO · September 2026",
+    "notes": "Frame: one decision today — approve consolidation so Wave 1 starts in October."
+  },
+  "recommendation": {
+    "title": "Recommendation: consolidate 142 vendors to 38, for $3.1M annual savings",
+    "stats": [
+      { "value": "$3.1M", "label": "recurring annual savings", "detail": "net of retained-vendor price adjustments" },
+      { "value": "142 → 38", "label": "vendors after consolidation", "detail": "top 20 renegotiated; tail spend on one platform" },
+      { "value": "4 months", "label": "payback on one-time cost", "detail": "$850K migration and exit fees" }
+    ],
+    "kicker": "Complete by end of Q1 2027. Wave 1 starts October 6 if approved by October 1.",
+    "notes": "Talk track: lead with the number — the ask funds itself in four months. Sources: savings model v3 (procurement), AP trailing-12-month extract."
+  },
+  "trend": {
+    "title": "Vendor count grew 2.4x in three years, with no single approval owner",
+    "chart": {
+      "series": "Active vendors",
+      "labels": ["2023", "2024", "2025", "2026"],
+      "values": [59, 87, 118, 142],
+      "max": 160,
+      "caption": "Active vendors with ≥1 paid invoice in trailing 12 months (illustrative)"
+    },
+    "paragraphs": [
+      { "text": "Spend stayed near $31M per year while the vendor count rose from 59 to 142." },
+      { "text": "Average spend per vendor fell from $525K to $218K. Small contracts carry full onboarding, security review, and invoicing overhead." },
+      { "text": "Any budget owner can add a vendor. No role is accountable for the total.", "bold": true }
+    ],
+    "notes": "Talk track: growth was organic, not a decision anyone made — that is the governance gap. Source: AP vendor master."
+  },
+  "cost": {
+    "title": "Fragmentation costs $4.2M per year; consolidation recovers $3.1M",
+    "chart": {
+      "series": "Annual cost",
+      "labels": ["Procurement & AP overhead", "Missed volume discounts", "Duplicate tools"],
+      "values": [1.0, 1.4, 1.8],
+      "format": "$0.0\\M",
+      "max": 2.2,
+      "caption": "Trailing-12-month AP and license data (illustrative)"
+    },
+    "takeaway": "37 tools overlap an existing capability; 14 categories split volume across 3+ suppliers, below every discount tier. The unrecovered $1.1M sits in contracts we keep for capability or risk reasons.",
+    "notes": "Talk track: three cost pools, largest first; we recover about three quarters of the total. Sources: license inventory audit, AP category analysis."
+  },
+  "options": {
+    "title": "Targeted consolidation has the best return for the risk taken",
+    "headers": ["Status quo", "Targeted: 38 vendors", "Full: 25 vendors"],
+    "recommended_index": 1,
+    "rows": [
+      ["Annual saving", "$0", "$3.1M", "$3.8M"],
+      ["One-time cost", "$0", "$850K", "$2.1M"],
+      ["Time to complete", "—", "2 quarters", "5 quarters"],
+      ["Migrations forced", "0", "37 tools", "63 tools"],
+      ["Single-supplier exposure", "Low", "Moderate", "High"]
+    ],
+    "footnote": "Full consolidation saves $700K more but forces 26 extra migrations and concentrates category risk.",
+    "notes": "Talk track: full consolidation is the tempting number — walk through why the extra $700K is not worth 26 more migrations. Source: options model, procurement + IT joint estimate."
+  },
+  "timeline": {
+    "title": "Three waves complete the consolidation by end of Q1 2027",
+    "waves": [
+      { "name": "Wave 1 · Oct–Nov 2026", "action": "Exit 46 duplicate SaaS tools", "saving": "$1.4M annual saving" },
+      { "name": "Wave 2 · Dec 2026–Jan 2027", "action": "Renegotiate top-20 contracts at pooled volume", "saving": "$1.1M annual saving" },
+      { "name": "Wave 3 · Feb–Mar 2027", "action": "Move tail spend (58 vendors) to one procurement platform", "saving": "$0.6M annual saving" }
+    ],
+    "kicker": "Wave 1 requires the October 1 approval. Waves 2 and 3 proceed only if the December review confirms savings are tracking.",
+    "notes": "Talk track: sequencing is risk control — easiest exits first, renegotiation from committed volume, tail last. Source: wave plan, VP Procurement."
+  },
+  "risks": {
+    "title": "The top three risks have funded mitigations and named owners",
+    "rows": [
+      ["Service disruption during tool migration", "30-day parallel run for every exited tool; rollback plan per migration", "IT Operations"],
+      ["Retained vendors raise prices after exits", "3-year rate locks signed before any exit is announced", "Procurement"],
+      ["Exit fees exceed estimate", "Legal review of top-20 contracts before Oct 1; fees capped within the $850K budget", "Legal"]
+    ],
+    "notes": "Talk track: each mitigation is funded inside the $850K envelope; no contingency ask will follow. Source: risk register, joint Legal/IT/Procurement review."
+  },
+  "ask": {
+    "title": "The ask",
+    "statement": "Approve vendor consolidation by October 1: $850K one-time budget and the top-20 renegotiation mandate.",
+    "rows": [
+      ["Decision owner", "CFO, with board approval at the Q3 meeting"],
+      ["Execution owner", "VP Procurement"],
+      ["Wave 1 starts", "October 6, 2026"],
+      ["Review gate", "December board meeting — Waves 2–3 proceed only if savings track to plan"]
+    ],
+    "notes": "Close: restate the single decision and the date. First board-visible checkpoint is the December review gate."
+  }
+}
